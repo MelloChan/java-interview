@@ -87,7 +87,7 @@
 - 各种命令....
 
 ### 框架应用
-- servlet生命周期 
+- servlet生命周期
 - bean的加载过程
 - Spring IOC & AOP
 - 注入方式
@@ -95,9 +95,12 @@
 - SpringMVC原理
 - SpringMVC常用注解
 - 转发与重定向
+- ORM框架
 - 缓存
 - 批量提交
+- SpringBoot
 - RESTFul
+
 ### 服务器
 - Web服务器 & 应用服务器
 - Tomcat
@@ -124,3 +127,15 @@
 ### 架构设计
 - 秒杀系统设计
 - ...
+
+### 书籍推荐
+- Java编程思想
+- Java并发编程实战
+- 深入理解JVM虚拟机
+- Effective Java
+- 深入分析Java Web技术内幕
+- Spring实战
+- SpringBoot实战
+- 深入浅出MySQL
+- redis实战
+- Head First设计模式

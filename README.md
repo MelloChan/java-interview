@@ -52,7 +52,7 @@
 - 数组 链表 栈 队列 树 图等
 - 递归
 - 八大排序算法
-- 刷剑指offer
+- [刷剑指offer](https://github.com/MelloChan/interviews-coding)
 
 ### 数据库
 - MySQL引擎

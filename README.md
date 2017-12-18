@@ -1,13 +1,14 @@
 # Java-Interview
-### Java基础
-- 面向对象与面向过程的区别
+### [Java基础](https://github.com/MelloChan/java-interview/blob/master/JavaBase.md)
 - 四大基本特性
 - 重载与重写的区别
-- 抽象类与接口
 - 访问控制符
+- 抽象类与接口
 - 类初始化顺序
 - hashCode & equals
 - == & equals
+- static
+- this
 - 基本类型 & 包装类
 - String
 - 泛型

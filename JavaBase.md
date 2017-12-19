@@ -35,7 +35,8 @@ hashCode相等,值不一定相等,值相等则hashCode一定相等.因此hashCod
 
 - [== & equals](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/Compare.java)  
 对于基本类型的值比较使用 == 即可,但基于引用类型(诸如通过new String())之类的对象实例进行比较,则需要使用
-equals方法,单纯使用 == 将会对引用的地址进行比较,而不是值.
+equals方法,单纯使用 == 将会对引用的地址进行比较,而不是值.  
+
 - this  
 ①作为对象实例,被默认传入普通方法中.一般用作返回当前对象的引用(如链式调用);    
 ②在构造器中调用当前类的其他构造器(要放在语句的第一条,且只有这一个);    
@@ -44,16 +45,27 @@ equals方法,单纯使用 == 将会对引用的地址进行比较,而不是值.
  ①有显式this()调用的构造器就会抑制掉该构造器里隐式的super()调用；  
  ②没有显式this()调用的构造器则会得到隐式的super()调用。  
  -- R大  
+ 
 - static      
 目的:①只想为某特定区域分配单一存储空间;②不与实例对象关联的方法.    
 static(静态)方法:没有this的方法,不可调用普通方法以及属性.
 被static所修饰的方法或属性是类级别的,即共享的,不需要实例化即可调用.  
+
 - 基本类型 & 包装类  
 基本类型:boolean(无指定) byte(8-bit) char(16-bit) short(16-bit) int(32-bit) long(64-bit) 
 float(32-bit) double(64-bit)  
 包装类:Boolean Byte Character Short Integer Long Float Double BigInteger、BigDecimal    
-包装类拥有自动拆箱/装箱的功能,且提供了各种方便的api,最重要的是让各种数据类型间的转化更加方便.
-- String
+包装类拥有自动拆箱/装箱的功能,且提供了各种方便的api,最重要的是让各种数据类型间的转化更加方便.  
+
+- String  
+String类型,最常用的数据类型之一.该类被修饰为final(不可被继承).  
+与StringBuffer、StringBuilder区别:  
+①可变性:String使用 private final char value[];来存储字符,因此实例化的对象不可变的.而后来者继承自
+AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;    
+②线程安全性:String中的对象可以说为是常量,因此是线程安全的.而StringBuffer虽然可变,但其提供的api都通过synchronized关键字进行方法修饰,
+因此也是线程安全的.而StringBuilder是非线程安全的;  
+③性能:对String的改变都会重新创建新的对象,然后将指针指向新引用地址,后来者都是对本身进行修改.  
+
 - 泛型
 - 内部类
 - 集合类

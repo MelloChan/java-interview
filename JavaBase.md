@@ -51,7 +51,8 @@ static(静态)方法:没有this的方法,不可调用普通方法以及属性.
 - 基本类型 & 包装类  
 基本类型:boolean(无指定) byte(8-bit) char(16-bit) short(16-bit) int(32-bit) long(64-bit) 
 float(32-bit) double(64-bit)  
-包装类:Boolean Byte Character Short Integer Long Float Double 
+包装类:Boolean Byte Character Short Integer Long Float Double BigInteger、BigDecimal    
+包装类拥有自动拆箱/装箱的功能,且提供了各种方便的api,最重要的是让各种数据类型间的转化更加方便.
 - String
 - 泛型
 - 内部类

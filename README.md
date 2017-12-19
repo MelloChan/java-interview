@@ -7,8 +7,8 @@
 - 类初始化顺序
 - hashCode & equals
 - == & equals
-- static
 - this
+- static
 - 基本类型 & 包装类
 - String
 - 泛型

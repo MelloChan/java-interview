@@ -27,8 +27,8 @@ public:公有的.允许所有的类对其访问.
 他们都不可被实例化.
 
 - [类初始化顺序](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/InitDemo.java)  
-首先是静态成员,其次是普通成员,最后则是构造方法;
-父子类中,首先初始化父类静态属性/块,然后是子类静态属性/块,其次是父类普通成员/块,构造方法,然后才是子类的普通成员/块,构造方法.
+首先是静态属性,其次是普通属性,最后则是构造方法;
+父子类中,首先初始化父类静态属性/块,然后是子类静态属性/块,其次是父类普通属性/块,构造方法,然后才是子类的普通属性/块,构造方法.
 
 - hashCode & equals  
 hashCode相等,值不一定相等,值相等则hashCode一定相等.因此hashCode方法一定要配合equals方法重写.
@@ -36,11 +36,22 @@ hashCode相等,值不一定相等,值相等则hashCode一定相等.因此hashCod
 - [== & equals](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/Compare.java)  
 对于基本类型的值比较使用 == 即可,但基于引用类型(诸如通过new String())之类的对象实例进行比较,则需要使用
 equals方法,单纯使用 == 将会对引用的地址进行比较,而不是值.
-
-- static
-
-- this
+- this  
+①作为对象实例,被默认传入普通方法中.一般用作返回当前对象的引用(如链式调用);    
+②在构造器中调用当前类的其他构造器(要放在语句的第一条,且只有这一个);    
+③调用对象属性.  
+- 关于this() & super()  
+ ①有显式this()调用的构造器就会抑制掉该构造器里隐式的super()调用；  
+ ②没有显式this()调用的构造器则会得到隐式的super()调用。  
+ -- R大  
+- static      
+目的:①只想为某特定区域分配单一存储空间;②不与实例对象关联的方法.    
+static(静态)方法:没有this的方法,不可调用普通方法以及属性.
+被static所修饰的方法或属性是类级别的,即共享的,不需要实例化即可调用.  
 - 基本类型 & 包装类
+基本类型:boolean(无指定) byte(8-bit) char(16-bit) short(16-bit) int(32-bit) long(64-bit) 
+float(32-bit) double(64-bit)  
+包装类:Boolean Byte Character Short Integer Long Float Double 
 - String
 - 泛型
 - 内部类

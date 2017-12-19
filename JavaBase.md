@@ -60,14 +60,20 @@ float(32-bit) double(64-bit)
 - String  
 String类型,最常用的数据类型之一.该类被修饰为final(不可被继承).  
 与StringBuffer、StringBuilder区别:  
-①可变性:String使用 private final char value[];来存储字符,因此实例化的对象不可变的.而后来者继承自
+①可变性:String使用 private final char value[];来存储字符,因此实例化的对象不可变的.而后者继承自
 AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;    
-②线程安全性:String中的对象可以说为是常量,因此是线程安全的.而StringBuffer虽然可变,但其提供的api都通过synchronized关键字进行方法修饰,
+②线程安全性:String中的对象可以说是常量,因此是线程安全的.而StringBuffer虽然可变,但其提供的api都通过synchronized关键字进行方法修饰,
 因此也是线程安全的.而StringBuilder是非线程安全的;  
-③性能:对String的改变都会重新创建新的对象,然后将指针指向新引用地址,后来者都是对本身进行修改.  
+③性能:对String的改变都会重新创建新的对象,然后将指针指向新引用地址,后者是对本身进行修改.  
 
-- 泛型
-- 内部类
+- 泛型  
+简单来讲即"参数化类型".创建集合时就确定集合元素的类型,使集合只能保存指定类型的元素(编译期类型安全确认),避免强制转换.
+泛型在编译后类型会被擦除,泛型Java代码将转换为普通Java字节码(替换为Object类,移除所有的参数类型).  
+? extends T & ? super T 区别:前者规定了保存的类型的上界,而后者规定了下界.  
+
+- [内部类]()  
+分为静态内部类,非静态内部类,局部内部类以及匿名内部类
+
 - 集合类
 - HashMap HashTable currentHashMap 联系与区别
 - ArrayList & LinkedList 区别

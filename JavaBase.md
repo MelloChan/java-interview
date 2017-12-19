@@ -26,14 +26,14 @@ public:公有的.允许所有的类对其访问.
 是自顶向下的.因此抽象类表现的是一种is-a关心,接口表现的则是like-a.
 他们都不可被实例化.
 
-- [类初始化顺序]()
+- [类初始化顺序](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/InitDemo.java)
 首先是静态成员,其次是普通成员,最后则是构造方法;
 父子类中,首先初始化父类静态属性/块,然后是子类静态属性/块,其次是父类普通成员/块,构造方法,然后才是子类的普通成员/块,构造方法.
 
 - hashCode & equals
 hashCode相等,值不一定相等,值相等则hashCode一定相等.因此hashCode方法一定要配合equals方法重写.
 
-- [== & equals]()
+- [== & equals](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/Compare.java)
 对于基本类型的值比较使用 == 即可,但基于引用类型(诸如通过new String())之类的对象实例进行比较,则需要使用
 equals方法,单纯使用 == 将会对引用的地址进行比较,而不是值.
 

@@ -47,6 +47,7 @@
 - sleep & wait 
 - 线程通信
 - 线程池
+- [实现男女共浴问题](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/Bath.java)
 - 无锁机制
 
 ### 数据结构与算法

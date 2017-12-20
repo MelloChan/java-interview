@@ -1,4 +1,4 @@
-### [设计模式](https://github.com/MelloChan/java-design)
+### 设计模式
 - 五大设计原则  
 单一职责原则: 类的职责应该师单一的,不允许让一个类负责多项性质不一的事(处理请求/给予服务/日志/安全/时间处理);     
 开闭原则: 对扩展开放,对修改关闭;   
@@ -11,4 +11,4 @@
 行为型: 策略模式 观察者模式 模板模式 命令模式 迭代器模式 状态模式;    
 构建型: 单例模式 工厂模式 抽象工厂 构建器模式.  
 - [单例模式的实现](https://github.com/MelloChan/interviews-coding/blob/master/No02.java)       
-- ...
+- [demo](https://github.com/MelloChan/java-design)

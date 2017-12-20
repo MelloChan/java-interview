@@ -1,5 +1,5 @@
 # Java-Interview
-### [Java基础](https://github.com/MelloChan/java-interview/blob/master/JavaBase.md)
+### [Java基础](https://github.com/MelloChan/java-interview/blob/master/Java-Base.md)
 - 四大基本特性
 - 重载与重写的区别
 - 访问控制符
@@ -114,9 +114,9 @@
 - redis 持久化
 - ...
 
-### 设计模式
+### [设计模式](https://github.com/MelloChan/java-interview/blob/master/Java-Design.md)
 - 五大设计原则
-- 结构性 行为型 构建型
+- 结构型 行为型 构建型
 - 单例模式的实现
 - ...
 

@@ -71,8 +71,13 @@ AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;
 泛型在编译后类型会被擦除,泛型Java代码将转换为普通Java字节码(替换为Object类,移除所有的参数类型).  
 ? extends T & ? super T 区别:前者规定了保存的类型的上界,而后者规定了下界.  
 
-- [内部类]()  
-分为静态内部类,非静态内部类,局部内部类以及匿名内部类
+- [内部类](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/inner)  
+内部类:顾名思义,在一个类的内部中定义类.用于将一些逻辑相关的类组织在一起.内部类的最大特性在于能与外部类进行通信了解(即能访问外部类的方法与字段,本质上是提供了外部类的this引用).  
+[普通内部类](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/inner/Outside.java):内部类的普遍用法.在类中定义类.
+[静态内部(嵌套)类]():使用static修饰的内部类,与内部类的差异在于无法访问外部类的方法/字段.这点由static的意义就可知晓.
+[局部内部类]() & [匿名内部类]():在一个方法或任意的作用域中定义内部类.  
+关于内部类与外部类通信的方式,通过查阅编译后的字节码即可了解.
+![原理]()
 
 - 集合类
 - HashMap HashTable currentHashMap 联系与区别

@@ -35,7 +35,7 @@ public class Bath {
      * 澡堂女人数量
      */
     private int womanCount;
-    /*
+    /**
      * 浴室一次可容纳的人数
      */
     private static final int HOLD_COUNT = 5;

@@ -47,7 +47,7 @@ public class Bath {
     public static void main(String[] args) {
         Bath bath = new Bath();
         // 无线程数量限制的线程池 使用同步队列
-        ExecutorService exc = Executors.newCachedThreadPool();
+        ExecutorService exc = Executors.newFixedThreadPool(10);
         // 随机生成进入浴室的男(奇数)或女(偶数)
         Random random = new Random();
         while (true) {

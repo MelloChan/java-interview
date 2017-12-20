@@ -15,7 +15,15 @@ public class BubbleSort {
         System.out.println(Arrays.toString(array));
     }
 
+    /**
+     * 冒泡排序
+     * @param array
+     * @param length
+     */
     static void bubbleSort(int[] array, int length) {
+        if(array==null||length<=0){
+            return;
+        }
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length - 1 - i; j++) {
                 if (array[j] > array[j + 1]) {

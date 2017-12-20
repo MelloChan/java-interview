@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 问题描述:
@@ -14,8 +15,9 @@ import java.util.concurrent.TimeUnit;
  * man_wants_to_enter
  * woman_leaves
  * man_leaves
+ *
  * @author 软二陈文铭(MelloChan) 150202102439
- * Created by MelloChan on 2017/12/19.
+ *         Created by MelloChan on 2017/12/19.
  */
 public class Bath {
     /*
@@ -25,34 +27,52 @@ public class Bath {
     2 女生
      */
     private int bathState;
-    /**
+    /*
      * 澡堂男人数量
      */
     private int manCount;
-    /**
+    /*
      * 澡堂女人数量
      */
     private int womanCount;
+    /*
+     * 浴室一次可容纳的人数
+     */
+    private static final int HOLD_COUNT = 5;
+    /**
+     * 浴室当前人数
+     */
+    private static AtomicInteger nowCount = new AtomicInteger();
 
     public static void main(String[] args) {
         Bath bath = new Bath();
         // 无线程数量限制的线程池 使用同步队列
         ExecutorService exc = Executors.newCachedThreadPool();
-        // 随机生成进入浴室的男(奇数)或女(偶数
+        // 随机生成进入浴室的男(奇数)或女(偶数)
         Random random = new Random();
         while (true) {
-            int human = random.nextInt();
-            // 奇数
-            if ((human & 1) != 0) {
-                exc.execute(bath.new Man());
-            }else{
-                exc.execute(bath.new Woman());
+            if (nowCount.get() < HOLD_COUNT) {
+                int human = random.nextInt();
+                // 奇数
+                if ((human & 1) != 0) {
+                    exc.execute(bath.new Man());
+                } else {
+                    exc.execute(bath.new Woman());
+                }
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("[" + Thread.currentThread().getName() + "]-" + nowCount.get() + " human having a bath Now!");
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            System.out.println("[" + Thread.currentThread().getName() + "]-" + nowCount.get() + " human having a bath now!");
         }
     }
 
@@ -66,32 +86,36 @@ public class Bath {
         }
 
         public void man_wants_to_enter() {
-            synchronized (this){
-                if(bathState==0){
+            synchronized (this) {
+                if (bathState == 0) {
                     ++manCount;
-                    bathState=1;
-                }else if(bathState==1){
+                    nowCount.getAndIncrement();
+                    bathState = 1;
+                } else if (bathState == 1) {
                     ++manCount;
-                }else{
+                    nowCount.getAndIncrement();
+                } else {
                     try {
                         wait();
                         ++manCount;
+                        nowCount.getAndIncrement();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
-            System.out.println(manCount+" man having a bath Now!");
+            System.out.println("[" + Thread.currentThread().getName() + "]-" + manCount + " man having a bath Now!");
         }
 
         public void man_leaves() {
-            synchronized (this){
+            synchronized (this) {
                 --manCount;
-                System.out.println(manCount+" man remain");
+                nowCount.getAndDecrement();
+                System.out.println("[" + Thread.currentThread().getName() + "]-" + manCount + " man remain Now!");
                 //男人全部离开
-                if(manCount==0){
+                if (manCount == 0) {
                     // 澡堂设置为无人状态
-                    bathState=0;
+                    bathState = 0;
                     // 唤醒女人线程
                     notify();
                 }
@@ -109,32 +133,36 @@ public class Bath {
         }
 
         public void woman_wants_to_enter() {
-            synchronized (this){
-                if(bathState==0){
+            synchronized (this) {
+                if (bathState == 0) {
                     ++womanCount;
-                    bathState=2;
-                }else if(bathState==2){
+                    nowCount.getAndIncrement();
+                    bathState = 2;
+                } else if (bathState == 2) {
                     ++womanCount;
-                }else{
+                    nowCount.getAndIncrement();
+                } else {
                     try {
                         wait();
                         ++womanCount;
+                        nowCount.getAndIncrement();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                System.out.println(womanCount+" woman having a bath Now!");
+                System.out.println("[" + Thread.currentThread().getName() + "]-" + womanCount + " woman having a bath Now!");
             }
         }
 
         public void woman_leave() {
-            synchronized (this){
+            synchronized (this) {
                 --womanCount;
-                System.out.println(womanCount+" woman remain");
+                nowCount.getAndDecrement();
+                System.out.println("[" + Thread.currentThread().getName() + "]-" + womanCount + " woman remain Now!");
                 //女人全部离开
-                if(womanCount==0){
+                if (womanCount == 0) {
                     // 澡堂设置为无人状态
-                    bathState=0;
+                    bathState = 0;
                     // 唤醒男人线程
                     notify();
                 }
@@ -145,11 +173,11 @@ public class Bath {
 
     /**
      * 进入浴室的时间,随机获取
-     * 节省时间,将时间在1~3秒间
+     * 1~20s
      */
     public static void bathTime() {
         try {
-            TimeUnit.SECONDS.sleep((long) (Math.random() + 1.0) * 3);
+            TimeUnit.SECONDS.sleep((long) (Math.random() + 1.0) * 10);
         } catch (Exception e) {
             e.printStackTrace();
         }

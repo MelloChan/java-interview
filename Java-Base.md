@@ -21,10 +21,10 @@ protected:受保护的.只允许自身以及其子类访问;
 public:公有的.允许所有的类对其访问.  
 - 抽象类与接口  
 语法层次:抽象(abstract)允许普通与抽象方法存在,属性没有规定;接口(interface)方法默认为public abstract,字段默认为private static final,
-在JDK1.8中允许有default关键字修饰的普通方法;
+在JDK1.8中允许有default关键字修饰的普通方法;  
 设计层次:抽象类是对类抽象,而接口则是行为抽象.抽象类是对客观世界拥有共性特征的事物进行整体抽象,是自底向上的,而接口则是局部行为抽象.
-是自顶向下的.因此抽象类表现的是一种is-a关心,接口表现的则是like-a.
-他们都不可被实例化.
+是自顶向下的.因此抽象类表现的是一种is-a关心,接口表现的则是like-a.  
+他们都不可被实例化.  
 
 - [类初始化顺序](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/InitDemo.java)  
 首先是静态属性,其次是普通属性,最后则是构造方法;
@@ -75,7 +75,7 @@ AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;
 - [内部类](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/inner)  
 内部类:顾名思义,在一个类的内部中定义类.用于将一些逻辑相关的类组织在一起.内部类的最大特性在于能与外部类进行通信了解(即能访问外部类的方法与字段,本质上是提供了外部类的this引用).    
 [普通内部类](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/inner/Outside.java):内部类的普遍用法.在类中定义类;  
-[静态内部(嵌套)类](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/inner/StaticOutside.java):使用static修饰的内部类,与内部类的差异在于无法访问外部类的方法/字段.这点由static的意义就可知晓.另外只有嵌套类能拥有static修饰的成员(参考static的定义);      
+[静态内部(嵌套)类](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/inner/StaticOutside.java):使用static修饰的内部类,与内部类的差异在于无法访问外部类的方法/字段.这点由static的定义就可知晓.另外只有嵌套类能拥有static修饰的成员(参考static的定义);      
 局部内部类 & 匿名内部类:在一个方法或任意的作用域中定义内部类.      
 关于内部类与外部类通信的方式,通过查阅编译后的字节码即可了解.  
 ![原理](https://raw.githubusercontent.com/MelloChan/java-interview/master/java-exam/src/base/inner/out.jpg)  

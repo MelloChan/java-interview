@@ -1,6 +1,6 @@
-### JVM
-- 运行时数据区
-![运行时数据区](https://raw.githubusercontent.com/MelloChan/master/java-exam/image/JVM.jpg)
+### JVM  
+- 运行时数据区  
+![运行时数据区](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/JVM.png)   
 pc:  
 栈:  
 堆:  

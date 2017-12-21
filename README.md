@@ -25,7 +25,7 @@
 - 序列化与反序列化
 - Java8
 
-### JVM
+### [JVM](https://github.com/MelloChan/java-interview/blob/master/JVM.md)
 - 运行时数据区
 - 内存模型
 - 内存管理 & 垃圾回收算法

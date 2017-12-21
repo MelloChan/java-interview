@@ -6,7 +6,6 @@ package base.inner;
  */
 public class Outside {
     private int outsideValue;
-    private static int id;
 
     class Inner {
         private int value=1;
@@ -36,7 +35,7 @@ public class Outside {
      *
      * @return
      */
-    public Inner build() {
+    private Inner build() {
         return new Inner();
     }
 

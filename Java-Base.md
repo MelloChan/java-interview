@@ -81,7 +81,8 @@ AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;
 ![原理](https://raw.githubusercontent.com/MelloChan/java-interview/master/java-exam/src/base/inner/out.jpg)  
 ![原理](https://raw.githubusercontent.com/MelloChan/java-interview/master/java-exam/src/base/inner/in.jpg)    
 如上所见,其实就是提供了一个外部类的this引用,而私有字段(方法)的访问则是在外部类创建了该字段的静态访问方法.   
-当然内部类的知识点还有很多,详情查阅Thinking in Java.    
+至于为什么需要内部类? 答:有效实现"多重继承".
+当然内部类的知识点&特性还有很多,详情查阅Thinking in Java.    
 
 - 集合类
 - HashMap HashTable currentHashMap 联系与区别

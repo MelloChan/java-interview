@@ -49,7 +49,8 @@ equals方法,单纯使用 == 将会对引用的地址进行比较,而不是值.
 - static      
 目的:①只想为某特定区域分配单一存储空间;②不与实例对象关联的方法.    
 static(静态)方法:没有this的方法,不可调用普通方法以及属性.
-被static所修饰的方法或属性是类级别的,即共享的,不需要实例化即可调用.  
+被static所修饰的方法或属性是类级别的(在加载时就会存入内存中,因此使用其所修饰的方法前期是类被加载到JVM中),即共享的,不需要实例化即可调用.  
+
 
 - 基本类型 & 包装类  
 基本类型:boolean(无指定) byte(8-bit) char(16-bit) short(16-bit) int(32-bit) long(64-bit) 
@@ -73,14 +74,15 @@ AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;
 
 - [内部类](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/inner)  
 内部类:顾名思义,在一个类的内部中定义类.用于将一些逻辑相关的类组织在一起.内部类的最大特性在于能与外部类进行通信了解(即能访问外部类的方法与字段,本质上是提供了外部类的this引用).    
-[普通内部类](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/inner/Outside.java):内部类的普遍用法.在类中定义类.  
-[静态内部(嵌套)类]():使用static修饰的内部类,与内部类的差异在于无法访问外部类的方法/字段.这点由static的意义就可知晓.  
-[局部内部类]() & [匿名内部类]():在一个方法或任意的作用域中定义内部类.      
+[普通内部类](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/inner/Outside.java):内部类的普遍用法.在类中定义类;  
+[静态内部(嵌套)类](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/inner/StaticOutside.java):使用static修饰的内部类,与内部类的差异在于无法访问外部类的方法/字段.这点由static的意义就可知晓.另外只有嵌套类能拥有static修饰的成员(参考static的定义);      
+局部内部类 & 匿名内部类:在一个方法或任意的作用域中定义内部类.      
 关于内部类与外部类通信的方式,通过查阅编译后的字节码即可了解.  
 ![原理](https://raw.githubusercontent.com/MelloChan/java-interview/master/java-exam/src/base/inner/out.jpg)  
 ![原理](https://raw.githubusercontent.com/MelloChan/java-interview/master/java-exam/src/base/inner/in.jpg)    
-如上所见,其实就是提供了一个外部类的this引用,而私有字段(方法)的访问则是在外部类创建了该字段的静态访问方法.  
-    
+如上所见,其实就是提供了一个外部类的this引用,而私有字段(方法)的访问则是在外部类创建了该字段的静态访问方法.   
+当然内部类的知识点还有很多,详情查阅Thinking in Java.    
+
 - 集合类
 - HashMap HashTable currentHashMap 联系与区别
 - ArrayList & LinkedList 区别

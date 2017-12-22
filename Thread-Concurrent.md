@@ -9,7 +9,7 @@
 ①继承Thread; ②实现Runnable(或Callable); ③使用线程池.    
 
 - 线程的状态转换  
-![状态转换]()
+![状态转换](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/thread-state.png)
 
 - 线程安全  
 - 并发包

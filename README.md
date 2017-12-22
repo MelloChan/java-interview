@@ -56,7 +56,7 @@
 - [八大排序算法](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/algorithm)
 - [刷剑指offer](https://github.com/MelloChan/interviews-coding)
 
-### 数据库
+### [数据库](https://github.com/MelloChan/java-interview/blob/master/DB.md)
 - MySQL引擎
 - CRUD
 - 三大范式

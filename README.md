@@ -138,7 +138,9 @@
 - 深入分析Java Web技术内幕
 - Spring实战
 - SpringBoot实战
+- Spring技术内幕
 - 深入浅出MySQL
 - redis实战
 - Head First设计模式
-- 计算机网络 自顶向下教程
+- 计算机网络(自顶向下方法)
+- 现代操作系统

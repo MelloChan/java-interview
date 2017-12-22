@@ -34,7 +34,7 @@
 - 类加载器
 - 启动参数
 
-### 多线程&并发
+### [多线程&并发](https://github.com/MelloChan/java-interview/blob/master/Thread-Concurrent.md)
 - 进程与线程的区别
 - 创建线程的方式
 - 线程的状态转换
@@ -47,7 +47,7 @@
 - sleep & wait 
 - 线程通信
 - 线程池
-- [实现男女共浴问题](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/Bath.java)
+- 实现男女共浴问题
 - 无锁机制
 
 ### 数据结构与算法

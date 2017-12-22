@@ -5,9 +5,13 @@
 区别:进程拥有独立的地址空间,一个进程至少有一个线程,而线程不能独立执行程序,必须依赖在应用程序中,由应用程序进行执行控制.因此多线程间是共享内存资源的,同时并发性也更高.
 总的来说,多个进程对于操作系统来说是多个独立不同的应用程序,而多线程并不是,他依附在进程中.  
 
-- 创建线程的方式
-- 线程的状态转换
-- 线程安全
+- [创建线程的方式](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/CreateThreadDemo.java)  
+①继承Thread; ②实现Runnable(或Callable); ③使用线程池.    
+
+- 线程的状态转换  
+![状态转换]()
+
+- 线程安全  
 - 并发包
 - synchronized & lock 
 - volatile

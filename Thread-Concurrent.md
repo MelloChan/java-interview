@@ -12,7 +12,10 @@
 ![状态转换](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/thread-state.png)  
 
 - 线程安全  
-- 并发包
+定义:当多个线程访问某个类时,这个类始终都能表现出正确的行为,那么就称这个类时线程安全的.  
+--Java并发编程实战(P13)  
+①无状态的对象一定是线程安全的; ②不可变对象一定是线程安全的; ③加锁.
+
 - synchronized & lock 
 - volatile
 - 死锁
@@ -21,4 +24,5 @@
 - 线程通信
 - 线程池
 - [实现男女共浴问题](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/Bath.java)
+- 并发包  
 - 无锁机制

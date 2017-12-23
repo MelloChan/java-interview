@@ -23,7 +23,9 @@
 - 创建类的方法
 - final finally finalize
 - 序列化与反序列化
-- Java8
+- Java7新特性
+- Java8新特性
+- Java9新特性
 
 ### [JVM](https://github.com/MelloChan/java-interview/blob/master/JVM.md)
 - 运行时数据区
@@ -39,7 +41,6 @@
 - 创建线程的方式
 - 线程的状态转换
 - 线程安全
-- 并发包
 - synchronized & lock 
 - volatile
 - 死锁
@@ -47,7 +48,8 @@
 - sleep & wait 
 - 线程通信
 - 线程池
-- 实现男女共浴问题
+- 实现男女共浴问题  
+- 并发包  
 - 无锁机制
 
 ### 数据结构与算法

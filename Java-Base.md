@@ -3,7 +3,7 @@
 - 四大基本特性  
 封装/继承/多态/抽象  
 封装: 使用不同的访问修饰符,让类的属性与方法只让可信的类或者对象实例操作,
-对不可信的进行封装隐藏.即属性封装与方法封装.  
+对不可信的进行封装隐藏.分为属性封装与方法封装.  
 继承: 代码复用分为继承(is-a)与组合(has-a,具有更高的灵活性).对有着高度共同特性的的多列事物进行在抽象成一个类
 .这个类既是父类,子类通过extends关键字继承父类抽象的共性.  
 多态: 编译期调用/运行时动态确定调用的代码.方法的重载与重写(覆盖)体现了这两点.  
@@ -32,6 +32,7 @@ public:公有的.允许所有的类对其访问.
 
 - hashCode & equals  
 hashCode相等,值不一定相等,值相等则hashCode一定相等.因此hashCode方法一定要配合equals方法重写.
+参考Effective Java 第九条.
 
 - [== & equals](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/Compare.java)  
 对于基本类型的值比较使用 == 即可,但基于引用类型(诸如通过new String())之类的对象实例进行比较,则需要使用

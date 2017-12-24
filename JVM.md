@@ -28,7 +28,7 @@ pc:程序计数器,是一块占用较少内存的空间,用来存放线程运行
 - 对象
 
 - 溢出与泄露
-- 内存模型
+- ![内存模型](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/JMM.png)
 - 垃圾回收算法
 - 垃圾收集器
 - 内存分配与回收策略

@@ -30,7 +30,7 @@
 ### [JVM](https://github.com/MelloChan/java-interview/blob/master/JVM.md)
 - 运行时数据区
 - 对象
-- 溢出与泄露
+- OOM & SOF
 - 内存模型
 - 垃圾回收算法
 - 垃圾收集器

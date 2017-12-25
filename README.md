@@ -14,7 +14,7 @@
 - 泛型
 - 内部类
 - 集合类
-- HashMap HashTable currentHashMap 联系与区别
+- HashMap HashTable CurrentHashMap 联系与区别
 - ArrayList & LinkedList 区别
 - 异常相关
 - 代理机制

@@ -1,18 +1,20 @@
 ### 数据库
 - MySQL引擎  
-MyISAM:不支持事务/行级锁/  
-InnoDB:支持事务/行级锁/外键/  
+MyISAM:不支持事务/行级锁/外键,一般来说MyISAM查询效率高,但实际上此引擎已被逐渐放弃,因为读操作,再快也不如放在缓存中;  
+InnoDB:支持事务/行级锁/外键,但不保存表的具体行数,执行select count(*) from table时需要全表扫描.  
+注意:MySQL5.5后默认引擎为InnoDB,MySQL5.7开始InnoDB支持全文索引,今后将放弃MyISAM.  
 
 - CRUD
-select fields from xxx;  
-insert into ()values();  
-update from xxx set fields=xxx where id=xx;  
-delete xxx where id=xx;  
+select fields from table;  
+insert into table() values();  
+update from table set fields=xxx where id=xx;  
+delete table where id=xx;  
 
 - 三大范式  
-第一范式:  
-第二范式:  
-第三范式:  
+第一范式:表字段不可再分,例如地址字段就具有值域可分,因此具有该字段的表就不符合第一范式,需要拆分字段;  
+第二范式:非主属性(即不属于候选码中的字段)应完全依赖候选码(此时候选码是复合的,即两个字段确定唯一行),不允许出现单一候选码依赖,因此需要进行表分解;    
+第三范式:不允许存在传递依赖,非主属性都应该直接依赖候选码,例如有r(R)=(A,B,C),F={A->B,B->C},A为候选码,若要符合3NF,则需要进行表分解,即r1(R)=(A,B),r2(R)=(B,C);    
+需要注意:3NF⊂2NF⊂1NF,即满足3NF的前提是满足2NF,满足2NF的前提是满足1NF.   
 
 - 乐观锁 & 悲观锁  
 乐观锁:认为外界事务的访问是无害的,因此仅仅在事务结束后对数据进行检测,而不会一开始就加锁;  

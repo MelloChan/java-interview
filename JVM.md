@@ -35,8 +35,9 @@ pc:程序计数器,是一块占用较少内存的空间,用来存放线程运行
 ③对齐填充,不是必然存在的部分,仅仅起着占位符的作用,只是因为JVM的自动内存管理系统要求对象起始地址必须是8字节的整数倍(对象的大小必须是8字节的整数倍).   
 对象的访问定位:①句柄访问,将堆分为句柄池与实例池.Java栈中本地变量表存储着指向句柄池的引用,而句柄中包含了对象实例数据与类型数据(方法区)各自的地址信息;  
 ②直接指针访问,栈中存储的引用直接指向堆的实例数据,而同时必须考虑如何设置访问类型数据的相关信息.  
-句柄的好处在于稳定,在对象被移动时只会改变句柄中的实例数据指针,而栈引用无需改变;直接指针好处在于快速访问.
-![访问定位]()
+句柄的好处在于稳定,在对象被移动时只会改变句柄中的实例数据指针,而栈引用无需改变;直接指针好处在于快速访问.  
+![句柄池](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/%E5%8F%A5%E6%9F%84%E6%B1%A0.jpg)  
+![直接指针](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/%E7%9B%B4%E6%8E%A5%E6%8C%87%E9%92%88.jpg)  
 
 - [OOM & SOF](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/jvm)  
 ①堆溢出;②栈溢出;③方法区和运行时常量池溢出;④本机直接内存溢出.  

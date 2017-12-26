@@ -5,7 +5,7 @@ import java.util.Arrays;
 import static algorithm.SwapUtil.swap;
 
 /**
- * 冒泡排序
+ * 冒泡排序-交换排序的一种
  * Created by MelloChan on 2017/12/19.
  */
 public class BubbleSort {

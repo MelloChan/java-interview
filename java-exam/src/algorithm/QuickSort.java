@@ -2,7 +2,7 @@ package algorithm;
 
 import java.util.Arrays;
 /**
- * 快速排序
+ * 快速排序-非稳定的排序算法
  * Created by MelloChan on 2017/12/19.
  */
 public class QuickSort {

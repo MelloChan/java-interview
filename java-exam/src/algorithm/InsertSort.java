@@ -3,7 +3,7 @@ package algorithm;
 import java.util.Arrays;
 
 /**
- * 插入排序
+ * 直接插入排序-稳定的排序算法
  * Created by MelloChan on 2017/12/19.
  */
 public class InsertSort {

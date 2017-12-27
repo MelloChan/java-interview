@@ -78,9 +78,9 @@
 - 分库分表
 - 主备同步
 
-### 计算机网络
+### [计算机网络](https://github.com/MelloChan/java-interview/blob/master/Network.md)
 - TCP/IP四层模型 OSI七层模型
-- 简述浏览器访问一个网址的全过程  
+- 详述浏览器访问一个网址的全过程  
 - TCP & UDP
 - 三次握手 & 四次挥手
 - 状态码
@@ -127,20 +127,21 @@
 - 单例模式的实现
 - [demo](https://github.com/MelloChan/java-design)
 
+### 架构设计
+- 秒杀系统设计
+- 分布式缓存设计
+- 分布式唯一ID生成器
+
 ### 个人项目
 - 项目目的 & 技术选型 & 遇到的问题 & 解决方案
 - [微信公众号教务查询功能](https://www.melloyuki.cn/jwxt/login.html)
 - [大创-基于微信小程序的家校沟通平台](https://github.com/MelloChan/family-school)
 - [Java-高并发秒杀](https://github.com/MelloChan/seckill)
 
-### 架构设计
-- 秒杀系统设计
-- 分布式缓存设计
-- 分布式唯一ID生成器
-
 ### 书籍推荐
 - Java编程思想
 - Java并发编程实战
+- Java并发编程的艺术
 - 深入理解JVM虚拟机
 - Effective Java
 - 深入分析Java Web技术内幕
@@ -149,6 +150,7 @@
 - Spring技术内幕
 - 深入浅出MySQL
 - redis实战
+- redis设计与实现
 - Head First设计模式
 - 计算机网络(自顶向下方法)
 - 现代操作系统

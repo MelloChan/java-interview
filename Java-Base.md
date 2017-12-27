@@ -23,7 +23,7 @@ protected:受保护的.只允许自身以及其子类访问;
 public:公有的.允许所有的类对其访问.    
 注意点:在JDK1.8后推出了default关键字,使用在接口中,让接口也能实现方法.  
 
-- 抽象类与接口  
+- [抽象类与接口](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/abstraction)  
 语法层次:抽象(abstract)允许普通与抽象方法并存(当然也可以不存在抽象方法);接口(interface)方法默认为public abstract,字段默认为private static final,
 在JDK1.8中允许有default关键字修饰的普通方法;  
 设计层次:抽象类是对类抽象,而接口则是行为抽象.抽象类是对客观世界拥有共性特征的事物进行整体抽象,是自底向上的,而接口则是局部行为抽象.

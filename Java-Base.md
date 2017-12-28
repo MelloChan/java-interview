@@ -128,6 +128,7 @@ AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;
 当然内部类的知识点&特性还有很多,详情查阅Thinking in Java.    
 
 - 集合类  
+![集合类](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/集合类.png)
 
 - HashMap HashTable currentHashMap 联系与区别
 - ArrayList & LinkedList 区别

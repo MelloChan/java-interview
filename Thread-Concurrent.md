@@ -12,7 +12,7 @@
 ![状态转换](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/thread-state.png)  
 
 - 线程安全  
-定义:当多个线程访问某个类时,这个类始终都能表现出正确的行为,那么就称这个类时线程安全的.  
+定义:当多个线程访问某个类时,这个类始终都能表现出正确的行为,那么就称这个类是线程安全的.  
 --Java并发编程实战(P13)  
 ①无状态对象一定是线程安全的; ②不可变对象一定是线程安全的; ③加锁.
 

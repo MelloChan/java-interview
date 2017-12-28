@@ -89,11 +89,12 @@
 - Session & Cookie
 - Socket
 
-### Linux常用命令
+### Linux
 - 如何创建/删除/复制/查找文件
 - 查看端口占用
 - 查看内存/CPU情况
 - 写出常用的命令
+- select poll epoll
 
 ### 框架应用
 - servlet生命周期
@@ -112,14 +113,16 @@
 
 ### 服务器
 - Web服务器 & 应用服务器
-- Tomcat
+- Tomcat 集群
 - Nginx Apache
+- 反向代理 负载均衡  
+- 分布式&集群 
 
 ### NoSQL
 - memcached & redis
 - redis的数据结构
 - redis 持久化
-- ...
+- mongodb
 
 ### [设计模式](https://github.com/MelloChan/java-interview/blob/master/Java-Design.md)
 - 五大设计原则

@@ -1,5 +1,5 @@
 # Java-Interview
-### [Java基础](https://github.com/MelloChan/java-interview/blob/master/Java-Base.md)
+### [Java基础](https://github.com/MelloChan/java-interview/blob/master/content/Java-Base.md)
 - 四大基本特性
 - 重载与重写的区别
 - 访问控制符
@@ -27,7 +27,7 @@
 - Java8新特性
 - Java9新特性
 
-### [JVM](https://github.com/MelloChan/java-interview/blob/master/JVM.md)
+### [JVM](https://github.com/MelloChan/java-interview/blob/master/content/JVM.md)
 - 运行时数据区
 - 对象
 - OOM & SOF
@@ -39,7 +39,7 @@
 - 类加载器
 - 启动参数
 
-### [多线程&并发](https://github.com/MelloChan/java-interview/blob/master/Thread-Concurrent.md)
+### [多线程&并发](https://github.com/MelloChan/java-interview/blob/master/content/Thread-Concurrent.md)
 - 进程与线程的区别
 - 创建线程的方式
 - 线程的状态转换
@@ -64,7 +64,7 @@
 - [八大排序算法](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/algorithm)
 - [刷剑指offer](https://github.com/MelloChan/interviews-coding)
 
-### [数据库](https://github.com/MelloChan/java-interview/blob/master/DB.md)
+### [数据库](https://github.com/MelloChan/java-interview/blob/master/content/DB.md)
 - MySQL引擎
 - CRUD
 - 三大范式
@@ -80,7 +80,7 @@
 - 分库分表
 - 主备同步
 
-### [计算机网络](https://github.com/MelloChan/java-interview/blob/master/Network.md)
+### [计算机网络](https://github.com/MelloChan/java-interview/blob/master/content/Network.md)
 - TCP/IP四层模型 OSI七层模型
 - 详述浏览器访问一个网址的全过程  
 - TCP & UDP
@@ -127,7 +127,7 @@
 - redis 持久化
 - mongodb
 
-### [设计模式](https://github.com/MelloChan/java-interview/blob/master/Java-Design.md)
+### [设计模式](https://github.com/MelloChan/java-interview/blob/master/content/Java-Design.md)
 - 五大设计原则
 - 结构型 行为型 构建型
 - 单例模式的实现

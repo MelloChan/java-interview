@@ -132,7 +132,6 @@ AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;
 
 List:实现该接口的常用类为ArrayList & LinkedList.   
 ArrayList:底层结构为(可动态改变大小)数组,默认容量10,扩充时增大到原先的1.5倍.适合频繁取值以及尾部插入或删除的场景;  
-    
 LinkedList:底层结构为双向链表(同时也实现了队列接口),增删快,但查询或修改值时较慢(需要遍历).因此更适合频繁从中间插入或删除的场景.  
 
 Set:常用类为HashSet & TreeSet & LinkedHashSet.  
@@ -140,7 +139,7 @@ Set:常用类为HashSet & TreeSet & LinkedHashSet.
 
 Map:常用类为HashMap & LinkedHashMap & HashTable & ConcurrentHashMap.   
 HashMap:底层结构为数组+链表(JDK8,链表长度为8则转为红黑树),其提供键值对(可为null,此时key的hashcode为0)映射,但不保证顺序(包括在扩容时可能的改变),默认大小为16(总是为2的幂次方,目的是减少哈希冲突),负载因子0.75
-(即实质上容量为0.75*16),扩容时为原始容量*2.  
+(即实质上容量为0.75乘以16),扩容时为原始容量的两倍.    
 get方法:用来获取值,该方法通过对key的hashcode进行哈希获取索引,找到数组中的对应链表,当链表长度大于2时,遍历链表,通过equals方法来比key获取值;  
 put方法:压入键值对,首先会对key的hashcode进行哈希获得索引,初次使用时才对数组进行内存分配,之后新建一个链表结点(包含hash值,key,value,next)存放指定数组位置.当发生哈希冲突时
 (即key的hashcode哈希后得到相同的索引),则通过equals比对key,若key相同则覆盖原始值,否则新建结点,插入原始链表的尾部(JDK7是插入头部,作者认为新插入的键值总是会更频繁的被访问,避免尾部遍历,而JDK8改为尾插),当链表长度等于8时将链表转为红黑树(遍历效率问题,O(N)到O(logN)).  
@@ -150,13 +149,12 @@ LinkedHashMap:HashMap的子类,保存了元素的插入顺序,其余和HashMap�
 
 HashTable:线程安全的哈希表,不允许null键值对,使用方法级别的同步锁(synchronized),任意时刻只有一条线程能读写HashTable,因此性能很差;  
 
-ConcurrentHashMap:线程安全的哈希表,采用分段锁,只针对写进行加锁,因此在性能上高于HashTable.增添了一个新概念Segment,每个Segment都包含一个原先的数组,通俗讲就是一个二级哈希表.
+ConcurrentHashMap:线程安全的哈希表,采用分段锁,只针对写进行加锁,因此在性能上高于HashTable.增添了一个新概念Segment,每个Segment都包含一个原先的桶数组,通俗讲就是一个二级哈希表.
 
 Queue:
 
 - ArrayList & LinkedList 详解
-
-- HashMap HashTable currentHashMap 联系与区别
+- HashMap HashTable CurrentHashMap 详解 
 - 异常相关
 - 代理机制
 - JDBC

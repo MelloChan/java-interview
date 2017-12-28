@@ -14,8 +14,8 @@
 - 泛型
 - 内部类
 - 集合类
+- ArrayList & LinkedList 详解
 - HashMap HashTable CurrentHashMap 联系与区别
-- ArrayList & LinkedList 区别
 - 异常相关
 - 代理机制
 - JDBC
@@ -53,6 +53,7 @@
 - 线程通信
 - 线程池
 - 实现男女共浴问题  
+- CountDownLatch CyclicBarrier Semaphore
 - 并发包  
 - 锁优化
 - 无锁机制

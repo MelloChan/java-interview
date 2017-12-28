@@ -128,10 +128,28 @@ AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;
 当然内部类的知识点&特性还有很多,详情查阅Thinking in Java.    
 
 - 集合类  
-![集合类](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/集合类.png)
+![集合类](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/%E9%9B%86%E5%90%88%E7%B1%BB.png)
+
+List:实现该接口的常用类为ArrayList & LinkedList.   
+前者底层结构为(可动态改变大小)数组,默认容量10,扩充时增大到原先的1.5倍.适合频繁取值以及尾部插入或删除的场景;
+而后者底层结构为双向链表(同时也实现了队列接口),增删快,但查询或修改值时较慢(需要遍历).因此更适合频繁从中间插入或删除的场景.  
+
+Set:常用类为HashSet & TreeSet & LinkedHashSet.  
+通过查阅源码,HashSet本质上就是个值总为静态常量Object的HashMap,同样TreeSet是按照自然排序的TreeMap,LinkedHashSet则是按照元素添加顺序的HashSet.
+
+Map:常用类为HashMap & LinkedHashMap & HashTable & ConcurrentHashMap.   
+HashMap的底层结构为数组+链表(JDK1.7后,链表长度为8则转为红黑树),其提供键值对(可为null,此时key的hashcode为0)映射,但不保证顺序(包括在扩容时可能的改变),默认大小为16(总是为2的幂次方,目的是减少哈希冲突),负载因子0.75
+(即实质上容量为0.75*16),扩容时为原始容量*2.  
+提供get方法获取值,该方法通过对key进行哈希获取索引,找到数组中的链表值,当链表长度大于2时,遍历链表,通过equals方法来比key获取值;
+put方法为压入键值对,首先会对key进行哈希获得索引,初次使用时才对数组进行内存分配,之后新建一个链表结点(包含hash值,key,value,next)存放指定数组位置.当发生哈希冲突时
+(即key哈希后得到相同的索引),则通过equals比对key,若key相同则覆盖原始值,否则新建结点,插入原始链表的头部(认为新插入的键值总是会更频繁的被访问,避免尾部遍历),当链表长度等于8时将链表转为红黑树(遍历效率问题).  
+扩容:当数组容量超过负载因子*数组大小时,将进行数组扩容,扩容的大小为原始的2倍.在多线程下,会引发死锁问题,这是因为多线程扩容可能引发环形链表.
+
+Queue:
+
+- ArrayList & LinkedList 详解
 
 - HashMap HashTable currentHashMap 联系与区别
-- ArrayList & LinkedList 区别
 - 异常相关
 - 代理机制
 - JDBC

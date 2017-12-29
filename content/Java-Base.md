@@ -145,7 +145,7 @@ put方法:压入键值对,首先会对key的hashcode进行哈希获得索引,初
 (即key的hashcode哈希后得到相同的索引),则通过equals比对key,若key相同则覆盖原始值,否则新建结点,插入原始链表的尾部(JDK7是插入头部,作者认为新插入的键值总是会更频繁的被访问,避免尾部遍历,而JDK8改为尾插),当链表长度等于8时将链表转为红黑树(遍历效率问题,O(N)到O(logN)).  
 resize方法:当数组容量超过负载因子*数组大小时,将进行数组扩容,扩容的大小为原始的2倍.在多线程下,扩容可能引发环形链表(死循环).
 
-LinkedHashMap:HashMap的子类,保存了元素的插入顺序,其余和HashMap差别不大.
+LinkedHashMap:HashMap的子类,保存了元素的插入顺序(或最近最少使用的顺序),迭代访问元素时比HashMap,因为内部使用了链表维护次序.其余和HashMap差别不大.
 
 HashTable:线程安全的哈希表,不允许null键值对,使用方法级别的同步锁(synchronized),任意时刻只有一条线程能读写HashTable,因此性能很差;  
 
@@ -160,7 +160,13 @@ Queue:
 - JDBC
 - BIO NIO AIO
 - 创建类的方法
-- final finally finalize
+
+- final finally finalize  
+
+final:修饰字段(不可变)、方法(不可被重写)、类(不可被继承);  
+finally:搭配try使用,finally总是会被执行,因此常用来做关闭资源(JDK7后推崇try-with-resource方式)、lock解锁之类的操作;  
+finalize:一个历史遗留的方法,不被推荐使用.
+
 - 序列化与反序列化
 - Java7新特性
 - Java8新特性

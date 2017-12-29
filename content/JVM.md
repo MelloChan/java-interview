@@ -58,6 +58,8 @@ pc:程序计数器,是一块占用较少内存的空间,用来存放线程运行
 
 - 内存模型  
 ![内存模型](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/JMM.png)
+八种原子操作:  
+如何保证缓存一致性:  
 
 - 垃圾回收算法  
 

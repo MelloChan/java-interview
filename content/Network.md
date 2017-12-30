@@ -35,7 +35,7 @@ TCP:面向连接的可靠传输协议,提供全双工服务,应用进程相互�
 UDP:面向非连接的传输协议,优点是对于数据的应用层控制更为精细(不受拥塞控制协议制约)、无需建立连接没有连接状态、开销小.但数据传输可能丢包,且不保证顺序.常用于IM通讯(网络视频电话之类)、域名解析(DNS)等.  
 
 - 三次握手 & 四次挥手  
-![TCP](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/TCP-Connection&Close)
+![TCP](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/TCP-Connection%26Close.png)
 
 三次握手:客户端想发送数据给服务端,前提是先建立双方的一条TCP连接.第一步客户端将TCP报文段首部SYN标志位置为1,随机选择一个初始序号seq=x,然后发送给服务端;第二步
 服务端接收到该报文后也发送一个TCP报文段,服务端将SYN标志位置为1,随机选择一个初始序号seq=y,确认号ack=x+1;第三步收到服务端报文段后,客户端向服务端发送另外一个TCP报文段,

@@ -14,9 +14,9 @@ destroy():也是仅执行一次的方法,在servlet生命结束时调用,负责�
 
 - 转发(forward)与重定向(redirect)  
 
-forward:request.getRequestDispatcher("xxx").forward(request,response);这是一种服务端内部的行为,因此仅触发一次请求与响应,客户端的URL地址栏也不会产生变化;
+forward:request.getRequestDispatcher("xxx").forward(request,response);这是一种服务端内部的行为,因此仅触发一次请求与响应,客户端的URL地址栏不会产生变化;
 
-redirect:response.sendRedirect(“xxx”);通知客户端发出新请求去访问响应的页面,因此这是触发二次请求,URL地址栏也会相应变化.  
+redirect:response.sendRedirect(“xxx”);通知客户端发出新请求去访问响应的页面,因此这是触发二次请求,URL地址栏会相应变化.  
 
 SpringMVC转发与重定向的方法参考Spring实战.  
 

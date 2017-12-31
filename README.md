@@ -99,7 +99,8 @@
 - select poll epoll
 
 ### 框架应用
-- servlet生命周期
+- servlet
+- 转发(forward)与重定向(redirect) 
 - bean的加载过程
 - Spring IOC & AOP
 - 注入方式

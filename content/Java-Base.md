@@ -159,7 +159,9 @@ Queue:
 - 代理机制
 - JDBC
 - BIO NIO AIO
-- 创建类的方法
+- 创建类的方法  
+
+①通过new关键字;②[使用clone方法](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/create/CloneClass.java);③使用反射机制;④反序列化
 
 - final finally finalize  
 

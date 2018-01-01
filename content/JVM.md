@@ -1,5 +1,6 @@
 ### JVM  
 - 运行时数据区  
+
 ![运行时数据区](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/JVM.png)   
 
 pc:程序计数器,是一块占用较少内存的空间,用来存放线程运行的下条指令,是线程私有的.需要注意的是当执行的是本地(Native)方法时,计数器值为空,另外这也是唯一不会有OOM情况的区域;  
@@ -56,9 +57,12 @@ pc:程序计数器,是一块占用较少内存的空间,用来存放线程运行
 - [OOM & SOF](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/jvm)  
 ①堆溢出;②栈溢出;③方法区和运行时常量池溢出;④本机直接内存溢出.  
 
-- 内存模型  
+- 内存模型   
+
 ![内存模型](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/JMM.png)  
-八种原子操作:lock/unlock、    
+
+八种原子操作:lock(锁,将一个变量标识为一条 线程独占的状态)/unlock(解锁)、read(从主内存中读取变量传输到工作内存)/load(read后执行,将传输得到的主内存变量值载入工作内存的变量副本中)、use(使用)、assign(赋值)、store(存储,作用于工作内存的变量副本,将工作内存的变量传送到主内存中)/write(写入,store后将从工作内存中得到的变量副本值写入主内存的变量中)    
+
 缓存一致性:    
 如何保证:  
 

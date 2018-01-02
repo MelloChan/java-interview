@@ -88,7 +88,16 @@ pc:程序计数器,是一块占用较少内存的空间,用来存放线程运行
 
 ④分代算法,其实就是针对对象存活率的高低采用不同回收算法.将堆分为新生代、老年代.针对两者的特性采取复制算法或标记-整理算法.    
 
-- 垃圾收集器  
-- 内存分配与回收策略  
+- 垃圾收集器   
+
+按分代:  
+①新生代:Serial、ParNew、Parallel Scavengc、G1;  
+②老年代:CMS、Serial Old、Parallel Old、G1.
+
+按线程:  
+①单线程:Serial、Serial Old;  
+②多线程:ParNew、Parallel Scavengc、Parallel Old、CMS、G1.
+
+- 内存分配与回收策略    
 - 类加载 
  

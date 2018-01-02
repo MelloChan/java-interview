@@ -43,11 +43,11 @@
 - 进程与线程的区别
 - 创建线程的方式
 - 线程的状态转换
-- 线程安全  
+- 线程安全
+- 死锁
 - 同步 异步 阻塞 非阻塞 
 - synchronized & Lock 
 - volatile
-- 死锁
 - ThreadLocal
 - sleep & wait 
 - 线程通信

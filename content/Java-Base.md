@@ -154,11 +154,32 @@ ConcurrentHashMap:线程安全的哈希表,采用分段锁,只针对写进行加
 Queue:
 
 - ArrayList & LinkedList 详解
-- HashMap HashTable CurrentHashMap 详解 
-- 异常相关
-- 代理机制
-- JDBC
-- BIO NIO AIO
+- HashMap HashTable CurrentHashMap 详解
+ 
+- 异常相关   
+
+
+
+- 代理机制   
+
+静态代理:   
+
+动态代理:  
+
+扩展->GCLIB(字节码增强):  
+
+- JDBC  
+
+Java数据库连接,是Java与数据库交互的方式,提供了用于执行SQL的Java API,同时统一了对多种关系数据库的访问,屏蔽了不同数据库间的访问差异,使开发者能更加专注开发,而无需为访问不同数据库而撰写另一个程序.
+
+- BIO NIO AIO  
+
+BIO:阻塞IO......;   
+
+NIO:非阻塞IO......;  
+
+AIO:异步IO......;  
+
 - 创建类的方法  
 
 ①通过new关键字;②[使用clone方法](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/create/CloneClass.java);③使用反射机制;④反序列化

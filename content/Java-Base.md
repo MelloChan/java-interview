@@ -188,8 +188,9 @@ AIO:异步IO......;
 
 final:修饰字段(不可变)、方法(不可被重写)、类(不可被继承);  
 finally:搭配try使用,finally总是会被执行,因此常用来做关闭资源(JDK7后推崇try-with-resource方式)、lock解锁之类的操作;  
-finalize:一个历史遗留的方法,不被推荐使用.
+finalize:一个历史遗留的方法,不被推荐使用.  
 
+- 反射
 - 序列化与反序列化
 - Java7新特性
 - Java8新特性

@@ -23,12 +23,14 @@
 
 - 同步 异步 阻塞 非阻塞   
 
-同步:  
-异步:  
-阻塞:  
-非阻塞:  
+这个问题口述没问题,想转成专业文字愣是不知道怎么写,看来还是理解不够......[参考理解.](https://www.zhihu.com/question/19732473)
 
-- synchronized & lock 
+- synchronized & Lock   
+
+synchronized:JavaSE中JVM级别(monitorenter monitorexit字节码指令)的同步关键字,可作用在方法签名或块的可重入内置锁,线程进入同步代码块之前会自动获得锁,退出时自动释放,每次只有一个线程能持有锁;
+
+Lock:并发包下的一个接口,一般使用它的实现类ReentrantLock(可重入锁),提供了与synchronized相同的互斥性与内存可见性,但具有更高的灵活性,提供了可选的公平锁(按照线程请求前后顺序获取释放后的锁)、等待可中断以及锁绑定多个条件.
+
 - volatile
 - 死锁
 - ThreadLocal

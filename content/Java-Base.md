@@ -156,9 +156,9 @@ Queue:
 - ArrayList & LinkedList 详解
 - HashMap HashTable CurrentHashMap 详解
  
-- 异常相关   
+- 异常相关     
 
-
+Throwable:所有异常类的父类,继承类有Error、Exception......
 
 - 代理机制   
 
@@ -166,7 +166,7 @@ Queue:
 
 动态代理:  
 
-扩展->GCLIB(字节码增强):  
+扩展->CGLIB(字节码增强):  
 
 - JDBC  
 

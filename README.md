@@ -115,14 +115,14 @@
 - SpringBoot
 - RESTFul
 
-### 服务器
+### [服务器](https://github.com/MelloChan/java-interview/blob/master/content/Server.md)
 - Web服务器 & 应用服务器
 - Tomcat 集群
 - Nginx Apache
 - 反向代理 负载均衡  
 - 分布式&集群 
 
-### NoSQL
+### [NoSQL](https://github.com/MelloChan/java-interview/blob/master/content/NoSQL.md)
 - CAP
 - memcached & redis
 - redis的数据结构

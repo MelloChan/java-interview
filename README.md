@@ -1,4 +1,4 @@
-# Java-Interview
+﻿# Java-Interview
 ### [Java基础](https://github.com/MelloChan/java-interview/blob/master/content/Java-Base.md)
 - 四大基本特性
 - 重载与重写的区别
@@ -142,9 +142,6 @@
 
 ### 个人项目
 - 项目目的 & 技术选型 & 遇到的问题 & 解决方案
-- [微信公众号教务查询功能](https://www.melloyuki.cn/jwxt/login.html)
-- [大创-基于微信小程序的家校沟通平台](https://github.com/MelloChan/family-school)
-- [Java-高并发秒杀](https://github.com/MelloChan/seckill)
 
 ### 书籍推荐
 - Java编程思想

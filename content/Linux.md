@@ -10,7 +10,7 @@ losf -i :port
 top
 
 - 写出常用的命令  
-cd、pwd、ls、grep、mkdir、rm、cp、find、lsof、top、chmod、vim、kill、curl、wget......  
+cd、pwd、ls、grep、cat、ps、mkdir、rm、cp、find、lsof、top、chmod、vim、kill、curl、wget......  
 用法参考:http://man.linuxde.net/
 
 - select poll epoll  

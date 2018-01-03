@@ -3,9 +3,9 @@
 - servlet  
 
 生命周期:加载->实例化->服务->销毁  
-servlet(非线程安全)是单例多线程的.主要方法有init(),service(),destroy();  
+servlet(非线程安全)是单例多线程的.主要方法有init(),service(),destroy();   
 init():仅会执行一次的方法,在服务器装载某个servlet时,用来初始化servlet的各部分数据;  
-service():接收响应请求,一般不会直接使用该方法,多数是通过继承HttpServlet后重写doGet()与doPost()方法(或者其他HTTP方法),重写service()方法最终也是方法给各种HTTP方法,这点查阅HttpServlet类会更清楚;    
+service():接收响应请求,一般不会直接使用该方法,多数是通过继承HttpServlet后重写doGet()与doPost()方法(或者其他HTTP方法),重写service()方法最终也是交给各种HTTP方法,这点查阅HttpServlet类源码会更清楚;    
 destroy():也是仅执行一次的方法,在servlet生命结束时调用,负责释放相关资源.  
 
 备注:servlet是SpringMVC的本质,由一个dispatch servlet来统一分发请求(内部有个映射器),个人初学servlet时觉得原生也挺不错呀,后来意识到当需要编写的

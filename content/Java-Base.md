@@ -158,7 +158,14 @@ Queue:
  
 - 异常相关     
 
-Throwable:所有异常类的父类,继承类有Error、Exception......
+Throwable:用来表示任何可以作为异常被抛出的类.其子类有两种:①Error;②Exception.  
+Error:用来表示编译时和系统错误(一般不需要开发者关心此类错误);  
+Exception:可以被抛出的基本类型,在Java类库、用户方法以及运行时故障中都可能抛出Exception异常.因此也是开发者最需要关心的.  
+
+异常类型分为检查异常(CheckedException)与非检查异常(UncheckedException).  
+前者代表开发者不能直接控制的因素(数据库问题、用户输入问题、网络异常以及文件丢失等,相应的关键字有try catch throw(方法内部) throws(方法签名) finally),例如SQLException、IOException、ClassNotFoundException等;  
+后者异常属于错误(编程错误,开发者的锅),会被自动捕获(运行时无法恢复的异常),常见的有Error与RuntimeException以及子类,如OutOfMemoryError、
+NullPointerException、IndexOutOfBoundsException、IllegalArgumentException等;  
 
 - 代理机制   
 

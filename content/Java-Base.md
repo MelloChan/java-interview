@@ -181,15 +181,15 @@ Java数据库连接,是Java与数据库交互的方式,提供了用于执行SQL�
 
 - BIO NIO AIO  
 
-BIO:阻塞IO......;   
+BIO:同步阻塞IO......;   
 
-NIO:非阻塞IO......;  
+NIO:同步非阻塞IO......;  
 
 AIO:异步IO......;  
 
 - 创建类的方法  
 
-①通过new关键字;②[使用clone方法](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/create/CloneClass.java);③使用反射机制;④反序列化
+①通过new关键字;②[使用clone方法](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/create/CloneClass.java);③使用反射机制;④反序列化
 
 - final finally finalize  
 

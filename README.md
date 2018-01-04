@@ -42,9 +42,11 @@
 
 ### [多线程&并发](https://github.com/MelloChan/java-interview/blob/master/content/Thread-Concurrent.md)
 - 进程与线程的区别
+- 进程通信
 - 创建线程的方式
 - 线程的状态转换
 - 线程安全
+- 上下文切换
 - 死锁
 - 同步 异步 阻塞 非阻塞 
 - synchronized & Lock 

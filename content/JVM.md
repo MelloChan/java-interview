@@ -92,14 +92,18 @@ pc:程序计数器,是一块占用较少内存的空间,用来存放线程运行
 - 垃圾收集器   
 
 按分代:  
-①新生代:Serial、ParNew、Parallel Scavengc、G1;  
+①新生代:Serial、ParNew、Parallel Scavenge、G1;  
 ②老年代:CMS、Serial Old、Parallel Old、G1.
 
 按线程:  
 ①单线程:Serial、Serial Old;  
-②多线程:ParNew、Parallel Scavengc、Parallel Old、CMS、G1.
+②多线程:ParNew、Parallel Scavenge、Parallel Old、CMS、G1.
 
 - 内存分配与回收策略  
+
+自动化内存管理:内存分配&内存回收.
+内存分配:  
+①[对象优先在新生代Eden区分配](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/jvm/MinorGC.java)
     
 - 类加载   
 

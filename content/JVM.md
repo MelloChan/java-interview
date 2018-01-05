@@ -101,11 +101,18 @@ pc:程序计数器,是一块占用较少内存的空间,用来存放线程运行
 
 - 内存分配与回收策略  
 
-自动化内存管理:内存分配&内存回收.
+自动化内存管理:内存分配&内存回收.  
+
 内存分配:  
 ①[对象优先在新生代Eden区分配](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/jvm/MinorGC.java)
     
 - 类加载   
 
+类加载时机:  
+类加载过程:  
+类加载器:  
+如何判断两个类是否相同?  
 双亲委派模型:
+作用:  
+自定义java.lang.String?
  

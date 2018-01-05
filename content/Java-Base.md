@@ -130,14 +130,21 @@ AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;
 - 集合类  
 ![集合类](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/%E9%9B%86%E5%90%88%E7%B1%BB.png)
 
-List:实现该接口的常用类为ArrayList & LinkedList.   
+List:实现该接口的常用类为ArrayList & LinkedList.    
+
 ArrayList:底层结构为(可动态改变大小)数组,默认容量10,扩充时增大到原先的1.5倍.适合频繁取值以及尾部插入或删除的场景;  
+
 LinkedList:底层结构为双向链表(同时也实现了队列接口),增删快,但查询或修改值时较慢(需要遍历).因此更适合频繁从中间插入或删除的场景.  
+  
+CopyOnWriteArrayList:写时复制的数组列表,适用于读多写少的场景.因为在添加新元素时不会直接往当前容器添加,而是先将容器进行复制然后往新容器加入元素,完毕后在将引用指向新容器.
+因此在并发读取时并不会加锁.  
 
 Set:常用类为HashSet & TreeSet & LinkedHashSet.  
+
 通过查阅源码,HashSet本质上就是个值总为静态常量Object的HashMap,同样TreeSet是按照自然排序的TreeMap,LinkedHashSet则是按照元素添加顺序的HashSet.
 
 Map:常用类为HashMap & LinkedHashMap & HashTable & ConcurrentHashMap.   
+
 HashMap:底层结构为数组+链表(JDK8,链表长度为8则转为红黑树),其提供键值对(可为null,此时key的hashcode为0)映射,但不保证顺序(包括在扩容时可能的改变),默认大小为16(总是为2的幂次方,目的是减少哈希冲突),负载因子0.75
 (即实质上容量为0.75乘以16),扩容时为原始容量的两倍.    
 get方法:用来获取值,该方法通过对key的hashcode进行哈希获取索引,找到数组中的对应链表,当链表长度大于2时,遍历链表,通过equals方法来比key获取值;  

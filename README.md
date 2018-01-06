@@ -15,7 +15,7 @@
 - 内部类
 - 集合类
 - ArrayList & LinkedList 详解
-- HashMap HashTable CurrentHashMap 联系与区别
+- HashMap HashTable CurrentHashMap 详解
 - 异常相关
 - 代理机制
 - JDBC

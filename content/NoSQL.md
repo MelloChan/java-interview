@@ -16,5 +16,8 @@ CAP定理指出对于一个分布式计算系统来说,不可能同时满足以�
 
 字符串(string)、集合(set)、列表(list)、哈希表(hash)和有序集合(zset).  
 
-- redis 持久化
+- [redis 持久化](https://github.com/MelloChan/redis-in-action)   
+ 
+ 提供两种持久化方式AOF & RDB
+ 
 - mongodb

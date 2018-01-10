@@ -184,7 +184,9 @@ NullPointerException、IndexOutOfBoundsException、IllegalArgumentException等;
 
 - JDBC  
 
-Java数据库连接,是Java与数据库交互的方式,提供了用于执行SQL的Java API,同时统一了对多种关系数据库的访问,屏蔽了不同数据库间的访问差异,使开发者能更加专注开发,而无需为访问不同数据库而撰写另一个程序.
+Java数据库连接,是Java与数据库交互的方式,提供了用于执行SQL的Java API,同时统一了对多种关系数据库的访问,屏蔽了不同数据库间的访问差异,使开发者能更加专注开发,而无需为访问不同数据库而撰写另一个程序.    
+
+方式:注册驱动类(Class.forName(“com.mysql.jdbc.Driver”);)->建立DB连接(DriverManager.getConnection("url"),username,password)->使用相关的CRUD API(PrepareStatement、execute等)->获取结果集(ResultSet...)......  
 
 - BIO NIO AIO  
 

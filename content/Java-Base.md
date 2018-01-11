@@ -182,7 +182,7 @@ NullPointerException、IndexOutOfBoundsException、IllegalArgumentException等;
 
 扩展->CGLIB(字节码增强):  
 
-- JDBC  
+- [JDBC](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/jdbc)  
 
 Java数据库连接,是Java与数据库交互的方式,提供了用于执行SQL的Java API,同时统一了对多种关系数据库的访问,屏蔽了不同数据库间的访问差异,使开发者能更加专注开发,而无需为访问不同数据库而撰写另一个程序.    
 

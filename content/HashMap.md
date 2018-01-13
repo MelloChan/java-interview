@@ -144,5 +144,5 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 
 #### resize
 
-
+#### 关于红黑树
 

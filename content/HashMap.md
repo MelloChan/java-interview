@@ -191,7 +191,7 @@ final Node<K,V>[] resize() {
                 threshold = Integer.MAX_VALUE;
                 return oldTab;
             }
-            // 扩容2倍小于极限容量
+            // 扩容2倍
             else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&
                      oldCap >= DEFAULT_INITIAL_CAPACITY)
                 newThr = oldThr << 1; // double threshold
@@ -258,5 +258,7 @@ final Node<K,V>[] resize() {
 ```
 
 
-#### 关于红黑树
+#### 关于红黑树  
+
+这是个难点....待续~
 

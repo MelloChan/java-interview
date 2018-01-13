@@ -74,6 +74,7 @@ i = (n - 1) & hash
 ```
 
 #### put  
+
 首先查看put方法源码,方法putVal传入哈希后的key、key、value(另外两个参数暂时无视)  
 ```$xslt
  public V put(K key, V value) {
@@ -141,6 +142,38 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 ```
 
 #### get
+
+同样先查看源码,该方法会调用getNode来获取节点,传入的参数为哈希后的key以及key.  
+```$xslt
+public V get(Object key) {
+        Node<K,V> e;
+        return (e = getNode(hash(key), key)) == null ? null : e.value;
+    }
+```
+接着查看getNode方法源码,大致步骤如下:  
+如果table不为null且索引处的首节点不为null,则检查首节点的哈希值以及key值是否相等,相等则直接返回该节点;如果首节点的next节点不为null则先检查
+节点是否为树节点,是则通过getTreeNode方法获取节点,否则遍历链表获取节点;  
+```$xslt
+final Node<K,V> getNode(int hash, Object key) {
+        Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
+        if ((tab = table) != null && (n = tab.length) > 0 &&
+            (first = tab[(n - 1) & hash]) != null) {
+            if (first.hash == hash && // always check first node
+                ((k = first.key) == key || (key != null && key.equals(k))))
+                return first;
+            if ((e = first.next) != null) {
+                if (first instanceof TreeNode)
+                    return ((TreeNode<K,V>)first).getTreeNode(hash, key);
+                do {
+                    if (e.hash == hash &&
+                        ((k = e.key) == key || (key != null && key.equals(k))))
+                        return e;
+                } while ((e = e.next) != null);
+            }
+        }
+        return null;
+    }
+```
 
 #### resize
 

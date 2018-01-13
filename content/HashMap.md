@@ -80,45 +80,59 @@ i = (n - 1) & hash
         return putVal(hash(key), key, value, false, true);
     }
 ```
-查看putValue方法,
+查看putValue方法源码,大致步骤如下:  
+对key的hashCode()进行hash后计算数组索引index;  
+如果当前数组为null则调用resize扩容;  
+如果没碰撞则新建节点然后放入;  
+冲突后如果节点已经存在(key值相等),则覆盖value;  
+如果是树节点,则将节点挂载到树结构上;  
+如果是链表,则尾插链表,如果链表长度大于等于8,则转换为红黑树;  
+最后,如果数组大小已经超过实际可放入容量,则进行扩容(扩容为原先的2倍).  
+
 ```$xslt
 final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                    boolean evict) {
         Node<K,V>[] tab; Node<K,V> p; int n, i;
+        // Node<K,V>[] table 字段 若为null,则进行容量初始化
         if ((tab = table) == null || (n = tab.length) == 0)
+            // 得到初始化后的容量
             n = (tab = resize()).length;
+        //  容量-1 & hash值 取得索引,若索引位置为null,则新建节点放入数组    
         if ((p = tab[i = (n - 1) & hash]) == null)
             tab[i] = newNode(hash, key, value, null);
-        else {
+        else { // 哈希冲突的情况
             Node<K,V> e; K k;
             if (p.hash == hash &&
-                ((k = p.key) == key || (key != null && key.equals(k))))
+                ((k = p.key) == key || (key != null && key.equals(k))))  // key相等的情况(值相等),直接覆盖,这里先赋值给e 
                 e = p;
-            else if (p instanceof TreeNode)
+            else if (p instanceof TreeNode) // 节点属于树节点,自动挂载到红黑树上
                 e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
-            else {
+            else { // 这里进行尾插节点步骤,即冲突点key并不相等同时也不为树节点时
                 for (int binCount = 0; ; ++binCount) {
-                    if ((e = p.next) == null) {
+                    if ((e = p.next) == null) {  // e赋值为p.next 冲突处的链表next指针为null,则尾插新节点
                         p.next = newNode(hash, key, value, null);
-                        if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                        if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st  链表长度大于等于8时转化为性能更高的红黑树 O（logn）复杂度
                             treeifyBin(tab, hash);
                         break;
                     }
                     if (e.hash == hash &&
-                        ((k = e.key) == key || (key != null && key.equals(k))))
+                        ((k = e.key) == key || (key != null && key.equals(k))))  // key相等的情况(值相等),直接覆盖,这里先赋值给e 
                         break;
-                    p = e;
+                     // 以上步骤皆为false 则遍历下个节点
+                    p = e; 
                 }
             }
             if (e != null) { // existing mapping for key
                 V oldValue = e.value;
                 if (!onlyIfAbsent || oldValue == null)
                     e.value = value;
-                afterNodeAccess(e);
-                return oldValue;
+                afterNodeAccess(e); 
+                // 有冲突的情况会返回冲突值(节点已存在)
+                return oldValue;  
             }
         }
         ++modCount;
+        // 如果数组大小 超过 负载因子*实际容量 则扩容
         if (++size > threshold)
             resize();
         afterNodeInsertion(evict);
@@ -128,7 +142,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 
 #### get
 
-
+#### resize
 
 
 

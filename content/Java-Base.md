@@ -145,7 +145,7 @@ Set:常用类为HashSet & TreeSet & LinkedHashSet.
 
 Map:常用类为HashMap & LinkedHashMap & HashTable & ConcurrentHashMap.   
 
-HashMap:底层结构为数组+链表(JDK8,链表长度为8则转为红黑树),其提供键值对(可为null,此时key的hashcode为0)映射,但不保证顺序(包括在扩容时可能的改变),默认大小为16(总是为2的幂次方,目的是减少哈希冲突),负载因子0.75
+[HashMap](https://github.com/MelloChan/java-interview/blob/master/content/HashMap.md):底层结构为数组+链表(JDK8,链表长度为8则转为红黑树),其提供键值对(可为null,此时key的hashcode为0)映射,但不保证顺序(包括在扩容时可能的改变),默认大小为16(总是为2的幂次方,目的是减少哈希冲突),负载因子0.75
 (即实质上容量为0.75乘以16),扩容时为原始容量的两倍.    
 get方法:用来获取值,该方法通过对key的hashcode进行哈希获取索引,找到数组中的对应链表,当链表长度大于2时,遍历链表,通过equals方法来比key获取值;  
 put方法:压入键值对,首先会对key的hashcode进行哈希获得索引,初次使用时才对数组进行内存分配,之后新建一个链表结点(包含hash值,key,value,next)存放指定数组位置.当发生哈希冲突时
@@ -161,8 +161,8 @@ ConcurrentHashMap:线程安全的哈希表,采用分段锁,只针对写进行加
 Queue:常用的有LinkedList(即实现了链表也实现队列接口)和PriorityQueue(优先队列).  
 
 - ArrayList & LinkedList 详解
-- HashMap HashTable CurrentHashMap 详解
- 
+- [HashMap](https://github.com/MelloChan/java-interview/blob/master/content/HashMap.md) HashTable CurrentHashMap 详解
+
 - 异常相关     
 
 Throwable:用来表示任何可以作为异常被抛出的类.其子类有两种:①Error;②Exception.  

@@ -13,6 +13,7 @@ public class HashDemo {
         //运行传空键值对
         hashMap.put(null,null);
         hashMap.put("key","value");
+        hashMap.put("key","value");
         System.out.println(hashMap.get("key"));
     }
 }

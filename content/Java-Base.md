@@ -132,9 +132,9 @@ AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;
 
 List:实现该接口的常用类为ArrayList & LinkedList.    
 
-ArrayList:底层结构为(可动态改变大小)数组,默认容量10,扩充时增大到原先的1.5倍.适合频繁取值以及尾部插入或删除的场景;  
+[ArrayList](https://github.com/MelloChan/java-interview/blob/master/content/ArrayList.md):底层结构为(可动态改变大小)数组,默认容量10,扩充时增大到原先的1.5倍.适合频繁取值以及尾部插入或删除的场景;  
 
-LinkedList:底层结构为双向链表(同时也实现了队列接口),增删快,但查询或修改值时较慢(需要遍历).因此更适合频繁从中间插入或删除的场景.  
+[LinkedList](https://github.com/MelloChan/java-interview/blob/master/content/LinkedList.md):底层结构为双向链表(同时也实现了队列接口),增删快,但查询或修改值时较慢(需要遍历).因此更适合频繁从中间插入或删除的场景.  
   
 CopyOnWriteArrayList:写时复制的数组列表,适用于读多写少的场景.因为在添加新元素时不会直接往当前容器添加,而是先将容器进行复制然后往新容器加入元素,完毕后在将引用指向新容器.
 因此在并发读取时并不会加锁.  
@@ -160,7 +160,7 @@ ConcurrentHashMap:线程安全的哈希表,采用分段锁,只针对写进行加
 
 Queue:常用的有LinkedList(即实现了链表也实现队列接口)和PriorityQueue(优先队列).  
 
-- ArrayList & LinkedList 详解
+- [ArrayList](https://github.com/MelloChan/java-interview/blob/master/content/ArrayList.md) & [LinkedList](https://github.com/MelloChan/java-interview/blob/master/content/LinkedList.md) 详解
 - [HashMap](https://github.com/MelloChan/java-interview/blob/master/content/HashMap.md) HashTable CurrentHashMap 详解
 
 - 异常相关     

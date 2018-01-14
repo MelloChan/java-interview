@@ -196,12 +196,18 @@ final Node<K,V>[] resize() {
                      oldCap >= DEFAULT_INITIAL_CAPACITY)
                 newThr = oldThr << 1; // double threshold
         }
+        /*
+           oldCap为0而oldThr不为0,此时为第一次初始化,是通过带参构造方法中语句赋值了threshold:
+           this.threshold = tableSizeFor(initialCapacity);
+        */
         else if (oldThr > 0) // initial capacity was placed in threshold
             newCap = oldThr;
+        //  oldCap为0而oldThr也为0,初次初始化,默认构造方法 16 0.75 12    
         else {               // zero initial threshold signifies using defaults
             newCap = DEFAULT_INITIAL_CAPACITY;
             newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
         }
+        //  通过带参构造方法 自定义容量
         if (newThr == 0) {
             float ft = (float)newCap * loadFactor;
             newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ?
@@ -211,7 +217,9 @@ final Node<K,V>[] resize() {
         @SuppressWarnings({"rawtypes","unchecked"})
             Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];
         table = newTab;
+        //  扩容 index= table.length-1 & hash 元素要么在原位置 要么 + oldCap
         if (oldTab != null) {
+            // 移动容器内节点
             for (int j = 0; j < oldCap; ++j) {
                 Node<K,V> e;
                 if ((e = oldTab[j]) != null) {
@@ -257,6 +265,7 @@ final Node<K,V>[] resize() {
     }
 ```
 
+#### 并发死循环问题
 
 #### 关于红黑树  
 

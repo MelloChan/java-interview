@@ -234,13 +234,14 @@ final Node<K,V>[] resize() {
                         Node<K,V> next;
                         do {
                             next = e.next;
+                            // 扩容后新增高位bit为0 索引不会改变
                             if ((e.hash & oldCap) == 0) {
                                 if (loTail == null)
                                     loHead = e;
                                 else
                                     loTail.next = e;
                                 loTail = e;
-                            }
+                            } // 否则为1 索引改为 原索引+oldCap
                             else {
                                 if (hiTail == null)
                                     hiHead = e;
@@ -264,10 +265,16 @@ final Node<K,V>[] resize() {
         return newTab;
     }
 ```
+详细请参考:http://www.importnew.com/20386.html
 
 #### 并发死循环问题
+
+HashMap本身只适用于单线程,对于读写扩容都没有加锁.在JDK7中,并发情况下因为链表结构的问题,容易出现扩容时链表[死循环](https://coolshell.cn/articles/9606.html?spm=5176.100239.blogcont225660.23.OtGRFx)问题,
+但这个问题在JDK8已经得到了解决,查看resize方法源码,与JDK7相比resize源码增加了很多,死循环的问题使用两个指针来维持.但即便如此,多线程下保证线程安全依然
+需要使用ConcurrentHashMap,因为HashMap仍然会造成可能的数据丢失.
 
 #### 关于红黑树  
 
 这是个难点....待续~
+性能提升:http://www.importnew.com/14417.html?spm=5176.100239.blogcont225660.22.OtGRFx
 

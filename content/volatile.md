@@ -40,8 +40,11 @@ j=j+1; // 同上
 上面四条语句只有i=1符合原子性,其他都涉及到多种操作.  
 如何保证原子性:可以使用同步关键字(synchronized,或Lock类),当然更好的方式是使用并发包下原子类来保证,其内部使用了CAS无锁机制来保证,性能更高.
   
-可见性:   
-有序性:  
+[可见性](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/Visibility.java):  
+可见性保证了当某线程修改了变量的值,对其他线程来说是可以立即得知的,其他线程的工作内存变量会立即失效,重新从主内存读取变量.但是,保证了可见性并一定就解决了并发问题,因为被修饰的变量执行非原子操作时,依然会导致缓存不一致问题.  
+除了使用volatile保证可见性外,synchronized或Lock同样也可保证,因为在释放锁之前,变量的值会被刷新写入主内存.
+     
+[有序性](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/Order.java):  
 
 #### volatile对于可见性以及有序性的保证
 

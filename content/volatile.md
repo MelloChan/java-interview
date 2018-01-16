@@ -125,4 +125,48 @@ private static volatile int race=0;
 
 #### 底层实现
 
+其实就是多了一个lock指令,相当于提供了一个内存屏障,保证了以下功能:  
+①重排序时,不能将后面的指令置于内存屏障前;  
+②将缓存写入主内存;  
+③写入会触发其他线程的缓存(工作内存)无效化.  
+
+#### 什么时候使用
+
+①状态量标记
+```$xslt
+ private volatile static boolean flag; 
+ private static int value;
+
+ public static void main(String[] args) {
+        new Thread(() -> {
+            while (!flag) Thread.yield();
+            System.out.println(value);
+        }).start();
+        value = 2;  // A
+        flag = true;  // B
+    }
+```
+
+②单例模式,懒汉式双重检查锁.
+```$xslt
+public class Singleton{
+    private volatile static Singleton singleton;
+    private Singleton(){}
+    
+    public static Singleton getInstance(){
+          if(singleton==null){
+               synchronized(Singleton.class){
+                    if(singleton==null){
+                        singleton=new Singleton();
+                    }
+               }
+          }
+          return singleton;
+    }
+}
+```
+如上,因为对象的实例化需要经过: ①堆内存分配 ②零值(变量初始化)初始化 ③内存地址赋值给引用  
+这三步操作中,②③是可以重排序的,因此若不使用volatile修饰变量,可能导致一个线程实例化了对象,先执行了③,此时变量引用不为空,而另一个线程执行第一个判断语句,因此直接返回变量引用,而此时对象还未被初始化,将产生难以预料的错误.
+
+
 

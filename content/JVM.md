@@ -64,8 +64,8 @@ pc:程序计数器,是一块占用较少内存的空间,用来存放线程运行
 
 八种原子操作:lock(锁,将一个变量标识为一条线程独占的状态)/unlock(解锁)、read(从主内存中读取变量传输到工作内存)/load(read后执行,将传输得到的主内存变量值载入工作内存的变量副本中)、use(使用)、assign(赋值)、store(存储,作用于工作内存的变量副本,将工作内存的变量传送到主内存中)/write(写入,store后将从工作内存中得到的变量副本值写入主内存的变量中)    
 
-缓存一致性:    
-如何保证:  
+缓存一致性以及如何保证:[volatile](https://github.com/MelloChan/java-interview/blob/master/content/volatile.md)    
+  
 
 - 垃圾回收算法  
 

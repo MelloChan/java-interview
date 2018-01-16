@@ -60,9 +60,10 @@ synchronized:JavaSE中JVM级别(monitorenter monitorexit字节码指令)的同�
 
 Lock:并发包下的一个接口,一般使用它的实现类ReentrantLock(可重入锁),提供了与synchronized相同的互斥性与内存可见性,但具有更高的灵活性,提供了可选的公平锁(按照线程请求前后顺序获取释放后的锁)、等待可中断以及锁绑定多个条件.
 
-- volatile  
+- [volatile](https://github.com/MelloChan/java-interview/blob/master/content/volatile.md)
 
-保证了修饰变量的内存可见性(变量的改变会通知所有线程工作内存中副本失效,转而重新载入读取主内存变量值),以及禁止指令重排序,但无法保证原子性.
+保证了修饰变量的内存可见性(变量的改变会通知所有线程工作内存中副本失效,转而重新载入读取主内存变量值),以及禁止指令重排序,但无法保证原子性.  
+[详解](https://github.com/MelloChan/java-interview/blob/master/content/volatile.md)
 
 - ThreadLocal
 - sleep & wait 

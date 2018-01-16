@@ -206,7 +206,10 @@ final:修饰字段(不可变)、方法(不可被重写)、类(不可被继承);
 finally:搭配try使用,finally总是会被执行,因此常用来做关闭资源(JDK7后推崇try-with-resource方式)、lock解锁之类的操作;  
 finalize:一个历史遗留的方法,不被推荐使用.  
 
-- 反射
+- [反射](https://github.com/MelloChan/java-interview/blob/master/content/reflect.md)  
+
+动态获取某个类的字段与方法以及动态调用对象的字段与方法(包括私有).常见用法如动态代理机制.另外不明白反射机制就很难理解Spring(ioc & aop)的运行机制.
+
 - 序列化与反序列化
 - Java7新特性
 - Java8新特性

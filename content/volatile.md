@@ -69,7 +69,7 @@ A->B->C或B->A->C,并不会影响语句最终的执行结果,因此可重排序,
 ```$xslt
  private volatile static boolean flag;  // 加上volatile 禁止排序
 ```
-volatile保证了线程对于一个volatile修饰的共享变量的写会立即刷新到主内存,而读取操作则会先将工作内存的共享变量置为无效,然后去主内存读取.
+volatile保证了线程对于一个volatile修饰的共享变量的写会立即刷新到主内存,而读取操作时,JMM先将工作内存的共享变量置为无效,然后线程去主内存读取共享变量.
 
 #### volatile的保证
 
@@ -79,7 +79,7 @@ volatile保证了线程对于一个volatile修饰的共享变量的写会立即�
 private static volatile int race=0;
 
     public static void inc(){
-        race++;
+        race++; // 非原子操作
     }
 
     private static final int THREADS_COUNT=20;
@@ -95,11 +95,34 @@ private static volatile int race=0;
         System.out.println(race);
     }
 ```
+执行程序,你会发现race总是小于2000.这是因为当线程A读取了race的值,之后线程切换,其他线程对race进行++操作之后写回主内存.线程切换到线程A,它已经读取了race值,因此不会重新读取,
+线程A对race++之后写回主内存,主内存的值被重新覆盖.因此race总是得到错误的值.
+因此上述例子可以使用同步关键字或Lock,或者性能更佳,并发包下的原子类.  
+例如:  
+```$xslt
+ private static volatile int race=0;
+ private static AtomicInteger value=new AtomicInteger();
 
+ public static void inc(){
+        race++;
+        value.getAndIncrement();
+  }
 
+ private static final int THREADS_COUNT=20;
 
+ public static void main(String[] args) {
+        for (int i = 0; i < THREADS_COUNT; i++) {
+            new Thread(()->{
+                for (int j = 0; j < 100; j++) {
+                    inc();
+                }
+            }).start();
+        }
+        System.out.println(race);  // 总是小于2000 
+        System.out.println(value);  // 2000 
+  }
+```
 
-
-
+#### 底层实现
 
 

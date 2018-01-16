@@ -1,14 +1,18 @@
 package thread;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * 可见性 执行非原子操作无法保证执行结果
  * Created by MelloChan on 2018/1/16.
  */
 public class Visibility {
     private static volatile int race=0;
+    private static AtomicInteger value=new AtomicInteger();
 
     public static void inc(){
         race++;
+        value.getAndIncrement();
     }
 
     private static final int THREADS_COUNT=20;
@@ -22,6 +26,7 @@ public class Visibility {
             }).start();
         }
         System.out.println(race);
+        System.out.println(value);
     }
 }
 

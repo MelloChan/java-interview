@@ -14,5 +14,13 @@
 
 #### 相关api
 
+获取全限定类名
+```
+public static void getClassName() {
+        ReflectDemo reflectDemo = new ReflectDemo();
+        // 获取 全限定类名  output: base.reflect.ReflectDemo
+        System.out.println("output: " + reflectDemo.getClass().getName());
+    }
+```
 
 #### 应用

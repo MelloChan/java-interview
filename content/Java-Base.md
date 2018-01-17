@@ -176,11 +176,11 @@ NullPointerException、IndexOutOfBoundsException、IllegalArgumentException等;
 
 - [代理机制](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/proxy)   
 
-[静态代理](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/proxy/StaticProxy.java):自行创建代理类......
+[静态代理](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/proxy/StaticProxy.java):自行创建代理类.
 
-动态代理:需要被代理类实现相同的接口......  
+[动态代理](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/proxy/DynamicProxy.java):需要被代理类实现统一的接口.
 
-扩展->CGLIB(字节码增强):性能更高......  
+扩展->CGLIB(字节码增强):性能更高,而且不像动态代理那样需要被代理类实现一个统一接口(仅仅只支持接口的局限性),弥补了动态代理的不足..  
 
 - [JDBC](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/jdbc)  
 

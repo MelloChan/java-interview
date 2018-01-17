@@ -179,11 +179,11 @@ NullPointerException、IndexOutOfBoundsException、IllegalArgumentException等;
 [静态代理](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/proxy/StaticProxy.java):自行创建代理类.实现起来很简单,局限性在于当业务剧增时需要实现的代理类就明显繁多了.
 
 [动态代理](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/proxy/DynamicProxy.java):
-需要有统一的代理接口(内部生成代理类时需要),生成的代理类继承了Proxy,换句话说生成的代理类 -> $ProxyXXX extends Proxy implements XXInterface(即与被代理类时兄弟关系,都实现了接口).还有一个该接口的实现类,之后在有一个实现InvocationHandler接口的处理类来实现前后逻辑的增添.
+需要有统一的代理接口(内部生成代理类时需要),生成的代理类继承了Proxy,换句话说生成的代理类 -> $ProxyXXX extends Proxy implements XXInterface(即与被代理类是兄弟关系,都实现了接口).还有一个该接口的实现类,之后在有一个实现InvocationHandler接口的处理类来实现前后逻辑的增添.
 动态代理的局限性在于只能针对接口动态生成代理类的,无法对类进行动态代理,因为动态生成的代理类都有共同的父类Proxy,而Java又是单继承的,无法再次继承被代理类.不过CGLIB弥补了这点.  
 参考:https://www.ibm.com/developerworks/cn/java/j-lo-proxy1/index.html
 
-扩展->CGLIB(字节码增强):动态代理需要被代理类实现一个统一接口(仅仅只支持接口的局限性),而CGLIB更像是产生一个呗代理类的子类(即父子关系,当然若被代理类是final的就无法使用CGLIB了),这弥补了动态代理的不足..  
+扩展->CGLIB(字节码增强):动态代理需要被代理类实现一个统一接口(仅仅只支持接口的局限性),而CGLIB更像是产生一个被代理类的子类(即父子关系,当然若被代理类是final的就无法使用CGLIB了),这弥补了动态代理的不足.  
 
 - [JDBC](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/jdbc)  
 

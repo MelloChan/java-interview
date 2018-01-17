@@ -1,10 +1,7 @@
 package base.reflect;
 
 import java.io.Serializable;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
 
 /**
  * 反射机制
@@ -96,7 +93,21 @@ public class ReflectDemo implements Serializable, Cloneable {
         person = (Person) constructors[3].newInstance(22);
         System.out.println(person);
     }
+/**
 
+getFields()与getDeclaredFields()区别:
+getFields()只能访问类中声明为公有的字段,私有的字段它无法访问，能访问从其它类继承来的公有方法.
+getDeclaredFields()能访问类中所有的字段,与public,private,protect无关，不能访问从其它类继承来的方法
+
+getMethods()与getDeclaredMethods()区别:
+getMethods()只能访问类中声明为公有的方法,能访问从其它类继承来的公有方法.
+getDeclaredFields()能访问类中所有的字段,与public,private,protect无关,不能访问从其它类继承来的方法
+
+getConstructors()与getDeclaredConstructors()区别:
+getConstructors()只能访问类中声明为public的构造函数.
+getDeclaredConstructors()能访问类中所有的构造函数,与public,private,protect无关
+
+ */
     public static void getFields() throws ClassNotFoundException {
         Class<?> clazz = Class.forName("base.reflect.ReflectDemo");
         System.out.println("--------类属性---------");
@@ -118,8 +129,26 @@ public class ReflectDemo implements Serializable, Cloneable {
         */
     }
 
-    public static void getMethods() {
-
+    public static void getMethods() throws ClassNotFoundException {
+        Class<?> clazz = Class.forName("base.reflect.ReflectDemo");
+        // 获取类的方法 包括
+        Method[] methods = clazz.getMethods();
+        for (Method m : methods) {
+            Class<?> returnType = m.getReturnType();
+            Class<?> para[] = m.getParameterTypes();
+            System.out.print(Modifier.toString(m.getModifiers()));
+            System.out.print(" " + returnType.getName() + " ");
+            System.out.print(m.getName() + " ");
+            for (Class p : para) {
+                System.out.print(p.getName() + " ");
+            }
+            // 获取类的异常类型
+            Class<?>exce[]=m.getExceptionTypes();
+            for (Class e:exce) {
+                System.out.print(e.getName()+" ");
+            }
+        }
+        System.out.println();
     }
 
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
@@ -132,6 +161,8 @@ public class ReflectDemo implements Serializable, Cloneable {
         getCon();
         print();
         getFields();
+        print();
+        getMethods();
     }
 
     public static void print() {

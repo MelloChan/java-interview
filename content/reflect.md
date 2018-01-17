@@ -110,7 +110,7 @@ public static void getCon() throws ClassNotFoundException, IllegalAccessExceptio
 
 获取类的字段和方法:
 ```
- public static void getField() throws ClassNotFoundException {
+ public static void getFields() throws ClassNotFoundException {
         Class<?> clazz = Class.forName("base.reflect.ReflectDemo");
         System.out.println("--------类属性---------");
 //        Field[] fields=clazz.getFields(); 只能获取公有字段(包括从其他类继承而来的)
@@ -123,6 +123,28 @@ public static void getCon() throws ClassNotFoundException, IllegalAccessExceptio
             System.out.println(f.getType().getName());
         }
     }
+ 
+  public static void getMethods() throws ClassNotFoundException {
+          Class<?> clazz = Class.forName("base.reflect.ReflectDemo");
+          // 获取类的方法 包括
+          Method[] methods = clazz.getMethods();  
+          for (Method m : methods) {
+              Class<?> returnType = m.getReturnType();
+              Class<?> para[] = m.getParameterTypes();
+              System.out.print(Modifier.toString(m.getModifiers()));
+              System.out.print(" " + returnType.getName() + " ");
+              System.out.print(m.getName() + " ");
+              for (Class p : para) {
+                  System.out.print(p.getName() + " ");
+              }
+              // 获取类的异常类型
+              Class<?>exce[]=m.getExceptionTypes();
+              for (Class e:exce) {
+                  System.out.print(e.getName()+" ");
+              }
+          }
+          System.out.println();
+      }  
 ```
 
 修改属性和调用方法:   

@@ -27,9 +27,9 @@ public static void getClassName() {
 ```
 public static void classReference() throws ClassNotFoundException {
         Class[] classes = new Class[3];
-        classes[0] = Class.forName("base.reflect.ReflectDemo");
-        classes[1] = ReflectDemo.class;
-        classes[2] = new ReflectDemo().getClass();
+        classes[0] = Class.forName("base.reflect.ReflectDemo"); // ①
+        classes[1] = ReflectDemo.class;   // ②
+        classes[2] = new ReflectDemo().getClass();  // ③
         for (int i = 0; i < 3; i++) {
             System.out.println("ClassName : " + classes[i]);
         }
@@ -40,6 +40,12 @@ public static void classReference() throws ClassNotFoundException {
         ClassName : class base.reflect.ReflectDemo
          */
     }
+```
+注意:[第二种方式](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/reflect/ClassReference.java)不会引发类的初始化.
+
+获取对象的父类以及接口
+```
+
 ```
 
 #### 应用

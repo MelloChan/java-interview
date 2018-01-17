@@ -108,7 +108,22 @@ public static void getCon() throws ClassNotFoundException, IllegalAccessExceptio
     }
 ```
 
-获取类的属性和方法:
+获取类的字段和方法:
+```
+ public static void getField() throws ClassNotFoundException {
+        Class<?> clazz = Class.forName("base.reflect.ReflectDemo");
+        System.out.println("--------类属性---------");
+//        Field[] fields=clazz.getFields(); 只能获取公有字段(包括从其他类继承而来的)
+        // 不受修饰符限制 但不能获取从其他类继承而来的字段
+        Field[] fields1 = clazz.getDeclaredFields();
+        for (Field f : fields1) {
+            // 获取字段修饰符
+            System.out.println(Modifier.toString(f.getModifiers()));
+            // 获取字段类型
+            System.out.println(f.getType().getName());
+        }
+    }
+```
 
 修改属性和调用方法:   
 
@@ -116,5 +131,6 @@ public static void getCon() throws ClassNotFoundException, IllegalAccessExceptio
 
 #### 应用
 
+工厂模式: 
 
 

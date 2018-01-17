@@ -2,7 +2,9 @@ package base.reflect;
 
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
 
 /**
  * 反射机制
@@ -11,6 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 public class ReflectDemo implements Serializable, Cloneable {
 
     private static final long serialVersionUID = -3714129004501932917L;
+    public long id = 1024;
 
     public static void getClassName() {
         ReflectDemo reflectDemo = new ReflectDemo();
@@ -94,6 +97,31 @@ public class ReflectDemo implements Serializable, Cloneable {
         System.out.println(person);
     }
 
+    public static void getFields() throws ClassNotFoundException {
+        Class<?> clazz = Class.forName("base.reflect.ReflectDemo");
+        System.out.println("--------类属性---------");
+//        Field[] fields=clazz.getFields(); 只能获取公有字段(包括从其他类继承而来的)
+        // 不受修饰符限制 但不能获取从其他类继承而来的字段
+        Field[] fields1 = clazz.getDeclaredFields();
+        for (Field f : fields1) {
+            // 获取字段修饰符
+            System.out.println(Modifier.toString(f.getModifiers()));
+            // 获取字段类型
+            System.out.println(f.getType().getName());
+        }/*
+        output:
+        --------类属性---------
+        private static final
+        long
+        public
+        long
+        */
+    }
+
+    public static void getMethods() {
+
+    }
+
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
         getClassName();
         print();
@@ -102,6 +130,8 @@ public class ReflectDemo implements Serializable, Cloneable {
         getSuperAndInterface();
         print();
         getCon();
+        print();
+        getFields();
     }
 
     public static void print() {

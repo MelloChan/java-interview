@@ -178,7 +178,7 @@ NullPointerException、IndexOutOfBoundsException、IllegalArgumentException等;
 
 [静态代理](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/proxy/StaticProxy.java):自行创建代理类.
 
-[动态代理](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/proxy/DynamicProxy.java):需要被代理类实现统一的接口.
+[动态代理](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/proxy/DynamicProxy.java):需要被代理类实现统一的接口(同时继承了Proxy).
 
 扩展->CGLIB(字节码增强):性能更高,而且不像动态代理那样需要被代理类实现一个统一接口(仅仅只支持接口的局限性),弥补了动态代理的不足..  
 

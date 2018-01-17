@@ -43,7 +43,7 @@ public static void classReference() throws ClassNotFoundException {
 ```
 注意:[第二种方式](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/reflect/ClassReference.java)不会引发类的初始化.
 
-获取对象的父类以及接口
+获取对象的父类以及接口:
 ```
 public static void getSuperAndInterface() throws ClassNotFoundException {
         Class<?> clazz = Class.forName("base.reflect.ReflectDemo");
@@ -63,7 +63,7 @@ public static void getSuperAndInterface() throws ClassNotFoundException {
          java.lang.Cloneable
          */
 ```
-获取类的全部构造方法
+获取类的全部构造方法:
 ```
 public static void getCon() throws ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException {
         Class<?> clazz = Class.forName("base.reflect.Person");
@@ -108,4 +108,13 @@ public static void getCon() throws ClassNotFoundException, IllegalAccessExceptio
     }
 ```
 
+获取类的属性和方法:
+
+修改属性和调用方法:   
+
+动态代理:  
+
 #### 应用
+
+
+

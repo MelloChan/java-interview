@@ -174,13 +174,13 @@ Exception:可以被抛出的基本类型,在Java类库、用户方法以及运�
 后者异常属于错误(编程错误,开发者的锅),会被自动捕获(运行时无法恢复的异常),常见的有Error与RuntimeException以及子类,如OutOfMemoryError、
 NullPointerException、IndexOutOfBoundsException、IllegalArgumentException等;  
 
-- 代理机制   
+- [代理机制](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/proxy)   
 
-静态代理:   
+[静态代理](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/proxy/StaticProxy.java):自行创建代理类......
 
-动态代理:  
+动态代理:需要被代理类实现相同的接口......  
 
-扩展->CGLIB(字节码增强):  
+扩展->CGLIB(字节码增强):性能更高......  
 
 - [JDBC](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/jdbc)  
 
@@ -198,7 +198,7 @@ AIO:异步IO......;
 
 - 创建类的方法  
 
-①通过new关键字;②[使用clone方法](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/create/CloneClass.java);③使用反射机制;④反序列化
+①通过new关键字;②[使用clone方法](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/create/CloneClass.java);③[使用反射机制](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/reflect);④反序列化
 
 - final finally finalize  
 

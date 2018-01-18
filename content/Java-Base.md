@@ -184,7 +184,7 @@ NullPointerException、IndexOutOfBoundsException、IllegalArgumentException等;
 参考:https://www.ibm.com/developerworks/cn/java/j-lo-proxy1/index.html
 
 扩展->CGLIB(字节码增强):动态代理需要被代理类实现一个统一接口(仅仅只支持接口的局限性),而CGLIB更像是产生一个被代理类的子类(即父子关系,当然若被代理类是final的就无法使用CGLIB了),这弥补了动态代理的不足.
-CGLIB需要先引入cglib-nodep-2.2.2(或cglib-2.2.jar + asm),创建一个类实现MethodInterceptor接口的intercept方法,传入需要被代理的方法.如下,比起动态代理调用更为简洁.
+CGLIB需要先引入cglib-nodep(或cglib + asm),创建一个类实现MethodInterceptor接口的intercept方法,传入需要被代理的方法.如下,比起动态代理调用更为简洁.
 ```
 public class CglibDemo {
     public static void main(String[] args) {
@@ -253,7 +253,7 @@ finalize:一个历史遗留的方法,不被推荐使用.
 
 - [反射](https://github.com/MelloChan/java-interview/blob/master/content/reflect.md)  
 
-动态获取某个类的字段与方法以及动态调用对象的字段与方法(包括私有).常见用法如动态代理机制.另外不明白反射机制就很难理解Spring(ioc & aop)的运行机制.
+动态获取某个类的字段与方法以及动态调用对象的字段与方法(包括私有).常见应用如动态代理、工厂模式之类.另外不明白反射机制就很难理解Spring(ioc & aop)的运行机制.
 
 - 序列化与反序列化
 - Java7新特性

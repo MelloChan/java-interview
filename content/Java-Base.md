@@ -161,7 +161,7 @@ ConcurrentHashMap:线程安全的哈希表,采用分段锁,只针对写进行加
 Queue:常用的有LinkedList(即实现了链表也实现队列接口)和PriorityQueue(优先队列).  
 
 - [ArrayList](https://github.com/MelloChan/java-interview/blob/master/content/ArrayList.md) & [LinkedList](https://github.com/MelloChan/java-interview/blob/master/content/LinkedList.md) 详解
-- [HashMap](https://github.com/MelloChan/java-interview/blob/master/content/HashMap.md) HashTable ConcurrentHashMap 详解
+- [HashMap](https://github.com/MelloChan/java-interview/blob/master/content/HashMap.md) ConcurrentHashMap 详解
 
 - 异常相关     
 
@@ -183,7 +183,49 @@ NullPointerException、IndexOutOfBoundsException、IllegalArgumentException等;
 动态代理的局限性在于只能针对接口动态生成代理类的,无法对类进行动态代理,因为动态生成的代理类都有共同的父类Proxy,而Java又是单继承的,无法再次继承被代理类.不过CGLIB弥补了这点.  
 参考:https://www.ibm.com/developerworks/cn/java/j-lo-proxy1/index.html
 
-扩展->CGLIB(字节码增强):动态代理需要被代理类实现一个统一接口(仅仅只支持接口的局限性),而CGLIB更像是产生一个被代理类的子类(即父子关系,当然若被代理类是final的就无法使用CGLIB了),这弥补了动态代理的不足.  
+扩展->CGLIB(字节码增强):动态代理需要被代理类实现一个统一接口(仅仅只支持接口的局限性),而CGLIB更像是产生一个被代理类的子类(即父子关系,当然若被代理类是final的就无法使用CGLIB了),这弥补了动态代理的不足.
+CGLIB需要先引入cglib-nodep-2.2.2(或cglib-2.2.jar + asm),创建一个类实现MethodInterceptor接口的intercept方法,传入需要被代理的方法.如下,比起动态代理调用更为简洁.
+```
+public class CglibDemo {
+    public static void main(String[] args) {
+        Service target=new Service();
+        Service proxy= (Service) new CglibProxyFactory(target).getProxyIntance();
+        proxy.doSomething();
+    }
+}
+class Service{
+    public void doSomething(){
+        System.out.println("------ doSomething -------");
+    }
+}
+class CglibProxyFactory implements MethodInterceptor{
+
+    private Object target;
+
+    public CglibProxyFactory(Object target){
+        this.target=target;
+    }
+
+    public Object getProxyIntance(){
+        // 工具类
+        Enhancer en=new Enhancer();
+        // 设置父类
+        en.setSuperclass(target.getClass());
+        // 设置回调方法
+        en.setCallback(this);
+        // 创建子类 代理对象
+        return en.create();
+    }
+
+    @Override
+    public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+        System.out.println("-----start------");
+        Object result=method.invoke(target,objects);
+        System.out.println("------end--------");
+        return result;
+    }
+}
+```
 
 - [JDBC](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/jdbc)  
 

@@ -156,7 +156,7 @@ LinkedHashMap:HashMap的子类,保存了元素的插入顺序(或最近最少使
 
 HashTable:线程安全的哈希表,不允许null键值对,使用方法级别的同步锁(synchronized),任意时刻只有一条线程能读写HashTable,因此性能很差;  
 
-ConcurrentHashMap:线程安全的哈希表,采用分段锁,只针对写进行加锁,因此在性能上高于HashTable.增添了一个新概念Segment,每个Segment都包含一个原先的桶数组,通俗讲就是一个二级哈希表.
+ConcurrentHashMap:线程安全的哈希表,采用分段锁,只针对写进行加锁,因此在性能上高于HashTable.增添了一个新概念Segment,每个Segment都包含一个原先的桶数组,通俗讲就是一个二级哈希表(JDK7).
 
 Queue:常用的有LinkedList(即实现了链表也实现队列接口)和PriorityQueue(优先队列).  
 

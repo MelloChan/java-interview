@@ -1,6 +1,6 @@
 ### HashMap 底层分析(基于JDK8)
 
-![数组+链表](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/HashMap.png)  
+![数组+链表](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/HashMap.png)    
 HashMap是一个非线程安全的集合框架.如图,其底层结构就是基于数组+链表实现的.其中的两个重要参数:  
 DEFAULT_INITIAL_CAPACITY(默认容量) = 16;  
 DEFAULT_LOAD_FACTOR(负载因子) = 0.75;  

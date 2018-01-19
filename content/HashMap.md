@@ -271,7 +271,8 @@ final Node<K,V>[] resize() {
 
 HashMap本身只适用于单线程,对于读写扩容都没有加锁.在JDK7中,并发情况下因为链表结构的问题,容易出现扩容时链表[死循环](https://coolshell.cn/articles/9606.html?spm=5176.100239.blogcont225660.23.OtGRFx)问题,
 但这个问题在JDK8已经得到了解决,查看resize方法源码,与JDK7相比resize源码增加了很多,死循环的问题使用两个指针来维持.但即便如此,多线程下保证线程安全依然
-需要使用ConcurrentHashMap,因为HashMap仍然会造成可能的数据丢失.
+需要使用ConcurrentHashMap,因为HashMap仍然会造成可能的数据丢失.    
+参考:https://www.zhihu.com/question/68111032
 
 #### 关于红黑树  
 

@@ -145,6 +145,8 @@
 ### jar包
 - okhttp
 - jsoup
+- commons
+- guava
 
 ### 个人项目
 - 项目目的 & 技术选型 & 遇到的问题 & 解决方案 & 如何优化
@@ -159,9 +161,10 @@
 - Spring实战
 - SpringBoot实战
 - Spring技术内幕
-- 深入浅出MySQL
+- 深入浅出/高性能MySQL
 - redis实战
 - redis设计与实现
 - Head First设计模式
 - 计算机网络(自顶向下方法)
 - 现代操作系统
+- 剑指offer 编程珠玑

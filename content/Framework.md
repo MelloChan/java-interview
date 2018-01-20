@@ -20,8 +20,14 @@ redirect:response.sendRedirect(“xxx”);通知客户端发出新请求去访�
 
 SpringMVC转发与重定向的方法参考Spring实战.  
 
-- bean的加载过程
-- Spring IOC & AOP
+- bean的加载过程  
+
+- Spring IoC & AOP  
+
+IoC:控制反转,依赖注入(DI.构造器注入,方法注入),由spring来统一管理各类bean(比如service业务类)的生命周期,开发者不需要自行new,只需通过注解(或XML配置/JavaConfig)来获取bean实例,优点在于解耦......  
+
+AOP:面向切面编程,一个完整的程序少不了诸如日志/安全/事务管理之类的职责,这些可能与核心业务功能无关,但却贯穿整个系统.这些重复代码的编写显然是不符合设计原则的,且带来了额外的复杂性.AOP解决了这点,
+
 - 注入方式
 - 事务管理 声明式事务 事务传播
 - SpringMVC原理

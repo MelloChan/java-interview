@@ -65,7 +65,10 @@ Lock:并发包下的一个接口,一般使用它的实现类ReentrantLock(可重
 保证了修饰变量的内存可见性(变量的改变会通知所有线程工作内存中副本失效,转而重新载入读取主内存变量值),以及禁止指令重排序,但无法保证原子性.  
 [详解](https://github.com/MelloChan/java-interview/blob/master/content/volatile.md)
 
-- ThreadLocal
+- ThreadLocal 
+
+线程的局部变量,让每个线程都保存该变量的一份私有本地变量,以此防止并发问题.....
+
 - sleep & wait 
 - 线程通信
 - 线程池

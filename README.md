@@ -140,7 +140,7 @@
 ### 架构设计
 - 秒杀系统设计
 - 缓存
-- 分布式唯一ID生成
+- [分布式唯一ID生成](https://github.com/MelloChan/java-interview/blob/master/content/unique-id.md)
 
 ### jar包
 - okhttp

@@ -69,5 +69,14 @@ UDP:面向非连接的传输协议,优点是对于数据的应用层控制更为
 另外在规范上GET是幂等的且可缓存的,在请求体上没有任何数据,POST则是不幂等不可缓存的.  
 详情可参阅:https://www.zhihu.com/question/28586791
 
-- Session & Cookie
+- Session & Cookie  
+
+因为HTTP是无状态的,也就是说每一次请求对于服务端来说都是全新的,但我们总是需要了解请求发送的对象的.而cookie就是用来保存用户个人信息的.  
+
+Session是保存在服务端中的,一般放在内存中(当然DB或硬盘文件也可以),不会保存过大的对象信息,因为但并发量过高时会内存造成压力.在JavaWeb中,在session保存完毕响应请求时,会将对应的sessionId回写在响应体的 set-cookie 中作为用户信息凭证,但客户端再次发送请求时就设置在cookie中(所以说实质上session是建立在cookie上的,只是换了中形式表达,不明文存储用户信息因此相对安全),session的是基于当前浏览器的,默认过期时间半小时.当浏览器禁止cookie时可通过url重写来设置sessionId.  
+
+Cookie是保存在客户端的,明文存储用户的个人信息,容易被窃取造成用户个人信息泄露.另外浏览器对cookie有存储限制(个数与大小).  
+
+扩展话题:Session服务器集群、memcached或redis缓存服务......
+
 - Socket

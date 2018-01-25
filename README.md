@@ -66,6 +66,7 @@
 - 递归
 - [八大排序算法](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/algorithm)
 - [刷剑指offer](https://github.com/MelloChan/interviews-coding)
+- [leetcode](https://leetcode.com/problemset/algorithms/) 
 
 ### [数据库](https://github.com/MelloChan/java-interview/blob/master/content/DB.md)
 - MySQL引擎
@@ -155,7 +156,7 @@
 - Java编程思想
 - Java并发编程实战
 - Java并发编程的艺术
-- 深入理解JVM虚拟机
+- 深入理解Java虚拟机
 - Effective Java
 - 深入分析Java Web技术内幕
 - Spring实战

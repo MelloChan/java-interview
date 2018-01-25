@@ -69,8 +69,14 @@ Lock:并发包下的一个接口,一般使用它的实现类ReentrantLock(可重
 
 线程的局部变量,让每个线程都保存该变量的一份私有本地变量,以此防止并发问题.....
 
-- sleep & wait 
-- 线程通信
+- sleep & wait   
+
+sleep不放弃对锁的监控,在休眠完毕后悔重新获取锁进入就绪运行,而wait会放弃锁进入阻塞状态等待唤醒(notify或notifyAll).
+
+- 线程通信  
+
+Object对象通有的方法,notify、notifyAll、wait等......
+
 - 线程池
 - [实现男女共浴问题](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/Bath.java)
 - CountDownLatch CyclicBarrier Semaphore  

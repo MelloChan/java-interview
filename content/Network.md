@@ -79,4 +79,6 @@ Cookie是保存在客户端的,明文存储用户的个人信息,容易被窃取
 
 扩展话题:Session服务器集群、memcached或redis缓存服务......
 
-- Socket
+- Socket  
+
+即套接字,ip + port的组合,是一组接口,应用程序间通过套接字进行网络通讯(数据交互).可使用传输层TCP或UDP作为通信协议.一般两个应用程序间为Server/Client的关系. 

@@ -77,7 +77,14 @@ sleep不放弃对锁的监控,在休眠完毕后悔重新获取锁进入就绪�
 
 Object对象通有的方法,notify、notifyAll、wait等......
 
-- 线程池
+- [线程池](https://github.com/MelloChan/java-interview/blob/master/content/ThreadPool.md)
+
+频繁创建线程显然是不合理的,因为对象的创建与销毁大都很耗时间(内存分配、相关资源获取以及JVM对象的跟踪与回收),一个例子就是JDBC中数据库连接的创建销毁都会有极大的性能开销.
+而利用线程池,优点主要有:  
+①重用线程,减少对象创建及销毁所带来的性能开销;  
+②能有效的控制线程的最大并发数,提高系统资源利用率,同时避免过多的资源竞争与堵塞;  
+③利用线程池,能更加简单高效的管理多线程.  
+   
 - [实现男女共浴问题](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/Bath.java)
 - CountDownLatch CyclicBarrier Semaphore  
 - 并发包  

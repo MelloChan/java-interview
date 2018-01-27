@@ -256,6 +256,39 @@ finalize:一个历史遗留的方法,不被推荐使用.
 动态获取某个类的字段与方法以及动态调用对象的字段与方法(包括私有).常见应用如动态代理、工厂模式之类.另外不明白反射机制就很难理解Spring(ioc & aop)的运行机制.
 
 - 序列化与反序列化
-- Java7新特性
+
+- Java7新特性  
+
+①switch语句支持字符串  
+```
+public void doSomething(String type){
+        switch(type){
+            case "xx":break;
+            case "yy":break;
+            default:break;
+        }
+        System.out.println("------ doSomething -------");
+    }
+}
+```  
+②泛型信息的类型自动化推断  
+```
+List<String> list = new ArrayList<>();
+```
+③新增Objects工具类  
+④新增线程安全的ThreadLocalRandom类  
+⑤可以使用 | 来进行多异常捕获  
+```
+try{
+ 
+}catch(IndexOutOfBoundsException|NumberFormatException|ArithmeticException e)){
+
+}catch(Excetion ex){
+
+}
+```
+⑥try-with-resource 直接使用try()进行流关闭,比起finally更简便  
+⑦增强的throw异常抛出,在catch中抛出异常,方法签名throws将更具体    
+
 - Java8新特性
 - Java9新特性

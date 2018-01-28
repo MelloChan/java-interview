@@ -16,7 +16,41 @@ public interface Executor {
     void execute(Runnable command);
 }
 ```
-ExecutorService:
+
+ExecutorService:继承Executor接口,增加行为方法.  
+
+Executors:使用工厂模式来提供线程池实例,返回的线程池都实现了ExecutorService接口.
+```
+// 提供指定线程数量的线程池 使用有界队列
+public static ExecutorService newFixedThreadPool(int nThreads) {
+        return new ThreadPoolExecutor(nThreads, nThreads,
+                                      0L, TimeUnit.MILLISECONDS,
+                                      new LinkedBlockingQueue<Runnable>());
+    }
+ 
+// 提供单一线程的线程池    
+public static ExecutorService newSingleThreadExecutor() {
+        return new FinalizableDelegatedExecutorService
+            (new ThreadPoolExecutor(1, 1,
+                                    0L, TimeUnit.MILLISECONDS,
+                                    new LinkedBlockingQueue<Runnable>()));
+    }    
+    
+// 提供一个可缓存线程池 初始容量0  最大线程数基本为整型最大值 采用同步队列 自动回收线程
+public static ExecutorService newCachedThreadPool() {
+        return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                                      60L, TimeUnit.SECONDS,
+                                      new SynchronousQueue<Runnable>());
+    }    
+    
+// 可设置核心线程数 最大线程数为整型最大值  支持定时以及周期任务
+public ScheduledThreadPoolExecutor(int corePoolSize) {
+        super(corePoolSize, Integer.MAX_VALUE, 0, NANOSECONDS,
+              new DelayedWorkQueue());
+    }    
+```
+
+ThreadPoolExecutor:  
 
 #### 工作过程
 

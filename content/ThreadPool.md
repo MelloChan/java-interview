@@ -8,13 +8,15 @@
 
 #### Executor  
   
-Java线程池是基于Executor框架实现的,其主要包括接口与类:Executor、Executors、ExecutorService、ThreadPoolExecutor、Callable和Future以及FutureTask等.
-```java
+Java线程池是基于Executor框架实现的,其主要包括接口与类:Executor、Executors、ExecutorService、ThreadPoolExecutor、Callable和Future以及FutureTask等.  
+Executor:所有线程池的接口,只有一个方法.
+```
 public interface Executor {
     
     void execute(Runnable command);
 }
 ```
+ExecutorService:
 
 #### 工作过程
 

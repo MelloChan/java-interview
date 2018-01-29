@@ -126,13 +126,13 @@ JVM规范中并没有进行强制说明类加载中第一个阶段,加载开始�
 
 ![双亲委派模型](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/ClassLoader.png)  
 
-启动类加载器:主要加载<Java_Home>\lib目录(或者由参数指定目录)下的rt.jar,无法被开发者直接引用,实质上分类只有启动类加载器与其他所有加载器,因为其本身是JVM的一部分,用C++实现;  
+启动类加载器:负责加载<Java_Home>\lib目录(或者由参数指定目录)下的rt.jar,无法被开发者直接引用,实质上分类只有启动类加载器与其他所有加载器,因为其本身是JVM的一部分,用C++实现;  
 
-扩展类加载器:
+扩展类加载器:负责加载<Java_Home>\lib\ext目录中的jar包(也可由java.ext.dirs系统变量来指定类库);  
 
-应用程序类加载器
+应用程序类加载器:负责加载用户类路径上所指定的类库(由ClassLoader中的getSystemClassLoader()方法获取);  
 
-自定义加载器:  
+自定义加载器:用户自定义的类加载器,继承ClassLoader类,重写findClass方法.  
 
 注意:类加载器之间的父子关系实质上是组合模式,而非继承.
    

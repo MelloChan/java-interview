@@ -34,7 +34,51 @@ protected:受保护的.只允许自身以及其子类访问;
 
 public:公有的.允许所有的类对其访问.    
 
-注意点:在JDK1.8后推出了default关键字,使用在接口中,让接口也能实现方法.  
+注意点:在JDK1.8后推出了default关键字,使用在接口中,让接口也能实现方法.   
+
+- Object类方法  
+
+public:
+```
+// 返回一个类对象 返回类型实质上是 Class<? extends T>
+ public final native Class<?> getClass();
+ 
+// 哈希码 
+ public native int hashCode();  
+   
+ public boolean equals(Object obj) {
+          return (this == obj);
+      }
+ 
+ public String toString() {
+          return getClass().getName() + "@" + Integer.toHexString(hashCode());
+      }    
+ 
+// 线程通信  notify notifyAll区别在于前者唤醒某条线程(随机)去获取释放的锁,后者通知唤醒所有线程然后他们会竞争获取释放的锁
+ public final native void notify();
+ public final native void notifyAll();     
+ public final void wait() throws InterruptedException {
+         wait(0);  // 默认0延迟 可以自定义 毫秒
+     }
+
+```
+
+protected:
+```
+// 克隆方法 重写clone方法调用需要先实现Cloneable接口(作为标识) 
+  protected native Object clone() throws CloneNotSupportedException;
+
+// 历史遗留方法 已不在使用 让对象拥有再一次存活的可能性  
+  protected void finalize() throws Throwable { }
+```
+
+private:
+```
+// 将不同平台的C/C++方法映射到Java的本地方法
+private static native void registerNatives();
+```
+
+  
 
 - [抽象类与接口](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/abstraction)  
 

@@ -7,13 +7,15 @@ package base.create;
  */
 public class CloneClass {
     public static void main(String[] args) throws CloneNotSupportedException {
-        Clone c1 = new Clone(1,"clone");
+        Clone c1 = new Clone(1, "clone");
         Clone c2 = (Clone) c1.clone();
         System.out.println(c1);
         System.out.println(c2);
     }
 }
-
+/**
+需要实现Cloneable接口作为标识
+ */
 class Clone implements Cloneable {
     private int id;
     private String info;

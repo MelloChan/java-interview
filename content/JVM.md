@@ -99,18 +99,19 @@ pc:程序计数器,是一块占用较少内存的空间,用来存放线程运行
 ①单线程:Serial、Serial Old;  
 ②多线程:ParNew、Parallel Scavenge、Parallel Old、CMS、G1.
 
-- 内存分配与回收策略  
+- 内存分配
 
-自动化内存管理:内存分配&内存回收.  
+自动化内存管理:内存分配 & 内存回收.
+![MM](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/JVM-MM.png)  
 
 内存分配:  
 ①[对象优先在新生代Eden区分配](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/jvm/MinorGC.java).当Eden区空间不足时,JVM将发起一次Minor GC.      
 
-②大对象直接进入老年代;  
+②大对象直接进入老年代.   
 
-③长期存活的对象进入老年代;   
+③长期存活的对象进入老年代.     
 
-④动态对象分配;  
+④动态对象分配.  
 
 ⑤空间分配担保.
     

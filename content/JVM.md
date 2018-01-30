@@ -104,10 +104,14 @@ pc:程序计数器,是一块占用较少内存的空间,用来存放线程运行
 自动化内存管理:内存分配&内存回收.  
 
 内存分配:  
-①[对象优先在新生代Eden区分配](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/jvm/MinorGC.java);    
+①[对象优先在新生代Eden区分配](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/jvm/MinorGC.java).当Eden区空间不足时,JVM将发起一次Minor GC.      
+
 ②大对象直接进入老年代;  
+
 ③长期存活的对象进入老年代;   
+
 ④动态对象分配;  
+
 ⑤空间分配担保.
     
 - 类加载   

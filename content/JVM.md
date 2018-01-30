@@ -29,7 +29,7 @@ pc:程序计数器,是一块占用较少内存的空间,用来存放线程运行
 
 - 对象  
 
-对象的创建:①new关键字;②[clone方法](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/create/CloneClass.java);③反射机制;④反序列化.  
+对象的创建:①new关键字;②[clone方法](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/create/CloneClass.java);③[反射机制](https://github.com/MelloChan/java-interview/tree/master/java-exam/src/base/reflect);④反序列化.  
  
 创建过程:类加载->堆分配内存->初始化为0值->引用赋值->执行\<init>,按照使用者的意志初始化.  
  
@@ -105,9 +105,9 @@ pc:程序计数器,是一块占用较少内存的空间,用来存放线程运行
 ![MM](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/JVM-MM.png)  
 
 内存分配:  
-①[对象优先在新生代Eden区分配](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/jvm/MinorGC.java).当Eden区空间不足时,JVM将发起一次Minor GC.      
+①[对象优先在新生代Eden区分配](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/jvm/MinorGC.java).当Eden区空间不足(即需要进行对象内存分配时,剩余空间不足)时,JVM将发起一次Minor GC.      
 
-②大对象直接进入老年代.   
+②大对象直接进入老年代.对于JVM来说大对象的内存分配是很麻烦的(更麻烦的是生命周期短的大对象).大对象意味着需要更多的连续内存空间,经常出现大对象将导致空间还剩不少时就发生GC来为对象腾出空间.因此虚拟机提供一个 -XX:PretenureSizeThreshold 参数,设置该参数值使大于该值的对象直接分配在老年代.  
 
 ③长期存活的对象进入老年代.     
 

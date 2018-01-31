@@ -91,6 +91,7 @@
 - TCP & UDP
 - 三次握手 & 四次挥手
 - 状态码
+- 301 & 302
 - HTTP HTTPS
 - GET & POST 
 - Session & Cookie

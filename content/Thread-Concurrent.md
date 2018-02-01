@@ -86,7 +86,11 @@ Object对象通有的方法,notify、notifyAll、wait等......
 ③利用线程池,能更加简单高效的管理多线程.  
    
 - [实现男女共浴问题](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/Bath.java)
-- CountDownLatch CyclicBarrier Semaphore  
-- 并发包  
-- 锁优化
+
+- CountDownLatch CyclicBarrier Semaphore    
+
+- 并发包    
+  
+- 锁优化   
+
 - 无锁机制

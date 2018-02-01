@@ -28,13 +28,13 @@ private default protected public 访问权限依次递增.
 
 private:私有的,只允许自身访问;  
 
-default:默认包访问修饰符,不需要关键字.只允许自身以及同包的类访问;  
+缺省:默认包访问修饰符,不需要关键字.只允许自身以及同包的类访问;  
 
 protected:受保护的.只允许自身以及其子类访问;  
 
 public:公有的.允许所有的类对其访问.    
 
-注意点:在JDK1.8后推出了default关键字,使用在接口中,让接口也能实现方法.   
+注意点:在JDK1.8推出了default关键字,使用在接口中,让接口也能拥有普通方法.   
 
 - Object类方法  
 
@@ -82,7 +82,7 @@ private static native void registerNatives();
 
 - [抽象类与接口](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/abstraction)  
 
-语法层次:抽象(abstract)允许普通与抽象方法并存(当然也可以不存在抽象方法);接口(interface)方法默认为public abstract,字段默认为private static final,
+语法层次:抽象(abstract)类允许普通方法与抽象方法并存(当然也可以不存在抽象方法,但这显然没什么意义);接口(interface)里方法默认为public abstract,字段默认为public static final,
 在JDK1.8中允许有default关键字修饰的普通方法;  
 
 设计层次:抽象类是对类抽象,而接口则是行为抽象.抽象类是对客观世界拥有共性特征的事物进行整体抽象,是自底向上的,而接口则是局部行为抽象.
@@ -103,7 +103,7 @@ hashCode相等,值不一定相等,值相等则hashCode一定相等.因此hashCod
 
 - [== & equals](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/Compare.java)  
 
-对于基本类型的值比较使用 == 即可,但基于引用类型(诸如通过new String())之类的对象实例进行比较,则需要使用
+对于基本类型的值比较使用 == 即可,但基于引用类型(例如包装类)之类的对象实例进行值比较,则需要使用
 equals方法,单纯使用 == 将会对引用的地址进行比较,而不是值.  
 
 - this  
@@ -202,7 +202,7 @@ HashTable:线程安全的哈希表,不允许null键值对,使用方法级别的�
 
 ConcurrentHashMap:线程安全的哈希表,采用分段锁,只针对写进行加锁,因此在性能上高于HashTable.增添了一个新概念Segment,每个Segment都包含一个原先的桶数组,通俗讲就是一个二级哈希表(JDK7).
 
-Queue:常用的有LinkedList(即实现了链表也实现队列接口)和PriorityQueue(优先队列).  
+Queue:常用的有LinkedList(即实现了链表也实现队列接口)和PriorityQueue(优先队列).另外还有线程池中的同步队列、有界无界队列等.    
 
 - [ArrayList](https://github.com/MelloChan/java-interview/blob/master/content/ArrayList.md) & [LinkedList](https://github.com/MelloChan/java-interview/blob/master/content/LinkedList.md) 详解
 - [HashMap](https://github.com/MelloChan/java-interview/blob/master/content/HashMap.md) ConcurrentHashMap(https://github.com/MelloChan/java-interview/blob/master/content/ConcurrentHashMap.md) 详解
@@ -213,7 +213,7 @@ Throwable:用来表示任何可以作为异常被抛出的类.其子类有两种
 Error:用来表示编译时和系统错误(一般不需要开发者关心此类错误);  
 Exception:可以被抛出的基本类型,在Java类库、用户方法以及运行时故障中都可能抛出Exception异常.因此也是开发者最需要关心的.  
 
-异常类型分为检查异常(CheckedException)与非检查异常(UncheckedException).  
+Exception分为检查异常(CheckedException)与非检查异常(UncheckedException).  
 前者代表开发者不能直接控制的因素(数据库问题、用户输入问题、网络异常以及文件丢失等,相应的关键字有try catch throw(方法内部) throws(方法签名) finally),例如SQLException、IOException、ClassNotFoundException等;  
 后者异常属于错误(编程错误,开发者的锅),会被自动捕获(运行时无法恢复的异常),常见的有Error与RuntimeException以及子类,如OutOfMemoryError、
 NullPointerException、IndexOutOfBoundsException、IllegalArgumentException等;  

@@ -56,9 +56,9 @@
 
 - synchronized & Lock   
 
-synchronized:JavaSE中JVM级别(monitorenter monitorexit字节码指令)的同步关键字,可作用在方法签名或块的可重入内置锁,线程进入同步代码块之前会自动获得锁,退出时自动释放,每次只有一个线程能持有锁;
+[synchronized](https://github.com/MelloChan/java-interview/blob/master/content/synchronized.md):JavaSE中JVM级别(monitorenter monitorexit字节码指令)的同步关键字,可作用在方法签名或块的可重入内置锁,线程进入同步代码块之前会自动获得锁,退出时自动释放,每次只有一个线程能持有锁;
 
-Lock:并发包下的一个接口,一般使用它的实现类ReentrantLock(可重入锁),提供了与synchronized相同的互斥性与内存可见性,但具有更高的灵活性,提供了可选的公平锁(按照线程请求前后顺序获取释放后的锁)、等待可中断以及锁绑定多个条件.
+[Lock](https://github.com/MelloChan/java-interview/blob/master/content/ReentrantLock.md):并发包下的一个接口,一般使用它的实现类ReentrantLock(可重入锁),提供了与synchronized相同的互斥性与内存可见性,但具有更高的灵活性,提供了可选的公平锁(按照线程请求前后顺序获取释放后的锁)、等待可中断以及锁绑定多个条件.
 
 - [volatile](https://github.com/MelloChan/java-interview/blob/master/content/volatile.md)
 

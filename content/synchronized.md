@@ -13,7 +13,7 @@
         }
     }
  
- // 注意标记6 39  45    
+ // 注意标记6 39  45  对于synchronized块使用的是 monitorenter & monitorexit这两个指令来表示加锁与释放锁  
  public void methodA();
      Code:
         0: aload_0
@@ -46,3 +46,9 @@
             7    40    43   any
            43    46    43   any   
 ```
+
+#### 表现形式  
+
+①对于普通方法,锁是当前实例对象.    
+②对于类级方法,锁是当前类的Class对象.    
+③对于synchronized块,锁是括号内配置的对象.

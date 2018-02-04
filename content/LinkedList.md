@@ -12,7 +12,7 @@ LinkedList一个双向链表,实现了List以及Deque(因此也是个队列)等�
  transient Node<E> last;
  
 // 省略部分源码 
-private static class Node<E> {
+ private static class Node<E> {
         E item;
         Node<E> next;
         Node<E> prev;
@@ -43,4 +43,29 @@ private static class Node<E> {
        size++;
        modCount++;
   }   
+  
+ 
+ public E get(int index) {
+          // 索引校验
+         checkElementIndex(index);
+         return node(index).item;
+     }
+ 
+ Node<E> node(int index) {
+         // assert isElementIndex(index);
+         // 二分查找
+         if (index < (size >> 1)) {
+             Node<E> x = first;
+             for (int i = 0; i < index; i++)
+                 x = x.next;
+             return x;
+         } else {
+             Node<E> x = last;
+             for (int i = size - 1; i > index; i--)
+                 x = x.prev;
+             return x;
+         }
+     }     
 ```
+
+总结:增删快,但查询或修改值时较慢(需要遍历).因此更适合频繁从中间插入或删除的场景.  

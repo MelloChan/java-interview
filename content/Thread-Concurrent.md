@@ -67,8 +67,8 @@
 
 - ThreadLocal 
 
-线程的局部变量,让每个线程都保存该变量的一份私有本地变量,以此防止并发问题.....
-
+线程的局部变量,[让每个线程都保存该变量的一份私有本地变量](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/ThreadLocalDemo.java).另外注意其并没有任何线程安全的保障,也就是说并不用来解决多线程共享变量的并发操作问题.ThreadLocal的目的是减少同一个线程内多个方法或组件间一些共享变量的传递的复杂度.  
+    
 - sleep & wait   
 
 sleep不放弃对当前持有锁的监控(即同步块中休眠后进入阻塞状态但不释放锁),在休眠完毕后重新进入就绪状态等待运行,而wait方法会放弃锁(转为等待阻塞),然后等待调用notify或notifyAll方法来唤醒.

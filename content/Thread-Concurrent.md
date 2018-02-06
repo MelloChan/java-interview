@@ -101,4 +101,23 @@ Object对象通有的方法,notify、notifyAll、wait等......
 
 - 无锁机制  
 
-CAS:
+CAS:即比较与替换(Compare and Swap),通过三个参数来保证并发,V 当前主内存中变量值,A 工作内存中的旧值,B 待更新值.只有在 V = = A返回true时,才会更新值.否则循环重来.  
+Java并发包下大量使用了CAS技术,典型例子可以看AtomicInteger类源码:  
+```
+// 调用了Unsafe类方法
+public final int incrementAndGet() {
+        return unsafe.getAndAddInt(this, valueOffset, 1) + 1;
+    }
+    
+public final int getAndAddInt(Object var1, long var2, int var4) {
+            int var5;
+            do {
+               // 调用本地C++方法
+                var5 = this.getIntVolatile(var1, var2);
+            } while(!this.compareAndSwapInt(var1, var2, var5, var5 + var4));
+    
+            return var5;
+   }
+```
+
+缺点:ABA问题,即某线程更新值后为B之后又改回A(即主内存中V值为A),那么另一个读取了当前值后进行比较就会发现没问题而进行更新,然后实际上已经被更改过了.针对这种情况可以为变量值加上版本号以此区分.  

@@ -97,7 +97,7 @@ private static volatile int race=0;
 ```
 执行程序,你会发现race总是小于2000.这是因为当线程A读取了race的值,之后线程切换,其他线程对race进行++操作之后写回主内存.线程切换到线程A,它已经读取了race值,因此不会重新读取,
 线程A对race++之后写回主内存,主内存的值被重新覆盖.因此race总是得到错误的值.
-因此上述例子可以使用同步关键字或Lock,或者性能更佳,并发包下的原子类.  
+因此上述例子可以使用同步关键字或Lock,或者性能更佳,并发包下的原子类(使用CAS保证并发).  
 例如:  
 ```$xslt
  private static volatile int race=0;

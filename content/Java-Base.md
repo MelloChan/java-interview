@@ -146,7 +146,9 @@ AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;
 ②线程安全性:String中的对象可以说是常量,因此是线程安全的.而StringBuffer虽然可变,但其提供的api都通过synchronized关键字进行方法修饰,
 因此也是线程安全的.而StringBuilder是非线程安全的;  
 
-③性能:对String的改变都会重新创建新的对象,然后将指针指向新引用地址,后者是对本身进行修改.  
+③性能:对String的改变都会重新创建新的对象,然后将指针指向新引用地址,后者是对本身进行修改.   
+ 
+关于String.intern()方法,其实质就是将字符串堆引用放入常量池并返回堆引用. 
 
 - 泛型  
 

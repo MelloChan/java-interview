@@ -25,6 +25,7 @@
 - final finally finalize
 - 反射
 - 序列化与反序列化
+- transient
 - Java7新特性
 - Java8新特性
 - Java9新特性

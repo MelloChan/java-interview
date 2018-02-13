@@ -301,7 +301,7 @@ finalize:一个历史遗留的方法,不被推荐使用.
 
 动态获取某个类的字段与方法以及动态调用对象的字段与方法(包括私有).常见应用如动态代理、工厂模式之类.另外不明白反射机制就很难理解Spring(ioc & aop)的运行机制.
 
-- 序列化与反序列化   
+- [序列化与反序列化](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/serializable)   
 
 为了持久化对象,Java的对象序列化将那些实现了Serializable接口(作为序列化标识,该接口没有任何方法与字段)的对象转换成一个字节序列,并能在以后将这个字节序列完全恢复为原来的对象.这一过程广泛适用在网络传输(比特流).能够弥补不同OS间的差异.
 
@@ -332,7 +332,7 @@ public class SerializableDemo {
  base.serializable.Demo
  */ 
 ```
-除了实现Serializable外,还可通过实现Externalizable接口,其继承Serializable接口,增加了下例两个方法:
+除了实现Serializable外,还可通过实现[Externalizable](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/base/serializable/ExternalizableDemo.java)接口,其继承Serializable接口,增加了下例两个方法:
 ```
  void writeExternal(ObjectOutput out) throws IOException;
  void readExternal(ObjectInput in) throws IOException, ClassNotFoundException;
@@ -341,6 +341,55 @@ public class SerializableDemo {
 
 - transient关键字
 
+使用Externalizable虽然也可以选择需要的字段进行序列化,但需要实现两个接口方法,无法自动序列化.因此我们也可以使用transient关键字来修饰不想被序列化的字段(如一些重要密码信息字段),它的意思是"不用麻烦你保存或恢复数据--我自己会处理".
+```
+public class Login implements Serializable {
+
+    private static final long serialVersionUID = -1218878082545441950L;
+
+    private Date date = new Date();
+    private String username;
+    private transient String password;
+
+    public Login(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Login login = new Login("mello", "password");
+        System.out.println(login);
+
+        ObjectOutput out = new ObjectOutputStream(
+                new FileOutputStream("login.out")
+        );
+        System.out.println("Saving objects:");
+        out.writeObject(login);
+        out.close();
+
+        ObjectInput in=new ObjectInputStream(
+                new FileInputStream("login.out")
+        );
+        System.out.println("Recovering objects:");
+        login= (Login) in.readObject();
+        System.out.println(login);
+    }
+
+    @Override
+    public String toString() {
+        return "Login{" +
+                "date=" + date +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+}/* output:
+Login{date=Tue Feb 13 22:13:02 CST 2018, username='mello', password='password'}
+Saving objects:
+Recovering objects:
+Login{date=Tue Feb 13 22:13:02 CST 2018, username='mello', password='null'}
+*/
+```
     
 - Java7新特性  
 

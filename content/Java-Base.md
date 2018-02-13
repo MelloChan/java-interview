@@ -332,9 +332,16 @@ public class SerializableDemo {
  base.serializable.Demo
  */ 
 ```
+除了实现Serializable外,还可通过实现Externalizable接口,其继承Serializable接口,增加了下例两个方法:
+```
+ void writeExternal(ObjectOutput out) throws IOException;
+ void readExternal(ObjectInput in) throws IOException, ClassNotFoundException;
+```
+想要正常序列化,类就必须拥有公有属性的构造器,另外如果不在这两个方法中显示序列化字段或反序列化字段,那么相应字段就不会被正常存储或恢复.
 
 - transient关键字
 
+    
 - Java7新特性  
 
 ①switch语句支持字符串  

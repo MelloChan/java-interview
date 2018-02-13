@@ -18,6 +18,8 @@ public class SerializableDemo {
         ObjectInput in=new ObjectInputStream(
                 new FileInputStream("demo.txt")
         );
-        System.out.println(in.readObject().getClass());
+        System.out.println(in.readObject().getClass().getName());
     }
-}
+}/* output:
+base.serializable.Demo
+*/

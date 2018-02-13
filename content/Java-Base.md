@@ -309,7 +309,28 @@ finalize:一个历史遗留的方法,不被推荐使用.
 
 简单例子:
 ```
+public class Demo implements Serializable {
 
+    private static final long serialVersionUID = -6854855447974852853L;
+}
+
+public class SerializableDemo {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        // 序列化至文本文件
+        ObjectOutput out=new ObjectOutputStream(
+                new FileOutputStream("demo.txt")
+        );
+        out.writeObject(new Demo());
+
+        // 反序列化
+        ObjectInput in=new ObjectInputStream(
+                new FileInputStream("demo.txt")
+        );
+         System.out.println(in.readObject().getClass().getName());
+    }
+}/* output:
+ base.serializable.Demo
+ */ 
 ```
 
 - transient关键字

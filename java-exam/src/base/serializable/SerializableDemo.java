@@ -13,7 +13,7 @@ public class SerializableDemo {
                 new FileOutputStream("demo.txt")
         );
         out.writeObject(new Demo());
-
+        out.close();
         // 反序列化
         ObjectInput in=new ObjectInputStream(
                 new FileInputStream("demo.txt")

@@ -281,11 +281,11 @@ Java数据库连接,是Java与数据库交互的方式,提供了用于执行SQL�
 
 - BIO NIO AIO  
 
-BIO:同步阻塞IO......;   
+BIO:同步阻塞IO,就是java.io包里的各种IO类.字符流和字节流,装饰器模式的示例典范;  
 
-NIO:同步非阻塞IO......;  
+NIO:同步非阻塞IO,关键的三大类:Buffer、Channel和Selector;  
 
-AIO:异步IO......;  
+AIO:异步IO,充分调动OS内核,由系统来通知IO的完成,也被称为NIO 2.0;  
 
 - 创建类的方法  
 

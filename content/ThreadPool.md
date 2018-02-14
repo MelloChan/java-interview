@@ -48,7 +48,7 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
                                       new LinkedBlockingQueue<Runnable>());
     }
  
-// 提供单一线程的线程池    
+// 提供单一线程的线程池 使用无界队列 因为是单一线程 因此也保证了任务执行的有序
 public static ExecutorService newSingleThreadExecutor() {
         return new FinalizableDelegatedExecutorService
             (new ThreadPoolExecutor(1, 1,
@@ -56,7 +56,7 @@ public static ExecutorService newSingleThreadExecutor() {
                                     new LinkedBlockingQueue<Runnable>()));
     }    
     
-// 提供一个可缓存线程池 初始容量0  最大线程数基本为整型最大值 采用同步队列 自动回收线程
+// 提供一个可缓存线程池  核心线程数0(这也意味着线程存活一定时间就会被回收 不会常驻)  最大线程数为整型最大值 线程存活时间60s  采用同步队列( 
 public static ExecutorService newCachedThreadPool() {
         return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
                                       60L, TimeUnit.SECONDS,

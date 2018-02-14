@@ -6,6 +6,26 @@
 ②有效控制线程的并发数,提高资源利用率,避免过多的线程资源竞争与堵塞;  
 ③简单高效的管理多线程.
 
+#### demo
+```
+public class ThreadPoolDemo {
+    // 固定大小的线程池
+    private static ExecutorService service= Executors.newFixedThreadPool(10);
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            service.execute(new Task());
+        }
+    }
+    static class Task implements Runnable{
+
+        @Override
+        public void run() {
+            System.out.println(Thread.currentThread().getName());
+        }
+    }
+}
+```
+
 #### Executor  
   
 Java线程池是基于Executor框架实现的,其主要包括接口与类:Executor、Executors、ExecutorService、ThreadPoolExecutor、Callable和Future以及FutureTask等.  

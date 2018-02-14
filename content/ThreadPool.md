@@ -41,7 +41,7 @@ ExecutorService:继承Executor接口,增加行为方法.
 
 Executors:使用工厂模式来提供线程池实例,返回的线程池都实现了ExecutorService接口.
 ```
-// 提供指定线程数量的线程池 使用有界队列
+// 提供指定线程数量的线程池 核心数与最大线程数都是 nThreads 因此总是保持着核心线程数 线程不会释放 使用无界队列 上限整型最大值
 public static ExecutorService newFixedThreadPool(int nThreads) {
         return new ThreadPoolExecutor(nThreads, nThreads,
                                       0L, TimeUnit.MILLISECONDS,
@@ -70,7 +70,19 @@ public ScheduledThreadPoolExecutor(int corePoolSize) {
     }    
 ```
 
-ThreadPoolExecutor:  
+ThreadPoolExecutor:   
+如上各种线程池所示,其实就是创建了一个ThreadPoolExecutor实例,我们可以使用Executors这个工厂类来快速获取一个线程池实例.不过根据阿里巴巴编程规约,更推荐
+通过ThteadPoolExecutor的方式来创建线程池,原因是能更加明确线程池的运行规则.  
+```
+// 阿里巴巴编程规约
+说明：Executors各个方法的弊端：
+1）newFixedThreadPool和newSingleThreadExecutor:
+  主要问题是堆积的请求处理队列可能会耗费非常大的内存，甚至OOM。
+2）newCachedThreadPool和newScheduledThreadPool:
+  主要问题是线程数最大数是Integer.MAX_VALUE，可能会创建数量非常多的线程，甚至OOM。
+```
+
+#### 线程池参数解析
 
 #### 工作过程
 

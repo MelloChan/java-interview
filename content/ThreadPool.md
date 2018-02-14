@@ -56,7 +56,7 @@ public static ExecutorService newSingleThreadExecutor() {
                                     new LinkedBlockingQueue<Runnable>()));
     }    
     
-// 提供一个可缓存线程池  核心线程数0(这也意味着线程存活一定时间就会被回收 不会常驻)  最大线程数为整型最大值 线程存活时间60s  采用同步队列( 
+// 提供一个可缓存线程池  核心线程数0(这也意味着线程存活一定时间就会被回收 不会常驻)  最大线程数为整型最大值 线程存活时间60s  采用同步队列(任务会被立即执行) 
 public static ExecutorService newCachedThreadPool() {
         return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
                                       60L, TimeUnit.SECONDS,

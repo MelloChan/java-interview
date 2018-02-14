@@ -82,7 +82,21 @@ ThreadPoolExecutor:
   主要问题是线程数最大数是Integer.MAX_VALUE，可能会创建数量非常多的线程，甚至OOM。
 ```
 
-#### 线程池参数解析
+#### 线程池参数解析    
+```
+public ThreadPoolExecutor(int corePoolSize,
+                              int maximumPoolSize,
+                              long keepAliveTime,
+                              TimeUnit unit,
+                              BlockingQueue<Runnable> workQueue) {
+        this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
+             Executors.defaultThreadFactory(), defaultHandler);
+    }
+```
+corePoolSize:   
+线程池的核心线程数,当提交一个任务时,线程池会判断当前线程是否小于核心线程池,是就创建一个新线程执行任务,
+否则任务被加入阻塞队列,当队列满的时候,会检查当前线程数是否小于最大数,是就新建线程执行任务,否则执行拒绝策略.
+
 
 #### 工作过程
 

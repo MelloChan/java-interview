@@ -95,7 +95,16 @@ public ThreadPoolExecutor(int corePoolSize,
 ```
 corePoolSize:   
 线程池的核心线程数,当提交一个任务时,线程池会判断当前线程是否小于核心线程池,是就创建一个新线程执行任务,
-否则任务被加入阻塞队列,当队列满的时候,会检查当前线程数是否小于最大数,是就新建线程执行任务,否则执行拒绝策略.
+否则任务被加入阻塞队列,当队列满的时候,会检查当前线程数是否小于最大数,是就新建线程执行任务,否则执行拒绝策略.   
+
+maximumPoolSize:  
+
+keepAliveTime & unit:      
+
+workQueue:  
+
+
+
 
 
 #### 工作过程

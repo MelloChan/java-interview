@@ -188,16 +188,17 @@ handler:
             if (addWorker(command, true))
                 return;
             c = ctl.get();
-        }
+        }// 若当前线程数小于核心线程数 则调用addWorker方法新建线程执行任务
         if (isRunning(c) && workQueue.offer(command)) {
             int recheck = ctl.get();
             if (! isRunning(recheck) && remove(command))
                 reject(command);
             else if (workerCountOf(recheck) == 0)
                 addWorker(null, false);
-        }
+        } // 若线程处于运行状态且成功将将任务加入队列 则重新获取原子整型值(状态+线程数) 若线程池不处于运行状态且成功将任务移出队列 则执行拒绝策略
         else if (!addWorker(command, false))
             reject(command);
+          // 这里 尝试重新新建线程(当前线程大于核心线程数 小于最大线程数)执行任务 失败则执行拒绝策略  
     }
     
  // 该接口方法由AbstractExecutorService类实现    

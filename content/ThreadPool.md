@@ -132,8 +132,4 @@ handler:
 ④ThreadPoolExecutor.DiscardPolicy:丢弃当前到来的任务;   
 ⑤自定义策略,需要实现RejectedExecutionHandler接口.  
 
-#### 工作过程
-
-#### 创建 & 使用
-
-#### 原理
+#### 实现原理

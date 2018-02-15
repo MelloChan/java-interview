@@ -6,7 +6,8 @@
 ②有效控制线程的并发数,提高资源利用率,避免过多的线程资源竞争与堵塞;  
 ③简单高效的管理多线程.
 
-#### demo
+#### demo  
+
 ```
 public class ThreadPoolDemo {
     // 固定大小的线程池
@@ -83,6 +84,7 @@ ThreadPoolExecutor:
 ```
 
 #### 线程池参数解析    
+
 ```
 public ThreadPoolExecutor(int corePoolSize,
                               int maximumPoolSize,
@@ -132,4 +134,46 @@ handler:
 ④ThreadPoolExecutor.DiscardPolicy:丢弃当前到来的任务;   
 ⑤自定义策略,需要实现RejectedExecutionHandler接口.  
 
-#### 实现原理
+#### 实现原理   
+
+线程池除了ScheduledThreadPoolExecutor类,其他都是基于ThreadPoolExecutor类实现的.  
+查看其源码,线程状态由相应字段决定:
+```
+    // 
+    private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));
+    private static final int COUNT_BITS = Integer.SIZE - 3;
+    private static final int CAPACITY   = (1 << COUNT_BITS) - 1;
+
+    // runState is stored in the high-order bits
+    private static final int RUNNING    = -1 << COUNT_BITS;
+    private static final int SHUTDOWN   =  0 << COUNT_BITS;
+    private static final int STOP       =  1 << COUNT_BITS;
+    private static final int TIDYING    =  2 << COUNT_BITS;
+    private static final int TERMINATED =  3 << COUNT_BITS;
+```
+
+任务提交:  
+```
+ public void execute(Runnable command) {
+        if (command == null)
+            throw new NullPointerException();
+ 
+        int c = ctl.get();
+        if (workerCountOf(c) < corePoolSize) {
+            if (addWorker(command, true))
+                return;
+            c = ctl.get();
+        }
+        if (isRunning(c) && workQueue.offer(command)) {
+            int recheck = ctl.get();
+            if (! isRunning(recheck) && remove(command))
+                reject(command);
+            else if (workerCountOf(recheck) == 0)
+                addWorker(null, false);
+        }
+        else if (!addWorker(command, false))
+            reject(command);
+    }
+```
+
+

@@ -103,9 +103,9 @@ keepAliveTime & unit:
 
 workQueue:    
 用来保存等待被执行的任务(任务必须实现Runnable接口)的阻塞队列.JDK主要提供了如下队列实现:  
-①ArrayBlockingQueue:基于数组结构的有界队列(先进先出).    
-②LinkedBlockingQueue:基于链表的无界队列(先进先出).  
-③PriorityBlockingQueue:具有优先级的无界队列.  
+①ArrayBlockingQueue:基于数组结构的有界队列(先进先出);      
+②LinkedBlockingQueue:基于链表的无界队列(先进先出);    
+③PriorityBlockingQueue:具有优先级的无界队列;    
 ④SynchronousQueue:同步队列,不保存任务,任务插入与移除是同时的.   
     
 threadFactory:  
@@ -125,7 +125,12 @@ static class DefaultThreadFactory implements ThreadFactory {
 ```  
 
 handler:
-   
+用来执行拒绝策略的处理器,当队列满且无法创建新线程的时候会被执行,主要有以下策略:  
+①ThreadPoolExecutor.AbortPolicy:默认策略,直接抛出异常;     
+②ThreadPoolExecutor.CallerRunsPolicy:用调用者当前线程执行任务;       
+③ThreadPoolExecutor.DiscardOldestPolicy:丢弃对头,执行当前任务;       
+④ThreadPoolExecutor.DiscardPolicy:丢弃当前到来的任务;   
+⑤自定义策略,需要实现RejectedExecutionHandler接口.  
 
 #### 工作过程
 

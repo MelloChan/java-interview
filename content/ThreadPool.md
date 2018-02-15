@@ -139,21 +139,46 @@ handler:
 线程池除了ScheduledThreadPoolExecutor类,其他都是基于ThreadPoolExecutor类实现的.  
 查看其源码,线程状态由相应字段决定:
 ```
-    // 
+    // 32位的整型 其中高3位表示线程状态 剩余29位表示线程数量
     private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));
     private static final int COUNT_BITS = Integer.SIZE - 3;
     private static final int CAPACITY   = (1 << COUNT_BITS) - 1;
-
-    // runState is stored in the high-order bits
-    private static final int RUNNING    = -1 << COUNT_BITS;
-    private static final int SHUTDOWN   =  0 << COUNT_BITS;
-    private static final int STOP       =  1 << COUNT_BITS;
-    private static final int TIDYING    =  2 << COUNT_BITS;
-    private static final int TERMINATED =  3 << COUNT_BITS;
+     
+    /*    
+     *   RUNNING:  Accept new tasks and process queued tasks
+     *   SHUTDOWN: Don't accept new tasks, but process queued tasks
+     *   STOP:     Don't accept new tasks, don't process queued tasks,
+     *             and interrupt in-progress tasks
+     *   TIDYING:  All tasks have terminated, workerCount is zero,
+     *             the thread transitioning to state TIDYING
+     *             will run the terminated() hook method
+     *   TERMINATED: terminated() has completed
+   */
+    private static final int RUNNING    = -1 << COUNT_BITS;  // 高3位 111 运行状态 可以接收新任务 同时也会处理阻塞队列中的任务
+    private static final int SHUTDOWN   =  0 << COUNT_BITS;  // 高3位 000  关闭状态 不能接收新任务 但会处理阻塞队列中的任务
+    private static final int STOP       =  1 << COUNT_BITS;  //  001  停止状态 不接收新任务 不处理队列 直接中断运行中的线程任务
+    private static final int TIDYING    =  2 << COUNT_BITS;  //  010  过渡状态 队列与线程池皆空情况下
+    private static final int TERMINATED =  3 << COUNT_BITS;  //  011  结束状态 线程池为空
 ```
 
-任务提交:  
+状态转换:   
 ```
+     * RUNNING -> SHUTDOWN  
+     *    On invocation of shutdown(), perhaps implicitly in finalize()
+     * (RUNNING or SHUTDOWN) -> STOP
+     *    On invocation of shutdownNow()
+     * SHUTDOWN -> TIDYING
+     *    When both queue and pool are empty
+     * STOP -> TIDYING
+     *    When pool is empty
+     * TIDYING -> TERMINATED
+     *    When the terminated() hook method has completed
+```
+
+任务提交,提供了两种方式,Executor接口的execute方法和ExecutorService接口的submit方法,
+前者提交的任务必须实现Runnable接口同时不会返回值,无法确定任务是否执行成功;后者可以获取返回值,有多个重载实现:  
+```
+ // 该接口方法由ThreadPoolExecutor类实现
  public void execute(Runnable command) {
         if (command == null)
             throw new NullPointerException();
@@ -174,6 +199,14 @@ handler:
         else if (!addWorker(command, false))
             reject(command);
     }
+    
+ // 该接口方法由AbstractExecutorService类实现    
+ public <T> Future<T> submit(Callable<T> task) {
+        if (task == null) throw new NullPointerException();
+            RunnableFuture<T> ftask = newTaskFor(task);
+            execute(ftask);
+            return ftask;
+        }
 ```
 
 

@@ -88,10 +88,9 @@ public ThreadPoolExecutor(int corePoolSize,
                               int maximumPoolSize,
                               long keepAliveTime,
                               TimeUnit unit,
-                              BlockingQueue<Runnable> workQueue) {
-        this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
-             Executors.defaultThreadFactory(), defaultHandler);
-    }
+                              BlockingQueue<Runnable> workQueue,
+                              ThreadFactory threadFactory,
+                              RejectedExecutionHandler handler)
 ```
 corePoolSize:   
 线程池的核心线程数,当提交一个任务时,线程池会判断当前线程是否小于核心线程池,是就创建一个新线程执行任务,否则任务被加入阻塞队列.       
@@ -107,7 +106,26 @@ workQueue:
 ①ArrayBlockingQueue:基于数组结构的有界队列(先进先出).    
 ②LinkedBlockingQueue:基于链表的无界队列(先进先出).  
 ③PriorityBlockingQueue:具有优先级的无界队列.  
-④SynchronousQueue:同步队列,不保存任务,任务插入与移除是同时的.     
+④SynchronousQueue:同步队列,不保存任务,任务插入与移除是同时的.   
+    
+threadFactory:  
+创建线程的工厂类,默认使用Executors的静态内部类DefaultThreadFactory类:
+```
+static class DefaultThreadFactory implements ThreadFactory {
+      
+        DefaultThreadFactory() {
+            SecurityManager s = System.getSecurityManager();
+            group = (s != null) ? s.getThreadGroup() :
+                                  Thread.currentThread().getThreadGroup();
+            namePrefix = "pool-" +
+                          poolNumber.getAndIncrement() +
+                         "-thread-";
+        }
+    }
+```  
+
+handler:
+   
 
 #### 工作过程
 

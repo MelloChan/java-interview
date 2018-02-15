@@ -103,13 +103,11 @@ keepAliveTime & unit:
 核心线程外的线程存活时间,unit为单位参数.
 
 workQueue:    
-用来保存等待被执行的任务(任务必须实现Runnable接口)的队列.JDK提供了如下队列实现:  
-①
-
-
-
-
-
+用来保存等待被执行的任务(任务必须实现Runnable接口)的阻塞队列.JDK主要提供了如下队列实现:  
+①ArrayBlockingQueue:基于数组结构的有界队列(先进先出).    
+②LinkedBlockingQueue:基于链表的无界队列(先进先出).  
+③PriorityBlockingQueue:具有优先级的无界队列.  
+④SynchronousQueue:同步队列,不保存任务,任务插入与移除是同时的.     
 
 #### 工作过程
 

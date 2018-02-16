@@ -230,7 +230,7 @@ private boolean addWorker(Runnable firstTask, boolean core) {
                    ! workQueue.isEmpty()))
                 return false;
             
-            //   通过core参数来判断需要创建的线程是否为核心线程 是则break死循环,创建新线程执行任务
+            //  通过core参数来判断需要创建的线程是否为核心线程 是则break循环(retry标签),创建新线程执行任务
             for (;;) {
                 int wc = workerCountOf(c);
                 if (wc >= CAPACITY ||

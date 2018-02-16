@@ -10,15 +10,20 @@ public class ThreadPoolDemo {
 
     private static ExecutorService service= Executors.newFixedThreadPool(10);
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args) throws ExecutionException {
         for (int i = 0; i < 10; i++) {
-//            service.execute(new Task());
-            System.out.println(service.submit(new FutureTask()).get());
+            service.execute(new Task01());
         }
-
+        Future<String>future=service.submit(new Task02());
+        try {
+            String result = future.get();
+            System.out.println(result);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    static class Task implements Runnable{
+    static class Task01 implements Runnable{
 
         @Override
         public void run() {
@@ -26,10 +31,15 @@ public class ThreadPoolDemo {
         }
     }
 
-    static class FutureTask implements Callable<String>{
+    static class Task02 implements Callable<String>{
 
         @Override
-        public String call() throws Exception {
+        public String call(){
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             return Thread.currentThread().getName();
         }
     }

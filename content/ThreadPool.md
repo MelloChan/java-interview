@@ -195,11 +195,16 @@ handler:
                 reject(command);
             else if (workerCountOf(recheck) == 0)
                 addWorker(null, false);
-        } // 若线程处于运行状态且成功将将任务加入队列 则重新获取原子整型值(状态+线程数) 此时线程池不处于运行状态且成功将任务移出队列 则执行拒绝策略 
+        } // 若线程处于运行状态且成功将将任务加入队列 则重新获取原子整型值(状态+线程数) 若此时线程池不处于运行状态且成功将任务移出队列 则执行拒绝策略 
         else if (!addWorker(command, false))
             reject(command);
-          // 这里 尝试重新新建线程(当前线程大于核心线程数 小于最大线程数)执行任务 失败则执行拒绝策略  
-    }
+          // 尝试重新创建线程(线程数已经大于等于核心线程数了)执行任务 若当前线程数大于等于最大线程数则则执行拒绝策略  
+    }/*
+    总结: 1.线程数处于核心线程数范围,创建线程执行任务;
+          2.线程数大于等于核心线程数,将任务加入队列;
+          3.队列满了,线程数小于最大线程数,创建新线程执行任务;
+          4.队列满了,线程数大于等于最大线程数,执行拒绝策略
+    */
     
  // 该接口方法由AbstractExecutorService类实现    
  public <T> Future<T> submit(Callable<T> task) {
@@ -224,7 +229,8 @@ private boolean addWorker(Runnable firstTask, boolean core) {
                    firstTask == null &&
                    ! workQueue.isEmpty()))
                 return false;
-
+            
+            //   通过core参数来判断需要创建的线程是否为核心线程 是则break死循环,创建新线程执行任务
             for (;;) {
                 int wc = workerCountOf(c);
                 if (wc >= CAPACITY ||
@@ -238,7 +244,8 @@ private boolean addWorker(Runnable firstTask, boolean core) {
                 // else CAS failed due to workerCount change; retry inner loop
             }
         }
-
+        
+        // 创建新线程的过程 基于Worker类,被final修饰同时它继承AQS实现了Runnable接口 由ReentrantLock类来保证工作线程被同步插入HashSet 
         boolean workerStarted = false;
         boolean workerAdded = false;
         Worker w = null;
@@ -268,6 +275,7 @@ private boolean addWorker(Runnable firstTask, boolean core) {
                     mainLock.unlock();
                 }
                 if (workerAdded) {
+                //  开启线程来执行任务
                     t.start();
                     workerStarted = true;
                 }
@@ -278,5 +286,69 @@ private boolean addWorker(Runnable firstTask, boolean core) {
         }
         return workerStarted;
     }
+    
+    // Worker类部分代码 从构造器中可以知道 thread字段由一个工厂方法赋值 同时传入Worker实例 通过run方法线程启动时调用runWorker来执行任务
+private final class Worker
+        extends AbstractQueuedSynchronizer
+        implements Runnable{
+            final Thread thread;
+            /** Initial task to run.  Possibly null. */
+            Runnable firstTask;
+    
+            Worker(Runnable firstTask) {
+                setState(-1); // inhibit interrupts until runWorker
+                this.firstTask = firstTask;
+                this.thread = getThreadFactory().newThread(this);
+            }
+  
+            public void run() {
+                runWorker(this);
+            }
+    }    
+      
+// 通过getTask循环获取       
+final void runWorker(Worker w) {
+        Thread wt = Thread.currentThread();
+        Runnable task = w.firstTask;
+        w.firstTask = null;
+        w.unlock(); // allow interrupts
+        boolean completedAbruptly = true;
+        try {
+            while (task != null || (task = getTask()) != null) {
+                w.lock();
+                // If pool is stopping, ensure thread is interrupted;
+                // if not, ensure thread is not interrupted.  This
+                // requires a recheck in second case to deal with
+                // shutdownNow race while clearing interrupt
+                if ((runStateAtLeast(ctl.get(), STOP) ||
+                     (Thread.interrupted() &&
+                      runStateAtLeast(ctl.get(), STOP))) &&
+                    !wt.isInterrupted())
+                    wt.interrupt();
+                try {
+                    beforeExecute(wt, task);
+                    Throwable thrown = null;
+                    try {
+                        task.run();
+                    } catch (RuntimeException x) {
+                        thrown = x; throw x;
+                    } catch (Error x) {
+                        thrown = x; throw x;
+                    } catch (Throwable x) {
+                        thrown = x; throw new Error(x);
+                    } finally {
+                        afterExecute(task, thrown);
+                    }
+                } finally {
+                    task = null;
+                    w.completedTasks++;
+                    w.unlock();
+                }
+            }
+            completedAbruptly = false;
+        } finally {
+            processWorkerExit(w, completedAbruptly);
+        }
+    }       
 ```
 

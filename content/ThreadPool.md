@@ -13,26 +13,36 @@ public class ThreadPoolDemo {
 
     private static ExecutorService service= Executors.newFixedThreadPool(10);
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args) throws ExecutionException {
         for (int i = 0; i < 10; i++) {
-             service.execute(new Task());
-             System.out.println(service.submit(new FutureTask()).get());
+            service.execute(new Task01());
         }
-
+        Future<String>future=service.submit(new Task02());
+        try {
+            String result = future.get();
+            System.out.println(result);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
-    
-    static class Task implements Runnable{
+
+    static class Task01 implements Runnable{
 
         @Override
         public void run() {
             System.out.println(Thread.currentThread().getName());
         }
     }
-    
-    static class FutureTask implements Callable<String>{
+
+    static class Task02 implements Callable<String>{
 
         @Override
-        public String call() throws Exception {
+        public String call(){
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             return Thread.currentThread().getName();
         }
     }
@@ -412,12 +422,9 @@ final void runWorker(Worker w) {
 // 该接口方法由AbstractExecutorService类实现    
 public <T> Future<T> submit(Callable<T> task) {
         if (task == null) throw new NullPointerException();
-            RunnableFuture<T> ftask = newTaskFor(task);
-            execute(ftask);
-            return ftask;
-        }
-//  RunnableFuture继承了Runnable与Future
-public interface RunnableFuture<V> extends Runnable, Future<V> { 
-       void run();
+        // task被封装成一个FutureTask类
+        RunnableFuture<T> ftask = newTaskFor(task);
+        execute(ftask);
+        return ftask;
 }
 ```

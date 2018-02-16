@@ -17,8 +17,39 @@
 
 - [创建线程的方式](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/CreateThreadDemo.java)  
 
-①继承Thread; ②实现Runnable(或Callable); ③使用线程池.    
+①继承Thread; ②实现Runnable(或Callable).    
+  
+扩展:Callable + Future,前者通过线程池异步产生任务结果,后者负责获取结果.另外即使发生异常Callable也能返回异常结果,即Future能拿到异步执行后的任何任务结果.
+Future.get()则会阻塞当前主线程直到Callable执行完成.
+```
+public class ThreadPoolDemo {
 
+    private static ExecutorService service= Executors.newFixedThreadPool(10);
+
+    public static void main(String[] args) throws ExecutionException {
+        Future<String>future=service.submit(new Task02());
+        try {
+            String result = future.get();
+            System.out.println(result);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static class Task implements Callable<String>{
+
+        @Override
+        public String call(){
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return Thread.currentThread().getName();
+        }
+    }
+}
+```
 - 线程的状态转换  
 ![状态转换](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/thread-state.png)    
 

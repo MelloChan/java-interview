@@ -10,18 +10,30 @@
 
 ```
 public class ThreadPoolDemo {
-    // 固定大小的线程池
+
     private static ExecutorService service= Executors.newFixedThreadPool(10);
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         for (int i = 0; i < 10; i++) {
-            service.execute(new Task());
+             service.execute(new Task());
+             System.out.println(service.submit(new FutureTask()).get());
         }
+
     }
+    
     static class Task implements Runnable{
 
         @Override
         public void run() {
             System.out.println(Thread.currentThread().getName());
+        }
+    }
+    
+    static class FutureTask implements Callable<String>{
+
+        @Override
+        public String call() throws Exception {
+            return Thread.currentThread().getName();
         }
     }
 }
@@ -395,3 +407,17 @@ final void runWorker(Worker w) {
     }           
 ```
 
+通过submit方法提交的任务,可以获取返回值:
+```
+// 该接口方法由AbstractExecutorService类实现    
+public <T> Future<T> submit(Callable<T> task) {
+        if (task == null) throw new NullPointerException();
+            RunnableFuture<T> ftask = newTaskFor(task);
+            execute(ftask);
+            return ftask;
+        }
+//  RunnableFuture继承了Runnable与Future
+public interface RunnableFuture<V> extends Runnable, Future<V> { 
+       void run();
+}
+```

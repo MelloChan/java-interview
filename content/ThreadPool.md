@@ -195,7 +195,7 @@ handler:
                 reject(command);
             else if (workerCountOf(recheck) == 0)
                 addWorker(null, false);
-        } // 若线程处于运行状态且成功将将任务加入队列 则重新获取原子整型值(状态+线程数) 若线程池不处于运行状态且成功将任务移出队列 则执行拒绝策略
+        } // 若线程处于运行状态且成功将将任务加入队列 则重新获取原子整型值(状态+线程数) 此时线程池不处于运行状态且成功将任务移出队列 则执行拒绝策略 
         else if (!addWorker(command, false))
             reject(command);
           // 这里 尝试重新新建线程(当前线程大于核心线程数 小于最大线程数)执行任务 失败则执行拒绝策略  
@@ -210,4 +210,73 @@ handler:
         }
 ```
 
+addWorker的实现,该方法用来新建线程执行任务,两个参数分别表示执行的任务以及当前线程数是否处于核心数量:  
+```
+private boolean addWorker(Runnable firstTask, boolean core) {
+        retry:
+        for (;;) {
+            int c = ctl.get();
+            int rs = runStateOf(c);
+
+            // 当线程状态大于等于SHUTDOWN(关闭)时 直接返回false
+            if (rs >= SHUTDOWN &&
+                ! (rs == SHUTDOWN &&
+                   firstTask == null &&
+                   ! workQueue.isEmpty()))
+                return false;
+
+            for (;;) {
+                int wc = workerCountOf(c);
+                if (wc >= CAPACITY ||
+                    wc >= (core ? corePoolSize : maximumPoolSize))
+                    return false;
+                if (compareAndIncrementWorkerCount(c))
+                    break retry;
+                c = ctl.get();  // Re-read ctl
+                if (runStateOf(c) != rs)
+                    continue retry;
+                // else CAS failed due to workerCount change; retry inner loop
+            }
+        }
+
+        boolean workerStarted = false;
+        boolean workerAdded = false;
+        Worker w = null;
+        try {
+            w = new Worker(firstTask);
+            final Thread t = w.thread;
+            if (t != null) {
+                final ReentrantLock mainLock = this.mainLock;
+                mainLock.lock();
+                try {
+                    // Recheck while holding lock.
+                    // Back out on ThreadFactory failure or if
+                    // shut down before lock acquired.
+                    int rs = runStateOf(ctl.get());
+
+                    if (rs < SHUTDOWN ||
+                        (rs == SHUTDOWN && firstTask == null)) {
+                        if (t.isAlive()) // precheck that t is startable
+                            throw new IllegalThreadStateException();
+                        workers.add(w);
+                        int s = workers.size();
+                        if (s > largestPoolSize)
+                            largestPoolSize = s;
+                        workerAdded = true;
+                    }
+                } finally {
+                    mainLock.unlock();
+                }
+                if (workerAdded) {
+                    t.start();
+                    workerStarted = true;
+                }
+            }
+        } finally {
+            if (! workerStarted)
+                addWorkerFailed(w);
+        }
+        return workerStarted;
+    }
+```
 

@@ -306,7 +306,7 @@ private final class Worker
             }
     }    
       
-// 通过getTask循环获取       
+//  获取第一个任务 执行我们任务run方法(执行前后会加锁) 之后继续通过getTask()获取阻塞队列中的任务
 final void runWorker(Worker w) {
         Thread wt = Thread.currentThread();
         Runnable task = w.firstTask;

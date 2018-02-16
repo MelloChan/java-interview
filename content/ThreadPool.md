@@ -245,7 +245,8 @@ private boolean addWorker(Runnable firstTask, boolean core) {
             }
         }
         
-        // 创建新线程的过程 基于Worker类,被final修饰同时它继承AQS实现了Runnable接口 由ReentrantLock类来保证工作线程被同步插入HashSet 
+        // 创建新线程的过程 基于Worker类,被final修饰同时它继承AQS实现了Runnable接口 
+        // 由ReentrantLock类来保证工作线程被同步插入HashSet 
         boolean workerStarted = false;
         boolean workerAdded = false;
         Worker w = null;
@@ -276,7 +277,7 @@ private boolean addWorker(Runnable firstTask, boolean core) {
                 }
                 if (workerAdded) {
                 //  开启线程来执行任务
-                    t.start();
+                    **t.start();**
                     workerStarted = true;
                 }
             }
@@ -287,7 +288,8 @@ private boolean addWorker(Runnable firstTask, boolean core) {
         return workerStarted;
     }
     
-    // Worker类部分代码 从构造器中可以知道 thread字段由一个工厂方法赋值 同时传入Worker实例 通过run方法线程启动时调用runWorker来执行任务
+// Worker类部分代码 从构造器中可以知道 thread字段由一个工厂方法赋值 
+// 同时传入Worker实例 通过run方法线程启动时调用runWorker来执行任务
 private final class Worker
         extends AbstractQueuedSynchronizer
         implements Runnable{
@@ -298,23 +300,24 @@ private final class Worker
             Worker(Runnable firstTask) {
                 setState(-1); // inhibit interrupts until runWorker
                 this.firstTask = firstTask;
-                this.thread = getThreadFactory().newThread(this);
+                **this.thread = getThreadFactory().newThread(this);**
             }
   
             public void run() {
-                runWorker(this);
+                **runWorker(this);**
             }
     }    
       
-//  获取第一个任务 执行我们任务run方法(执行前后会加锁) 之后继续通过getTask()获取阻塞队列中的任务
+//  获取第一个任务 执行我们任务run方法(执行前后会加锁) 
+//  之后继续通过getTask()获取阻塞队列中的任务
 final void runWorker(Worker w) {
         Thread wt = Thread.currentThread();
-        Runnable task = w.firstTask;
+        **Runnable task = w.firstTask**;
         w.firstTask = null;
         w.unlock(); // allow interrupts
         boolean completedAbruptly = true;
         try {
-            while (task != null || (task = getTask()) != null) {
+            while (task != null || (task = **getTask()**) != null) {
                 w.lock();
                 // If pool is stopping, ensure thread is interrupted;
                 // if not, ensure thread is not interrupted.  This
@@ -349,6 +352,46 @@ final void runWorker(Worker w) {
         } finally {
             processWorkerExit(w, completedAbruptly);
         }
-    }       
+    }
+  
+ //  getTask通过自旋来获取任务 workQueue.take()获取任务,若没有任务则进入阻塞状态等待唤醒继续获取任务 (线程复用,因此线程池能一直执行用户提交的任务)
+ //  workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) 线程存活时间内队列还是没有任务 直接返回null
+ private Runnable getTask() {
+        boolean timedOut = false; // Did the last poll() time out?
+
+        for (;;) {
+            int c = ctl.get();
+            int rs = runStateOf(c);
+
+            // Check if queue empty only if necessary.
+            if (rs >= SHUTDOWN && (rs >= STOP || workQueue.isEmpty())) {
+                decrementWorkerCount();
+                return null;
+            }
+
+            int wc = workerCountOf(c);
+
+            // Are workers subject to culling?
+            boolean timed = allowCoreThreadTimeOut || wc > corePoolSize;
+
+            if ((wc > maximumPoolSize || (timed && timedOut))
+                && (wc > 1 || workQueue.isEmpty())) {
+                if (compareAndDecrementWorkerCount(c))
+                    return null;
+                continue;
+            }
+
+            try {
+                **Runnable r = timed ?
+                    workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) :
+                    workQueue.take();**
+                if (r != null)
+                    return r;
+                timedOut = true;
+            } catch (InterruptedException retry) {
+                timedOut = false;
+            }
+        }
+    }           
 ```
 

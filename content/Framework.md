@@ -22,8 +22,6 @@ SpringMVC转发与重定向的方法参考Spring实战.
 
 - bean的加载过程   
  
- 
-
 - Spring IoC & AOP  
 
 IoC:控制反转,依赖注入(DI.构造器注入,方法注入),由spring来统一管理各类bean(比如service业务类)的生命周期,开发者不需要自行new,只需通过注解(XML配置/JavaConfig)来获取bean实例,优点在于解耦.

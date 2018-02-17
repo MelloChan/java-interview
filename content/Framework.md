@@ -38,10 +38,20 @@ AOP:面向切面编程,一个完整的程序少不了诸如日志/安全/事务�
 - 事务管理 声明式事务 事务传播   
   
 事务拥有[ACID](https://github.com/MelloChan/java-interview/blob/master/content/DB.md)四个特性.特性之间是相互保证的.  
-比起编程式事务,Spring的声明式事务(AOP原理)不需要在业务代码中夹杂事务管理的代码(解耦).一般使用注解方法级别的事务管理,更加灵活方便......    
+比起编程式事务,Spring的声明式事务(AOP原理)不需要在业务代码中夹杂事务管理的代码(解耦).一般使用注解方法级别的事务管理,更加灵活方便.    
 
-传播行为:  
-隔离级别:  
+事务[隔离级别](https://github.com/MelloChan/java-interview/blob/master/content/DB.md):    
+TransactionDefinition.ISOLATION_DEFAULT:使用底层数据库的默认隔离级别,MySQL是可重复读,Oracle则是提交读;  
+
+TransactionDefinition.ISOLATION_READ_UNCOMMITTED:未提交读,不能防止脏读、不可重复读、幻读等.一般不会用这个隔离级别;    
+
+TransactionDefinition.ISOLATION_READ_COMMITTED:可提交读,能避免脏读,不能防止不可重复读、幻读等;    
+
+TransactionDefinition.ISOLATION_REPEATABLE_READ:可重复读,能避免脏读、不可重复读,不能防止幻读等;    
+
+TransactionDefinition.ISOLATION_SERIALIZABLE:串行化,能避免各类并发问题.但性能差,一般也不会用.  
+
+事务传播行为:  
 
 - SpringMVC原理  
 

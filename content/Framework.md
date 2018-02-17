@@ -52,16 +52,13 @@ TransactionDefinition.ISOLATION_REPEATABLE_READ:可重复读,能避免脏读、�
 TransactionDefinition.ISOLATION_SERIALIZABLE:串行化,能避免各类并发问题.但性能差,一般也不会用.  
 
 事务传播行为:    
-Propagation.REQUIRED:代表当前方法支持当前事务,与调用者处于同一事务上下文,出错统一回滚(前提是调用者有事务).调用者没有事务则自己新建事务(没有事务自己会新建事务).是默认行为;    
-Propagation.SUPPORTS:代表当前方法支持当前事务,与调用者处于同一事务上下文,出错统一回滚(前提是调用者有事务).调用者没有事务则处于非事务下执行(自己不会创建事务);    
-Propagation.MANDATORY:代表当前方法支持当前事务,与调用者处于同一事务上下文,出错统一回滚(前提是调用者有事务).调用者没有事务则抛出异常(没有事务会抛出异常,即一定要被调用且调用者有事务);      
+Propagation.REQUIRED:代表当前方法支持当前事务,与调用者处于同一事务上下文,出错统一回滚(前提是调用者有事务).调用者没有事务或没有被调用则自己新建事务.是默认行为;      
+Propagation.SUPPORTS:代表当前方法支持当前事务,与调用者处于同一事务上下文,出错统一回滚(前提是调用者有事务).调用者没有事务或没有被调用则处于非事务下执行;      
+Propagation.MANDATORY:代表当前方法支持当前事务,与调用者处于同一事务上下文,出错统一回滚(前提是调用者有事务).调用者没有事务或没有被调用则抛出异常;      
 Propagation.REQUIRES.NEW:会自行创建一个事务上下文,调用者有事务则挂起调用者的事务(即出错情况下各自回滚,互不相干);      
+Propagation.NOT_SUPPORTED:不会创建事务,方法会以非事务状态执行.调用者有事务则挂起调用者的事务;    
+Propagation.NEVER:  
 Propagation.:  
-Propagation.:  
-Propagation.:  
-
-
-  
 
 - SpringMVC原理  
 

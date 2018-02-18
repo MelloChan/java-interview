@@ -113,7 +113,7 @@
 - Spring IOC & AOP
 - 注入方式
 - 事务管理 声明式事务 事务传播
-- SpringMVC原理
+- SpringMVC流程
 - SpringMVC常用注解
 - ORM框架
 - 缓存

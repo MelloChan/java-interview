@@ -69,12 +69,12 @@ Propagation.NESTED:如果当前上下文存在事务,则以嵌套事务执行该
 ![流程图](https://github.com/MelloChan/java-interview/blob/master/image/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE.png?raw=true)  
 
 DispatcherServlet:一个前端控制器.用户的所有请求都统一交由其处理,是整个MVC流程的中心,由它调用其他系统组件来处理用户请求.因此降低了组件的耦合度;    
-HandlerMapping:映射处理器.通过用户请求的URL(具体点可以说是URI,资源标识符)来映射相应的控制器;    
-HandlerExecutionChain:  
-Handler:  
-HandlerAdapter:  
-ViewResovler:  
-View:  
+HandlerMapping:映射处理器.通过用户请求的URL(具体点可以说是URI,资源标识符)来映射相应的控制器;      
+HandlerExecutionChain:封装了拦截器与控制器;    
+Handler:即我们编写的控制器;    
+HandlerAdapter:根据控制器的类型会生成合适的适配器,到这里才真正去调用控制器(反射机制)的方法处理具体的业务;    
+ViewResovler:视图解析器,根据逻辑视图名生成真正的视图,并渲染视图;    
+View:即我们编写的一些渲染模板.    
 
 步骤说明:  
 

@@ -83,14 +83,21 @@ ViewResovler:视图解析器,根据逻辑视图名生成真正的视图,并渲�
 View:即我们编写的一些渲染模板.    
 
 步骤说明:    
-①客户端发送请求到达统一处理servlet(DispatcherServlet);    
-②根据URL拿到资源标识符(URI),调用处理器映射器获取控制器信息;  
-③封装拦截器(如果有)与控制器对象生成成HandlerExecutionChain;  
-④DispathcerServlet根据控制器类型生成相应的控制器适配器(成功的话会调用拦截器的preHandler方法);  
-⑤适配器调用控制器相应方法处理业务;  
-⑥得到处理后的ModelAndView结果(之后调用拦截器的postHandler方法);  
-⑧DispatcherServlet将ModelAndView传给视图解析器,视图解析器根据逻辑视图名称生成真正的视图,之后通过模型渲染视图(之后调用拦截器的afterCompletion方法);  
-⑨DispatcherServlet得到真正的视图返回给客户端.
+①客户端发送请求到达统一处理servlet(DispatcherServlet);      
+
+②根据URL拿到资源标识符(URI),调用处理器映射器获取控制器信息;    
+
+③封装拦截器(如果有)与控制器对象生成HandlerExecutionChain;    
+
+④DispathcerServlet根据控制器类型生成相应的控制器适配器(成功的话会调用拦截器的preHandler方法);    
+
+⑤适配器调用控制器相应方法处理业务;    
+
+⑥DispathcerServlet得到处理后的ModelAndView(之后调用拦截器的postHandler方法);    
+
+⑦DispatcherServlet将ModelAndView传给视图解析器,视图解析器根据逻辑视图名称生成真正的视图View,之后通过模型渲染视图(之后调用拦截器的afterCompletion方法);    
+
+⑧DispatcherServlet将渲染视图结果返回客户端.
 
 - SpringMVC常用注解  
 

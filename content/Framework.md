@@ -66,7 +66,7 @@ Propagation.NESTED:如果当前上下文存在事务,则以嵌套事务执行该
 
 - SpringMVC流程    
 
-![流程图]()  
+![流程图](https://github.com/MelloChan/java-interview/blob/master/image/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE.png?raw=true)  
 
 DispatcherServlet:  
 HandlerMapping:  
@@ -75,6 +75,8 @@ Handler:
 HandlerAdapter:  
 ViewResovler:  
 View:  
+
+步骤说明:  
 
 - SpringMVC常用注解  
 

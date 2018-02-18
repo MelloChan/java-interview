@@ -64,7 +64,17 @@ Propagation.NEVER:不会创建事务,方法会以非事务状态执行.调用者
 
 Propagation.NESTED:如果当前上下文存在事务,则以嵌套事务执行该方法(嵌套事务:若调用者出错即使自行没有异常也会随调用者回滚,自己出错不影响调用者,自行回滚).调用者没有事务或没有被调用则自行创建事务.          
 
-- SpringMVC原理  
+- SpringMVC流程    
+
+![流程图]()  
+
+DispatcherServlet:  
+HandlerMapping:  
+HandlerExecutionChain:  
+Handler:  
+HandlerAdapter:  
+ViewResovler:  
+View:  
 
 - SpringMVC常用注解  
 

@@ -66,7 +66,7 @@ Propagation.NESTED:如果当前上下文存在事务,则以嵌套事务执行该
 
 - SpringMVC流程    
 
-![流程图](https://github.com/MelloChan/java-interview/blob/master/image/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE.png?raw=true)  
+![流程图](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE.png)  
 
 DispatcherServlet:一个前端控制器.用户的所有请求都统一交由其处理,是整个MVC流程的中心,由它调用其他系统组件来处理用户请求.因此降低了组件的耦合度;    
 HandlerMapping:映射处理器.通过用户请求的URL(具体点可以说是URI,资源标识符)来映射相应的控制器;      
@@ -76,7 +76,15 @@ HandlerAdapter:根据控制器的类型会生成合适的适配器,到这里才�
 ViewResovler:视图解析器,根据逻辑视图名生成真正的视图,并渲染视图;    
 View:即我们编写的一些渲染模板.    
 
-步骤说明:  
+步骤说明:    
+①客户端发送请求到达统一处理servlet(DispatcherServlet);    
+②根据URL拿到资源标识符(URI),调用处理器映射器获取控制器信息;  
+③封装拦截器与控制器对象成HandlerExecutionChain;  
+④DispathcerServlet根据控制器类型生成相应的控制器适配器;  
+⑤适配器调用控制器相应方法处理业务;  
+⑥得到处理后的模型与视图结果;  
+⑧DispatcherServlet调用视图解析器,视图解析器根据逻辑视图名称生成真正的视图,之后通过模型渲染视图;  
+⑨得到真正的视图返回给客户端.
 
 - SpringMVC常用注解  
 

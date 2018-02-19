@@ -389,7 +389,11 @@ Saving objects:
 Recovering objects:
 Login{date=Tue Feb 13 22:13:02 CST 2018, username='mello', password='null'}
 */
-```
+```  
+
+- 枚举
+
+- 注解
     
 - Java7新特性  
 

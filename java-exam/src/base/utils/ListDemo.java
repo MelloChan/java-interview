@@ -13,5 +13,6 @@ public class ListDemo {
         arrayList.add("mello");arrayList.add("chan");
         LinkedList<String>linkedList=new LinkedList<>();
         linkedList.add("Yuki");arrayList.add("nakato");
+        linkedList.add("Yuki00");arrayList.add("nakato00");
     }
 }

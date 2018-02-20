@@ -429,5 +429,23 @@ try{
 ⑥try-with-resource 直接使用try()进行流关闭,比起finally更简便  
 ⑦增强的throw异常抛出,在catch中抛出异常,方法签名throws将更具体    
 
-- Java8新特性
+- Java8新特性  
+
+①接口的默认方法,接口可通过default关键字来实现普通方法:  
+```
+public interface DefaultMethod {
+    default long add(long x, long y) {
+        return x + y;
+    }
+    static class Main{
+        public static void main(String[] args) {
+            System.out.println(new DefaultMethod(){
+            }.add(100L,200L));
+        }
+    }
+}/* output:
+300
+*/
+```
+
 - Java9新特性

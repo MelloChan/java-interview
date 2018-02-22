@@ -126,7 +126,9 @@ Object对象通有的方法,notify、notifyAll、wait等......
 
 - CountDownLatch CyclicBarrier Semaphore    
 
-- 并发包    
+- 并发包   
+   
+主要关注原子类、线程安全框架模型以及一些同步机制API......   
   
 - 锁优化  
 

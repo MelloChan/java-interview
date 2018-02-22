@@ -439,13 +439,23 @@ public interface DefaultMethod {
     }
     static class Main{
         public static void main(String[] args) {
-            System.out.println(new DefaultMethod(){
+            System.out      .println(new DefaultMethod(){
             }.add(100L,200L));
         }
     }
 }/* output:
 300
 */
-```
+```  
+
+②lambda表达式    
+
+③空指针安全    
+
+④流式API  
+
+⑤新的日期API  
+
+⑥并发增强   
 
 - Java9新特性

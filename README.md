@@ -41,8 +41,7 @@
 - 垃圾收集器
 - 内存分配与回收策略
 - 类加载
-
-
+- 参数优化
 
 ### [多线程&并发](https://github.com/MelloChan/java-interview/blob/master/content/Thread-Concurrent.md)
 - 进程与线程的区别

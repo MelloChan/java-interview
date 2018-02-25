@@ -145,7 +145,6 @@ JVM规范中并没有进行强制说明类加载中第一个阶段,加载开始�
 
 卸载:从JVM中卸载class文件.    
 
-
 类加载器:
 
 ![双亲委派模型](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/ClassLoader.png)  
@@ -170,5 +169,6 @@ JVM规范中并没有进行强制说明类加载中第一个阶段,加载开始�
 安全性,防止类混乱,例如假设存在多个java.lang.Object,那势必会使系统陷入混乱......  
 
 自定义[java.lang.String](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/java/lang/String.java)?  
-可以创建这样的一个包类,也就是说可以正常编译但永远无法加载运行,另外即使强行重写defineClass()去加载这样一个类,也会抛出安全异常,因为以java开头的包名是不被允许创建,
+可以创建这样的一个包类,也就是说可以正常编译但永远无法加载运行,另外即使强行重写defineClass()去加载这样一个类,也会抛出安全异常,因为以java开头的包名是不被允许创建的,
  
+- 参数优化 

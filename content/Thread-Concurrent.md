@@ -133,8 +133,16 @@ Object对象通有的方法,notify、notifyAll、wait等......
 
 - CountDownLatch CyclicBarrier Semaphore    
 
-在Effective Java第69条中建议,比起使用简陋的wait & notify(notifyAll)方法,更应当去使用并发包下更高级的并发工具.     
+在Effective Java第69条中建议,比起使用简陋的wait & notify(notifyAll)方法,更应当去使用并发包下高级的并发工具.  
+ 
+CountDownLatch:闭锁或者说倒计数锁存器,允许一个或多个线程等待一个或者多个其他线程来做某些事.通俗点当某线程需要等待其他所有线程处理完相关事宜时才能运行,就可以使用.
+```
+```    
 
+CyclicBarrier:同步屏障.    
+
+Semaphore:信号量.  
+     
 - 锁优化  
 
 偏向锁:  

@@ -124,12 +124,17 @@ Object对象通有的方法,notify、notifyAll、wait等......
    
 - [实现男女共浴问题](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/Bath.java)
 
+- 并发包   
+     
+主要关注线程池、原子类、线程安全模型以及一些同步机制API.可归类为:  
+①线程池相关 Executor框架;  
+②并发集合(线程安全模型);  
+③同步器.    
+
 - CountDownLatch CyclicBarrier Semaphore    
 
-- 并发包   
-   
-主要关注原子类、线程安全框架模型以及一些同步机制API......   
-  
+在Effective Java第69条中建议,比起使用简陋的wait & notify(notifyAll)方法,更应当去使用并发包下更高级的并发工具.     
+
 - 锁优化  
 
 偏向锁:  

@@ -138,31 +138,35 @@ Object对象通有的方法,notify、notifyAll、wait等......
 CountDownLatch:闭锁或者说倒计数锁存器,允许一个或多个线程等待一个或者多个其他线程来做某些事.通俗点当某线程需要等待其他所有线程处理完相关事宜时才能运行,就可以使用.
 ```
 // 联想操作系统课程中的P/V操作
-public class CountDownLatchDemo {
-    // 构造器中允许传入一个整型值 以此决定等待的线程数
-    static CountDownLatch countDownLatch = new CountDownLatch(2);
-
-    public static void main(String[] args) {
+public static void main(String[] args) throws InterruptedException {
+        new Thread(new Task()).start();
         new Thread(new Task()).start();
 
-        new Thread(() -> {
-            try {
-                // 锁为0 唤醒线程
-                countDownLatch.await();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println(Thread.currentThread().getName() + "------ 其他后续业务 ------");
-        }).start();
-
-        new Thread(new Task()).start();
-    }
+        System.out.println(Thread.currentThread().getName() + "------ 等待其他线程业务执行完毕 -------");
+        countDownLatch.await();
+        System.out.println(Thread.currentThread().getName()+" ------- 其他线程业务已执行完毕 ---------");
+        System.out.println(Thread.currentThread().getName()+" -------- 执行main主线程业务 --------");
+    }/* output:
+main------ 等待其他线程业务执行完毕 -------
+Thread-1 ------- 某些业务 -------
+Thread-0 ------- 某些业务 -------
+Thread-1 ------- 业务完毕 -------
+Thread-0 ------- 业务完毕 -------
+main ------- 其他线程业务已执行完毕 ---------
+main -------- 执行main主线程业务 --------
+*/
 
     static class Task implements Runnable {
 
         @Override
         public void run() {
             System.out.println(Thread.currentThread().getName() + " ------- 某些业务 -------");
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(Thread.currentThread().getName() + " ------- 业务完毕 -------");
             // 锁 -1
             countDownLatch.countDown();
         }

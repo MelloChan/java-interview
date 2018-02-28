@@ -138,7 +138,11 @@ Object对象通有的方法,notify、notifyAll、wait等......
 CountDownLatch:闭锁或者说倒计数锁存器,允许一个或多个线程等待一个或者多个其他线程来做某些事.通俗点当某线程需要等待其他所有线程处理完相关事宜时才能运行,就可以使用.
 ```
 // 联想操作系统课程中的P/V操作
-public static void main(String[] args) throws InterruptedException {
+public class CountDownLatchDemo {
+    // 需要等待的线程数 
+    static CountDownLatch countDownLatch = new CountDownLatch(2);
+
+    public static void main(String[] args) throws InterruptedException {
         new Thread(new Task()).start();
         new Thread(new Task()).start();
 
@@ -176,6 +180,46 @@ main -------- 执行main主线程业务 --------
 
 CyclicBarrier:同步屏障或者说回环屏障.让一组线程全部到达某种状态后在全部同时(相对意义上的同时)执行后续任务(在这之前这组线程会处于阻塞状态,另外某些场面CountDownLatch也可实现相同功能).另外当所有等待线程被释放该类可被重新使用.  
 ```
+public class CyclicBarrierDemo {
+    // 线程组数量以及线程组调用await(即准备完毕)后触发的线程
+    static CyclicBarrier cyclicBarrier = new CyclicBarrier(3, () -> {
+        System.out.println("----- 恢复回环 -------");
+    });
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 3; i++) {
+            new Thread(new Task()).start();
+        }
+    }/* output:
+Thread-0------ 前置业务开始 -------
+Thread-2------ 前置业务开始 -------
+Thread-1------ 前置业务开始 -------
+Thread-0------ 等待其他线程执行前置业务 ------
+Thread-1------ 等待其他线程执行前置业务 ------
+Thread-2------ 等待其他线程执行前置业务 ------
+----- 恢复回环 -------
+Thread-2------  前置业务结束,所有线程均到达屏障.后置业务开始 -------
+Thread-0------  前置业务结束,所有线程均到达屏障.后置业务开始 -------
+Thread-1------  前置业务结束,所有线程均到达屏障.后置业务开始 -------    
+*/
+
+    static class Task implements Runnable {
+
+        @Override
+        public void run() {
+            System.out.println(Thread.currentThread().getName() + "------ 前置业务开始 -------");
+            try {
+                TimeUnit.SECONDS.sleep(3);
+                System.out.println(Thread.currentThread().getName() + "------ 等待其他线程执行前置业务 ------");
+                cyclicBarrier.await();
+            } catch (InterruptedException | BrokenBarrierException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println(Thread.currentThread().getName() + "------  前置业务结束,所有线程均到达屏障.后置业务开始 -------");
+        }
+    }
+}
 
 ```      
   

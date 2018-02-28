@@ -137,6 +137,37 @@ Object对象通有的方法,notify、notifyAll、wait等......
  
 CountDownLatch:闭锁或者说倒计数锁存器,允许一个或多个线程等待一个或者多个其他线程来做某些事.通俗点当某线程需要等待其他所有线程处理完相关事宜时才能运行,就可以使用.
 ```
+// 联想操作系统课程中的P/V操作
+public class CountDownLatchDemo {
+    // 构造器中允许传入一个整型值 以此决定等待的线程数
+    static CountDownLatch countDownLatch = new CountDownLatch(2);
+
+    public static void main(String[] args) {
+        new Thread(new Task()).start();
+
+        new Thread(() -> {
+            try {
+                // 锁为0 唤醒线程
+                countDownLatch.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(Thread.currentThread().getName() + "------ 其他后续业务 ------");
+        }).start();
+
+        new Thread(new Task()).start();
+    }
+
+    static class Task implements Runnable {
+
+        @Override
+        public void run() {
+            System.out.println(Thread.currentThread().getName() + " ------- 某些业务 -------");
+            // 锁 -1
+            countDownLatch.countDown();
+        }
+    }
+}
 ```    
 
 CyclicBarrier:同步屏障.    

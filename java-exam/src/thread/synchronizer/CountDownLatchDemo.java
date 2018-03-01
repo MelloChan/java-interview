@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  * Created by MelloChan on 2018/2/28.
  */
 public class CountDownLatchDemo {
-    static CountDownLatch countDownLatch = new CountDownLatch(2);
+    private static CountDownLatch countDownLatch = new CountDownLatch(2);
 
     public static void main(String[] args) throws InterruptedException {
         new Thread(new Task()).start();

@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  * Created by MelloChan on 2018/3/1.
  */
 public class CyclicBarrierDemo {
-    static CyclicBarrier cyclicBarrier = new CyclicBarrier(3, () -> {
+    private static CyclicBarrier cyclicBarrier = new CyclicBarrier(3, () -> {
         System.out.println("----- 恢复回环 -------");
     });
 

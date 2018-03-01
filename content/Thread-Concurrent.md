@@ -181,7 +181,7 @@ main -------- 执行main主线程业务 --------
 CyclicBarrier:同步屏障或者说回环屏障.让一组线程全部到达某种状态后在全部同时(相对意义上的同时)执行后续任务(在这之前这组线程会处于阻塞状态,另外某些场面CountDownLatch也可实现相同功能).另外当所有等待线程被释放该类可被重新使用.  
 ```
 public class CyclicBarrierDemo {
-    // 线程组数量以及线程组调用await(即准备完毕)后触发的线程
+    // 有两种构造器  只提供线程组数量的 和 线程组数量以及线程组调用await(即准备完毕)后触发的线程
     static CyclicBarrier cyclicBarrier = new CyclicBarrier(3, () -> {
         System.out.println("----- 恢复回环 -------");
     });

@@ -227,7 +227,40 @@ CountDownLatch CyclicBarrier 区别:
 ②前者一次countDown做减操作,后者await做加操作;     
 ③前者用于一个或多个线程等待另外一个或多个线程完成相关任务后才能执行,而后者是多个线程相互等待完成部分任务后执行await才能继续后续任务,任何一个线程完成之前(即未执行到await方法前),其他线程都必须处于阻塞状态,另外后者构造器可以传入一个触发线程(即所有线程都执行到await方法后触发).    
 
-Semaphore:信号量.  
+Semaphore:信号量.控制线程对资源的访问权限.一般是线程数量多于资源数量的情况.
+```
+// 联想操作系统课程中的信号量
+public class SemaphoreDemo {
+    /**
+    资源数目 另外可实现公平锁 Semaphore(int permits, boolean fair)
+     */
+    private static Semaphore semaphore = new Semaphore(5);
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            new Thread(new Task()).start();
+        }
+    }
+
+    static class Task implements Runnable {
+        private static AtomicInteger count=new AtomicInteger();
+        @Override
+        public void run() {
+            try {
+                // 获取资源
+                semaphore.acquire();
+                System.out.println(Thread.currentThread().getName() + ":"+count.getAndIncrement()+" 获取资源");
+                TimeUnit.SECONDS.sleep(2);
+                System.out.println(Thread.currentThread().getName() + ":"+count.get()+" 释放资源");
+                // 释放资源
+                semaphore.release();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```  
      
 - 锁优化  
 

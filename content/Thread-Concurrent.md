@@ -222,8 +222,10 @@ Thread-1------  前置业务结束,所有线程均到达屏障.后置业务开�
 }
 
 ```      
-  
-CountDownLatch CyclicBarrier 区别: 
+CountDownLatch CyclicBarrier 区别:  
+①后者是可重用的  
+②前者一次countDown做减操作,后者await做加操作;     
+③前者用于一个或多个线程等待另外一个或多个线程完成相关任务后才能执行,而后者是多个线程相互等待完成部分任务后执行await才能继续后续任务,任何一个线程完成之前(即未执行到await方法前),其他线程都必须处于阻塞状态,另外后者构造器可以传入一个触发线程(即所有线程都执行到await方法后触发).    
 
 Semaphore:信号量.  
      

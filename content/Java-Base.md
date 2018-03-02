@@ -431,20 +431,26 @@ try{
 
 - Java8新特性  
 
-①接口的默认方法,接口可通过default关键字来实现普通方法:  
+①接口的默认方法以及静态方法,接口可通过default关键字来实现普通方法:  
 ```
 public interface DefaultMethod {
     default long add(long x, long y) {
         return x + y;
     }
+
+    static void doSomething(){
+        System.out.println("--- doSomething ---");
+    }
     static class Main{
         public static void main(String[] args) {
-            System.out      .println(new DefaultMethod(){
+            System.out.println(new DefaultMethod(){
             }.add(100L,200L));
+            DefaultMethod.doSomething();
         }
     }
 }/* output:
 300
+--- doSomething ---
 */
 ```  
 

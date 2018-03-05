@@ -112,4 +112,10 @@ mybatis:
 
 - SpringBoot  
 
-- RESTFul
+- RESTFul   
+
+- RPC  
+
+远程过程调用,用于解决不同服务器间的通信问题.Java中有所谓的RMI,但有较大的局限性,对服务提供者IP地址+端口的紧密依赖、消费服务两端都必须运行在Java平台.    
+需要解决的地方: 通信协议 + (反)序列化.  
+主流RPC框架:Dubbo(Dubbox)、Motan、gRPC、SpringCloud等.

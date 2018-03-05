@@ -98,7 +98,6 @@
 - GET & POST 
 - Session & Cookie
 - Socket    
-- RPC
 
 ### [Linux](https://github.com/MelloChan/java-interview/blob/master/content/Linux.md)
 - 如何创建/删除/复制/查找文件
@@ -121,6 +120,7 @@
 - 批量提交
 - SpringBoot
 - RESTFul
+- RPC
 
 ### [服务器](https://github.com/MelloChan/java-interview/blob/master/content/Server.md)
 - Web服务器 & 应用服务器
@@ -147,11 +147,9 @@
 - 缓存
 - [分布式唯一ID生成](https://github.com/MelloChan/java-interview/blob/master/content/unique-id.md)
 
-### jar包
-- okhttp
-- jsoup
-- commons
-- guava
+### 分布式服务框架
+- Dubbo 
+- SpringCloud
 
 ### 个人项目
 - 项目目的 & 技术选型 & 遇到的问题 & 解决方案 & 如何优化

@@ -21,14 +21,17 @@ public class QuickSort {
     }
 
     static int partition(int left, int right, int[] array) {
-        int temp = array[left];
-        while (left < right) {
-            while (left < right && temp <= array[right]) --right;
-            array[left] = array[right];
-            while (left < right && temp >= array[left]) ++left;
-            array[right] = array[left];
+        int temp=array[left];
+        int l=left,r=right;
+        while (l!=r){
+            while (l<r&&temp<=array[r])--r;
+            while (l<r&&temp>=array[l])++l;
+            if(l<r){
+                SwapUtil.swap(l,r,array);
+            }
         }
-        array[left] = temp;
-        return left;
+        array[left]=array[l];
+        array[l]=temp;
+        return l;
     }
 }

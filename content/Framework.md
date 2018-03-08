@@ -117,5 +117,11 @@ mybatis:
 - RPC  
 
 远程过程调用,用于解决不同服务器间的通信问题.Java中有所谓的RMI,但有较大的局限性,对服务提供者IP地址+端口的紧密依赖、消费服务两端都必须运行在Java平台.    
-需要解决的地方: 通信协议 + (反)序列化.  
-主流RPC框架:Dubbo(Dubbox)、Motan、gRPC、SpringCloud等.
+需要解决的地方: 通信协议 + (反)序列化.    
+流行的RPC框架:  
+阿里巴巴 Dubbo：https://github.com/alibaba/dubbo  
+新浪微博 Motan：https://github.com/weibocom/motan   
+gRPC：https://github.com/grpc/grpc   
+rpcx ：https://github.com/smallnest/rpcx   
+Apache Thrift ：https://thrift.apache.org/   
+

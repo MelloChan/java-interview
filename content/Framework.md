@@ -112,6 +112,19 @@ mybatis:
 
 - SpringBoot  
 
+SpringBoot不是什么新框架,只是统合了Spring、SpringMVC系列.  
+1.他的原则是"约定大于配置",减少开发者在资源配置方面的操作,让一些通用的配置改成默认,我们可以使用JavaConfig与(properties)yml来进行自定义配置,去XML;  
+
+2.他的starter包集合了通用兼容的jar依赖,这减少了我们在pom文件中需要输入大量依赖jar的工作;     
+
+3.Maven作为默认的项目构建方式(也可用Gradle),内嵌tomcat,鼓励使用jar形式部署项目;    
+
+4.进阶学习-> SpringCloud.  
+
+另外,现今的版本已升级为2.0,新增了大量特性,同时只支持JDK8,理论支持JDK9.  
+更多查阅官方文档:https://spring.io/guides
+
+
 - RESTful  
 
 表现层(资源)状态转化,接口URL有固定的格式,如: api.example.com/v1/xxx   其中象征资源的URI只允许名词,对资源的CRUD操作对应着HTTP的请求方法.

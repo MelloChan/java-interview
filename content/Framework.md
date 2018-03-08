@@ -103,9 +103,6 @@ View:即我们编写的一些渲染模板.
 
 - ORM框架  
 
-hibernate:  
-mybatis:    
-
 - 缓存  
 
 - 批量提交  
@@ -130,7 +127,8 @@ SpringBoot不是什么新框架,只是统合了Spring、SpringMVC系列.
 表现层(资源)状态转化,接口URL有固定的格式,如: api.example.com/v1/xxx   其中象征资源的URI只允许名词,对资源的CRUD操作对应着HTTP的请求方法.
 例如,GET->获取资源、POST->新增资源、PUT->更新资源、PATCH->局部更新、DELETE->删除资源.   
 
-详细可参考阮一峰的博客:http://www.ruanyifeng.com/blog/2011/09/restful.html  http://www.ruanyifeng.com/blog/2014/05/restful_api.html 
+详细可参考阮一峰的博客:http://www.ruanyifeng.com/blog/2011/09/restful.html  http://www.ruanyifeng.com/blog/2014/05/restful_api.html   
+
 - RPC  
 
 远程过程调用,用于解决不同服务器间的通信问题.Java中有所谓的RMI,但有较大的局限性,对服务提供者IP地址+端口的紧密依赖、消费服务两端都必须运行在Java平台.    

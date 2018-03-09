@@ -34,7 +34,38 @@ static final int spread(int h) {
     }
 ```
 
-#### initTable
+#### initTable   
+
+同HashMap,数组的初始化放在第一次put操作时.  
+```
+if (tab == null || (n = tab.length) == 0)
+                tab = initTable();
+                
+private final Node<K,V>[] initTable() {
+        Node<K,V>[] tab; int sc;
+        while ((tab = table) == null || tab.length == 0) {
+             // sizeCtl 默认0 如果实例化时调用带参构造器则sizeCtl为2的幂次方 而大于等于零时线程会调用Unsafe的CAS方法修改sizeCtk为-1
+             // 因此小于0证明其他线程在初始化中 当前线程让出CPU
+            if ((sc = sizeCtl) < 0)
+                Thread.yield(); // lost initialization race; just spin
+            else if (U.compareAndSwapInt(this, SIZECTL, sc, -1)) {
+                try {
+                    if ((tab = table) == null || tab.length == 0) {
+                        int n = (sc > 0) ? sc : DEFAULT_CAPACITY;
+                        @SuppressWarnings("unchecked")
+                        Node<K,V>[] nt = (Node<K,V>[])new Node<?,?>[n];
+                        table = tab = nt;
+                        sc = n - (n >>> 2);
+                    }
+                } finally {
+                    sizeCtl = sc;
+                }
+                break;
+            }
+        }
+        return tab;
+    }
+```
 
 #### put
 

@@ -26,6 +26,13 @@ static class Node<K,V> implements Map.Entry<K,V> {
 
 #### hash  
 
+并发哈希表不允许键入null键值对,哈希操作放在了putVal方法  
+```
+int hash = spread(key.hashCode());
+static final int spread(int h) {
+        return (h ^ (h >>> 16)) & HASH_BITS;
+    }
+```
 
 #### initTable
 

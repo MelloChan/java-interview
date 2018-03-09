@@ -48,6 +48,7 @@ private final Node<K,V>[] initTable() {
              // 因此小于0证明其他线程在初始化中 当前线程让出CPU
             if ((sc = sizeCtl) < 0)
                 Thread.yield(); // lost initialization race; just spin
+            // 替换sizeCtl为-1 仅有一个线程能操作成功  参数分别为:当前对象 内存值 期待值 更新值, CAS就是根据 内存值是否等于期待值来替换更新    
             else if (U.compareAndSwapInt(this, SIZECTL, sc, -1)) {
                 try {
                     if ((tab = table) == null || tab.length == 0) {

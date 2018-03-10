@@ -51,6 +51,7 @@ private final Node<K,V>[] initTable() {
             // 替换sizeCtl为-1 仅有一个线程能操作成功  参数分别为:当前对象 内存值 期待值 更新值, CAS就是根据 内存值是否等于期待值来替换更新    
             else if (U.compareAndSwapInt(this, SIZECTL, sc, -1)) {
                 try {
+                    // 替换成功的线程开始尝试初始化 扩容则为原先2倍 一定为2的幂次方
                     if ((tab = table) == null || tab.length == 0) {
                         int n = (sc > 0) ? sc : DEFAULT_CAPACITY;
                         @SuppressWarnings("unchecked")

@@ -4,7 +4,8 @@
 虽然JDK8以后HashMap链表死循环(JDK7时会发生的严重并发问题)已经解决,但HashMap本质上仍旧是非线程安全的,其并没有对类方法进行同步,因此多线程下仍然会发生诸如一个线程读另一个线程扩容的数据操作问题.  
 因此并发环境应当考虑线程安全的哈希表,而ConcurrentHashMap自然是首选.另外要知道HashTable已经是废弃的类了,其线程安全是基于所有的方法都加上synchronized,性能极差.而ConcurrentHashMap可以视为一个二级哈希表(JDK7),线程安全基于分段锁,进行读取操作并不会阻塞.  
 ![二级哈希表](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/ConCurrentHashMap.png)    
-如上是JDK7的ConcurrentHashMap的底层结构,其默认大小64,segment数组默认16,因此二级哈希数组的大小为64/16=4.但JDK8重新设计了ConcurrentHashMap,抛弃了segment,底层仍然是数组+链表+红黑树,利用 CAS + synchronized解决并发问题.
+如上是JDK7的ConcurrentHashMap的底层结构,其默认大小64,segment数组默认16,因此二级哈希数组的大小为64/16=4.但JDK8重新设计了ConcurrentHashMap,抛弃了segment,底层仍然是数组+链表+红黑树,内存占用和HashMap差不多,对写操作利用 CAS + synchronized解决并发问题,对读操作不加锁.
+速度优于JDK7的ConcurrentHashMap.  
 
 #### Node  
 
@@ -86,7 +87,7 @@ private final Node<K,V>[] initTable() {
             Node<K,V> f; int n, i, fh;
             if (tab == null || (n = tab.length) == 0)
                 tab = initTable(); // 初始化
-            // JMM的缘故 直接从线程工作内存拿可能无法拿到最新值 因此直接从内存中拿取table数组索引位置的值     
+            // JMM的缘故 直接从线程工作内存拿可能无法拿到最新值 volatile无法保证table里的引用具有可见性 因此直接从内存中拿取table索引位置的节点     
             else if ((f = tabAt(tab, i = (n - 1) & hash)) == null) {  
                 // 没有产生冲突 使用CAS插入节点
                 if (casTabAt(tab, i, null,
@@ -145,7 +146,7 @@ private final Node<K,V>[] initTable() {
                 }
             }
         }
-        // 添加
+        // 添加节点数量 数量超过阈值时进行扩容 
         addCount(1L, binCount);
         return null;
     }
@@ -153,6 +154,7 @@ private final Node<K,V>[] initTable() {
 
 #### get  
 
+并发哈希表不会对读操作进行加锁,因此速度和哈希表差不多
 ```
 public V get(Object key) {
         Node<K,V>[] tab; Node<K,V> e, p; int n, eh; K ek;

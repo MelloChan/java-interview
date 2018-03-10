@@ -177,5 +177,5 @@ public V get(Object key) {
     }
 ```
 
-#### 红黑树
+#### 扩容与红黑树
 

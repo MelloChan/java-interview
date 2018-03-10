@@ -79,25 +79,30 @@ private final Node<K,V>[] initTable() {
 
     final V putVal(K key, V value, boolean onlyIfAbsent) {
         if (key == null || value == null) throw new NullPointerException();
+        // 获取哈希值 与HashMap略为不同   (h ^ (h >>> 16)) & HASH_BITS;    HASH_BITS = 0x7fffffff;
         int hash = spread(key.hashCode());
         int binCount = 0;
         for (Node<K,V>[] tab = table;;) {
             Node<K,V> f; int n, i, fh;
             if (tab == null || (n = tab.length) == 0)
-                tab = initTable();
-            else if ((f = tabAt(tab, i = (n - 1) & hash)) == null) {
+                tab = initTable(); // 初始化
+            // JMM的缘故 直接从线程工作内存拿可能无法拿到最新值 因此直接从内存中拿取table数组索引位置的值     
+            else if ((f = tabAt(tab, i = (n - 1) & hash)) == null) {  
+                // 没有产生冲突 使用CAS插入节点
                 if (casTabAt(tab, i, null,
                              new Node<K,V>(hash, key, value, null)))
                     break;                   // no lock when adding to empty bin
             }
             else if ((fh = f.hash) == MOVED)
                 tab = helpTransfer(tab, f);
+             // 命中的位置已经有节点了 直接采用同步关键字锁住节点     
             else {
                 V oldVal = null;
                 synchronized (f) {
                     if (tabAt(tab, i) == f) {
                         if (fh >= 0) {
                             binCount = 1;
+                            // 循环遍历节点 两种可能 ①替换节点值 ②构建新节点插入尾插链表
                             for (Node<K,V> e = f;; ++binCount) {
                                 K ek;
                                 if (e.hash == hash &&
@@ -116,6 +121,7 @@ private final Node<K,V>[] initTable() {
                                 }
                             }
                         }
+                        // 若是树节点 则插入红黑树
                         else if (f instanceof TreeBin) {
                             Node<K,V> p;
                             binCount = 2;
@@ -128,9 +134,11 @@ private final Node<K,V>[] initTable() {
                         }
                     }
                 }
+                // 若链表大于等于8 将链表改为红黑树
                 if (binCount != 0) {
                     if (binCount >= TREEIFY_THRESHOLD)
                         treeifyBin(tab, i);
+                    // 如果是替换旧值 则返回旧值    
                     if (oldVal != null)
                         return oldVal;
                     break;

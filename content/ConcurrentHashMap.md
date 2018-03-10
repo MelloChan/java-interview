@@ -4,7 +4,7 @@
 虽然JDK8以后HashMap链表死循环(JDK7时会发生的严重并发问题)已经解决,但HashMap本质上仍旧是非线程安全的,其并没有对类方法进行同步,因此多线程下仍然会发生诸如一个线程读另一个线程扩容的数据操作问题.  
 因此并发环境应当考虑线程安全的哈希表,而ConcurrentHashMap自然是首选.另外要知道HashTable已经是废弃的类了,其线程安全是基于所有的方法都加上synchronized,性能极差.而ConcurrentHashMap可以视为一个二级哈希表(JDK7),线程安全基于分段锁,进行读取操作并不会阻塞.  
 ![二级哈希表](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/ConCurrentHashMap.png)    
-如上是JDK7的ConcurrentHashMap的底层结构,其默认大小64,segment数组默认16,因此二级哈希数组的大小为64/16=4.但JDK8重新设计了ConcurrentHashMap,抛弃了segment,底层仍然是数组+链表+红黑树,内存占用和HashMap差不多,对写操作利用 CAS + synchronized解决并发问题,对读操作不加锁.
+如上是JDK7的ConcurrentHashMap的底层结构,其默认大小64,segment数组默认16,因此二级哈希数组的大小为64/16=4.但JDK8重新设计了ConcurrentHashMap,抛弃了segment,底层仍然是数组+链表+红黑树,内存占用和HashMap差不多,对写操作利用 CAS + synchronized(同步关键字的优化)解决并发问题,对读操作不加锁.
 速度优于JDK7的ConcurrentHashMap.  
 
 #### Node  
@@ -154,19 +154,24 @@ private final Node<K,V>[] initTable() {
 
 #### get  
 
-并发哈希表不会对读操作进行加锁,因此速度和哈希表差不多
+get方法相对put方法较为简单,并发哈希表不会对读操作进行加锁,因此速度和哈希表差不多.
 ```
 public V get(Object key) {
         Node<K,V>[] tab; Node<K,V> e, p; int n, eh; K ek;
         int h = spread(key.hashCode());
+        // 这里判断数组是否为null以及是否有元素 tabAt方法会直接从内存中取索引位置相应的节点 
         if ((tab = table) != null && (n = tab.length) > 0 &&
             (e = tabAt(tab, (n - 1) & h)) != null) {
+            // 取到的节点哈希值要与传入key的哈希值相等
             if ((eh = e.hash) == h) {
+                // 节点命中 直接返回值
                 if ((ek = e.key) == key || (ek != null && key.equals(ek)))
                     return e.val;
             }
+            // 这里是红黑树的情况
             else if (eh < 0)
                 return (p = e.find(h, key)) != null ? p.val : null;
+             // 这里需要遍历链表   
             while ((e = e.next) != null) {
                 if (e.hash == h &&
                     ((ek = e.key) == key || (ek != null && key.equals(ek))))
@@ -177,5 +182,46 @@ public V get(Object key) {
     }
 ```
 
-#### 扩容与红黑树
+#### 扩容与红黑树  
+
+扩容时通过addCount方法的.  
+```
+private final void addCount(long x, int check) {
+        CounterCell[] as; long b, s;
+        if ((as = counterCells) != null ||
+            !U.compareAndSwapLong(this, BASECOUNT, b = baseCount, s = b + x)) {
+            CounterCell a; long v; int m;
+            boolean uncontended = true;
+            if (as == null || (m = as.length - 1) < 0 ||
+                (a = as[ThreadLocalRandom.getProbe() & m]) == null ||
+                !(uncontended =
+                  U.compareAndSwapLong(a, CELLVALUE, v = a.value, v + x))) {
+                fullAddCount(x, uncontended);
+                return;
+            }
+            if (check <= 1)
+                return;
+            s = sumCount();
+        }
+        if (check >= 0) {
+            Node<K,V>[] tab, nt; int n, sc;
+            while (s >= (long)(sc = sizeCtl) && (tab = table) != null &&
+                   (n = tab.length) < MAXIMUM_CAPACITY) {
+                int rs = resizeStamp(n);
+                if (sc < 0) {
+                    if ((sc >>> RESIZE_STAMP_SHIFT) != rs || sc == rs + 1 ||
+                        sc == rs + MAX_RESIZERS || (nt = nextTable) == null ||
+                        transferIndex <= 0)
+                        break;
+                    if (U.compareAndSwapInt(this, SIZECTL, sc, sc + 1))
+                        transfer(tab, nt);
+                }
+                else if (U.compareAndSwapInt(this, SIZECTL, sc,
+                                             (rs << RESIZE_STAMP_SHIFT) + 2))
+                    transfer(tab, null);
+                s = sumCount();
+            }
+        }
+    }
+```
 

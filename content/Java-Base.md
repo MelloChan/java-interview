@@ -207,7 +207,7 @@ ConcurrentHashMap:线程安全的哈希表,采用分段锁,只针对写进行加
 Queue:常用的有LinkedList(即实现了链表也实现队列接口)和PriorityQueue(优先队列).另外还有线程池中的同步队列、有界无界队列等.    
 
 - [ArrayList](https://github.com/MelloChan/java-interview/blob/master/content/ArrayList.md) & [LinkedList](https://github.com/MelloChan/java-interview/blob/master/content/LinkedList.md) 详解
-- [HashMap](https://github.com/MelloChan/java-interview/blob/master/content/HashMap.md) ConcurrentHashMap(https://github.com/MelloChan/java-interview/blob/master/content/ConcurrentHashMap.md) 详解
+- [HashMap](https://github.com/MelloChan/java-interview/blob/master/content/HashMap.md) [ConcurrentHashMap](https://github.com/MelloChan/java-interview/blob/master/content/ConcurrentHashMap.md) 详解
 
 - 异常相关     
 

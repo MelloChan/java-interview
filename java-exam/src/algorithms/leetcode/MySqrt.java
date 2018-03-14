@@ -1,7 +1,7 @@
 package algorithms.leetcode;
 
 /**
- * 求开方(非精确)
+ * 69.求开方(非精确)
  * 利用二分查找
  * @author MelloChan
  * @date 2018/3/14

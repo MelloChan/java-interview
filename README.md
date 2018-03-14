@@ -67,9 +67,9 @@
 ### 数据结构与算法
 - 数组 链表 栈 队列 树 图等
 - 递归
-- [八大排序算法](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/algorithm)
+- [八大排序算法](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/algorithms)
 - [刷剑指offer](https://github.com/MelloChan/interviews-coding)
-- [leetcode](https://leetcode.com/problemset/algorithms/) 
+- [leetcode](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/algorithms/leetcode) 
 
 ### [数据库](https://github.com/MelloChan/java-interview/blob/master/content/DB.md)
 - MySQL引擎

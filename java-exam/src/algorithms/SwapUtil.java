@@ -1,4 +1,4 @@
-package algorithm;
+package algorithms;
 
 /**
  * 替换工具

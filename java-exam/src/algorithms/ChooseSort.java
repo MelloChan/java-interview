@@ -1,8 +1,8 @@
-package algorithm;
+package algorithms;
 
 import java.util.Arrays;
 
-import static algorithm.SwapUtil.swap;
+import static algorithms.SwapUtil.swap;
 
 /**
  * 选择排序-交换排序的一种

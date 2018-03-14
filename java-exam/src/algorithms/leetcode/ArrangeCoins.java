@@ -24,11 +24,12 @@ public class ArrangeCoins {
         if(n<=0) {
             return n;
         }
-        int sum=0,count=0;
-        for (int i = 1;sum<=n; ++i,++count) {
-            sum+=i;
+        int level=1;
+        while (n>0){
+            n-=level;
+            ++level;
         }
-        return count-1;
+        return n==0?level-1:level-2;
     }
 
     /**

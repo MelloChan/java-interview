@@ -166,7 +166,11 @@
 - Spring技术内幕
 - 深入浅出/高性能MySQL
 - redis实战
-- Head First设计模式
+- redis设计与实现
+- Head First设计模式  
+- 重构
 - 计算机网络(自顶向下方法)
 - 现代操作系统
-- 剑指offer 
+- 剑指offer   
+- 算法
+- 大型网站技术架构

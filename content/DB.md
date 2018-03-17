@@ -14,6 +14,8 @@ insert into table() values();
 update from table set fields=xxx where id=xx;  
 delete table where id=xx;  
 
+MySQL语法学习其实参考官网文档就可以了: https://dev.mysql.com/doc/refman/5.7/en/  
+
 - 三大范式  
 
 第一范式:表字段不可再分,例如地址字段就具有值域可分,因此具有该字段的表就不符合第一范式,需要拆分字段;  

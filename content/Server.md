@@ -32,6 +32,12 @@ Web服务器:Apache、Nginx等,一般用来处理HTTP协议请求,只响应静�
 扩展问题:集群了,Session或者说用户状态怎么维持?  
 使用分布式session框架,redis服务器存储session也是一个选择.    
   
-- Nginx Apache
+- Nginx Apache  
+
+https://w3techs.com/technologies/overview/web_server/all
+
 - 反向代理 负载均衡  
+
+
+
 - 分布式&集群 

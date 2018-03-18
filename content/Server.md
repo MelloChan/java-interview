@@ -38,7 +38,18 @@ https://w3techs.com/technologies/overview/web_server/all
 
 - 反向代理 负载均衡  
 
-一般使用Nginx来作为反向代理与负载均衡的Web服务器,其因性能高效(C编写,使用协程多路复用机制处理请求)且轻量而受到欢迎.    
-nginx的学习教程:http://tengine.taobao.org/book/index.html
+一般使用Nginx来作为反向代理与负载均衡的Web服务器,其因性能高效(C编写,使用协程多路复用机制处理请求)且轻量而受到欢迎.      
+
+nginx的学习教程:http://tengine.taobao.org/book/index.html   
 
 - 分布式&集群 
+
+简单理解:  
+
+分布式:拆分业务部署到多台服务器;    
+
+集群:防止单点故障,单个业务多实例部署到多台服务器,对外提供相同服务.    
+
+简单科普参考:https://mp.weixin.qq.com/s/HbYfF4iBGgc7VHPFr5qJoA  
+
+拓展微服务:https://www.ibm.com/developerworks/community/blogs/3302cc3b-074e-44da-90b1-5055f1dc0d9c/entry/%E8%A7%A3%E6%9E%90%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84_%E4%B8%80_%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E6%9C%8D%E5%8A%A1?lang=en

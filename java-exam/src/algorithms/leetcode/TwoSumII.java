@@ -1,5 +1,7 @@
 package algorithms.leetcode;
 
+import java.util.Arrays;
+
 /**
  * 167. Two Sum II - Input array is sorted
  * 从一个已经排序的数组中查找出两个数，使它们的和为target
@@ -8,7 +10,7 @@ package algorithms.leetcode;
  */
 public class TwoSumII {
     public static void main(String[] args) {
-
+        System.out.println(Arrays.toString(twoSum(new int[]{1, 2, 3, 4, 5, 6, 7, 8}, 11)));
     }
 
     public static int[] twoSum(int[] numbers, int target) {

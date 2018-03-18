@@ -38,6 +38,7 @@ https://w3techs.com/technologies/overview/web_server/all
 
 - 反向代理 负载均衡  
 
-
+一般使用Nginx来作为反向代理与负载均衡的Web服务器,其因性能高效(C编写,使用协程多路复用机制处理请求)且轻量而受到欢迎.    
+nginx的学习教程:http://tengine.taobao.org/book/index.html
 
 - 分布式&集群 

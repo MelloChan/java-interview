@@ -27,7 +27,7 @@ public class ValidPalindrome {
     }
 
     /**
-     * 双指针 当出现不相同的字符时 ①删除左边 ++first,遍历剩余字符  或者 ②删除右边 --second, 遍历剩余字符
+     * 双指针 当出现不相同的字符时 ①删除左边 first+1,遍历剩余字符  或者 ②删除右边 second-1, 遍历剩余字符
      * 只要其中一种方法能构成回文即可
      * @param s
      * @return

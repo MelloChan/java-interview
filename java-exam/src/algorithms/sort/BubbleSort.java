@@ -1,12 +1,14 @@
-package algorithms;
+package algorithms.sort;
 
 import java.util.Arrays;
 
-import static algorithms.SwapUtil.swap;
-
 /**
- * 冒泡排序-交换排序的一种
- * Created by MelloChan on 2017/12/19.
+ * 冒泡排序-交换排序的一种 稳定
+ * 平均复杂度O(n2)
+ * best O(n)  worst O(n2)
+ *
+ * @author MelloChan
+ * @date 2017/12/19
  */
 public class BubbleSort {
     public static void main(String[] args) {
@@ -27,7 +29,7 @@ public class BubbleSort {
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length - 1 - i; j++) {
                 if (array[j] > array[j + 1]) {
-                    swap(j, j + 1, array);
+                    SwapUtil.swap(j, j + 1, array);
                 }
             }
         }

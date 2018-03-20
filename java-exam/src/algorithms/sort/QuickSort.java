@@ -1,9 +1,12 @@
-package algorithms;
+package algorithms.sort;
 
 import java.util.Arrays;
 /**
- * 快速排序-非稳定的排序算法
- * Created by MelloChan on 2017/12/19.
+ * 快速排序-不稳定的排序算法
+ * O(nlogn)
+ * O(nlogn) O(n2)
+ * @author MelloChan
+ * @date 2017/12/19
  */
 public class QuickSort {
     public static void main(String[] args) {

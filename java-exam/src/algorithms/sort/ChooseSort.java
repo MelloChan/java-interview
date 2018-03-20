@@ -1,12 +1,13 @@
-package algorithms;
+package algorithms.sort;
 
 import java.util.Arrays;
 
-import static algorithms.SwapUtil.swap;
-
 /**
- * 选择排序-交换排序的一种
- * Created by MelloChan on 2017/12/19.
+ * 选择排序-交换排序的一种 不稳定
+ * O(n2)
+ *
+ * @author MelloChan
+ * @date 2017/12/19
  */
 public class ChooseSort {
     public static void main(String[] args) {
@@ -37,7 +38,7 @@ public class ChooseSort {
             //上面的遍历如果有更新最小值索引
             if (minIndex != i) {
                 //则替换
-                swap(minIndex, i, array);
+                SwapUtil.swap(minIndex, i, array);
             }
         }
     }

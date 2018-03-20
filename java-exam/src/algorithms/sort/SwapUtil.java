@@ -1,4 +1,4 @@
-package algorithms;
+package algorithms.sort;
 
 /**
  * 替换工具

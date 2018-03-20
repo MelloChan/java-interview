@@ -1,10 +1,13 @@
-package algorithms;
+package algorithms.sort;
 
 import java.util.Arrays;
 
 /**
  * 直接插入排序-稳定的排序算法
- * Created by MelloChan on 2017/12/19.
+ * O(n2)
+ * O(n) O(n2)
+ * @author MelloChan
+ * @date 2017/12/19
  */
 public class InsertSort {
     public static void main(String[] args) {

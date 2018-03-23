@@ -139,7 +139,7 @@ float(32-bit) double(64-bit)
 - String  
 
 String类型,最常用的数据类型之一.该类被修饰为final(不可被继承).  
-与StringBuffer、StringBuilder区别:  
+与StringBuffer(默认大小16)、StringBuilder(默认大小16)区别:  
 ①可变性:String使用 private final char value[];来存储字符,因此实例化的对象不可变的.而后者继承自
 AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;    
 

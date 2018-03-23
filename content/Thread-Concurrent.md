@@ -95,7 +95,10 @@ Java线程进入阻塞状态主要有:
 
 [synchronized](https://github.com/MelloChan/java-interview/blob/master/content/synchronized.md):JavaSE中JVM级别(monitorenter monitorexit字节码指令)的同步关键字,可作用在方法签名或块的可重入内置锁,线程进入同步代码块之前会自动获得锁,退出时自动释放,每次只有一个线程能持有锁;
 
-[Lock](https://github.com/MelloChan/java-interview/blob/master/content/ReentrantLock.md):并发包下的一个接口,一般使用它的实现类ReentrantLock(可重入锁,基于CAS),提供了与synchronized相同的互斥性与内存可见性,但具有更高的灵活性,提供了可选的公平锁(按照线程请求前后顺序获取释放后的锁)、等待可中断以及锁绑定多个条件.
+[ReentrantLock](https://github.com/MelloChan/java-interview/blob/master/content/ReentrantLock.md):并发包下的一个接口,一般使用它的实现类ReentrantLock(可重入锁,基于CAS),提供了与synchronized相同的互斥性与内存可见性,但具有更高的灵活性,提供了可选的公平锁(按照线程请求前后顺序获取释放后的锁)、等待可中断以及锁绑定多个条件.    
+
+ReentrantReadWriteLock:ReentrantLock作为标准的互斥锁,每次只允许一条线程访问临界区,虽然能避免各种线程安全问题(写/读,写/写,读/读),但对于读/读操作加锁就没那么必要了.只要每个线程
+都能确保读取到最新的数据,并且在读取数据时不会有其他的线程修改数据,那么就不会发生问题.在这种情况使用读写锁能提升程序的性能.读写锁保证一个资源可用被多个读操作访问,或者被一个写操作访问,但两者不能同时进行.
 
 - [volatile](https://github.com/MelloChan/java-interview/blob/master/content/volatile.md)
 

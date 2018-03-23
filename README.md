@@ -28,9 +28,10 @@
 - transient
 - 枚举
 - 注解
-- Java7新特性
-- Java8新特性
-- Java9新特性
+- JDK7新特性
+- JDK8新特性
+- JDK9新特性
+- JDK10新特性  
 
 ### [JVM](https://github.com/MelloChan/java-interview/blob/master/content/JVM.md)
 - 运行时数据区

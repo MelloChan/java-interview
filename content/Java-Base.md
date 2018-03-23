@@ -396,7 +396,7 @@ Login{date=Tue Feb 13 22:13:02 CST 2018, username='mello', password='null'}
 
 - 注解
     
-- Java7新特性  
+- JDK7新特性  
 
 ①switch语句支持字符串  
 ```
@@ -429,7 +429,7 @@ try{
 ⑥try-with-resource 直接使用try()进行流关闭,比起finally更简便  
 ⑦增强的throw异常抛出,在catch中抛出异常,方法签名throws将更具体    
 
-- Java8新特性  
+- JDK8新特性  
 
 ①接口的默认方法以及静态方法,接口可通过default关键字来实现普通方法:  
 ```
@@ -464,6 +464,8 @@ public interface DefaultMethod {
 
 ⑥并发增强   
 
-- Java9新特性  
+- JDK9新特性  
 
 ①模块化
+
+- JDK10新特性    

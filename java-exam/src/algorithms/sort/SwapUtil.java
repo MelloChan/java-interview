@@ -5,7 +5,7 @@ package algorithms.sort;
  * Created by MelloChan on 2017/12/19.
  */
 public class SwapUtil {
-    static void swap(int first, int second, int[] array) {
+    public static void swap(int first, int second, int[] array) {
         // 异或替换
         array[first] ^= array[second];
         array[second] ^= array[first];

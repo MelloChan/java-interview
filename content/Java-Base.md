@@ -148,7 +148,32 @@ AbstractStringBuilder,使用char[] value;存储字符,因此是可变的;
 
 ③性能:对String的改变都会重新创建新的对象,然后将指针指向新引用地址,后者是对本身进行修改.   
  
-关于String.intern()方法,其实质就是将字符串堆引用放入常量池并返回堆引用. 
+扩展:  
+
+```
+String s="a"+"b"; // 创建了几个对象?
+```
+一个或零个,如果常量池没有"ab",则在常量池中创建并返回地址,有则直接返回地址.    
+
+```
+String s=new String("ab");  //创建了几个对象?
+```
+一个或两个,如果常量池已经有了"ab"字符串则只在堆中创建,否则堆与常量池都创建了这个字符串.  
+
+关于String.intern()方法(JDK8):
+```
+// ① 第一个JVM将在常量池创建"abc"对象并返回引用 而ss通过new将在堆中创建对象,返回堆中的引用 因此false
+String s="abc";
+String ss=new String("abc");
+ss.inter()==ss -> false
+
+// ② s在堆中创建对象同时常量池也会存储该引用 inter方法返回的是同个引用地址 因此true
+String s=new String("abc");
+s.inter()==s -> true
+```
+使用new创建了字符串,如果常量池(JDK7以及之后常量池从方法区移到堆中)没有该字符串,则其实质就是将字符串堆引用放入常量池并返回堆引用.如果有则直接返回常量池中引用.     
+
+JDK9,String底层由char数组改为byte数组.
 
 - 泛型  
 

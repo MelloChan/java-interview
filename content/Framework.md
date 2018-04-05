@@ -140,5 +140,10 @@ SpringBoot不是什么新框架,只是统合了Spring、SpringMVC系列.
 新浪微博 Motan：https://github.com/weibocom/motan   
 gRPC：https://github.com/grpc/grpc   
 rpcx ：https://github.com/smallnest/rpcx   
-Apache Thrift ：https://thrift.apache.org/   
+Apache Thrift ：https://thrift.apache.org/  
+
+简单的dubbo-demo演示: https://github.com/MelloChan/java-interview/blob/master/content/Dubbo.md  
+自己动手实现一个RPC框架: https://github.com/MelloChan/mrpc  
+
+   
 

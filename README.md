@@ -141,16 +141,17 @@
 - 五大设计原则
 - 结构型 行为型 构建型
 - 单例模式的实现
-- [demo](https://github.com/MelloChan/java-design)
+- [demo](https://github.com/MelloChan/java-design)  
+
+### 分布式服务框架
+- [Dubbo](https://github.com/MelloChan/java-interview/blob/master/content/Dubbo.md) 
+- SpringCloud
 
 ### 架构设计
 - 秒杀系统设计
 - 缓存
 - [分布式唯一ID生成](https://github.com/MelloChan/java-interview/blob/master/content/unique-id.md)
 
-### 分布式服务框架
-- Dubbo 
-- SpringCloud
 
 ### 个人项目
 - 项目目的 & 技术选型 & 遇到的问题 & 解决方案 & 如何优化

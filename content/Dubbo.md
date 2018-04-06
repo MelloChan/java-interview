@@ -18,7 +18,7 @@
 
 #### zookeeper 
 
-首先先下载zookeeper: https://zookeeper.apache.org/,之后压缩到任意文件夹,在bin目录下命令行输入 sh zkServer.sh start-foreground,开启zookeeper服务.
+首先先下载zookeeper:  https://zookeeper.apache.org/   之后压缩到任意文件夹,在bin目录下命令行输入 sh zkServer.sh start-foreground,开启zookeeper服务.
  
 #### 构建项目 
 首先,构建一个maven项目,创建相应模块(服务提供者接口sdk,服务提供者provider以及消费者consumer)结构与pom依赖如下:  

@@ -14,11 +14,17 @@
 开发者手册:http://dubbo.apache.org/books/dubbo-dev-book/design.html   
 
 框架搭配:Dubbo + Zookeeper + Spring  
-  
+构建工具:IDEA + Maven      
+
+#### zookeeper 
+
+首先先下载zookeeper: https://zookeeper.apache.org/,之后压缩到任意文件夹,在bin目录下命令行输入 sh zkServer.sh start-foreground,开启zookeeper服务.
+ 
+#### 构建项目 
 首先,构建一个maven项目,创建相应模块(服务提供者接口sdk,服务提供者provider以及消费者consumer)结构与pom依赖如下:  
 ![](https://raw.githubusercontent.com/MelloChan/java-interview/master/image/dubbo-learn.png)
 ```
-
+    <!-- dubbo相关依赖 -->
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>dubbo</artifactId>
@@ -37,6 +43,7 @@
       <version>0.1</version>
     </dependency>
     
+    <!-- spring相关依赖 -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
@@ -197,9 +204,15 @@ public class TestConsumer {
 
 ```
 
-经过以上步骤,一个dubbo最简单的demo就完成了.   
+经过以上步骤,一个dubbo的最简单的demo就完成了.   
 
-## dubbo-admin
+## dubbo-admin  
+
+dubbo-admin,dubbo服务的管理平台.  
+直接在https://github.com/apache/incubator-dubbo/releases 下载解压,在dubbo-admin目录下命令行输入 mvn install -D maven.test.skip=true,构建完成后复制target目录下的war到tomact(版本8及以上)的\webapps\ROOT下,然后开启tomcat访问页面即可.  
+登录的用户名/密码(root/root)都在dubbo.properties文件里.  
+
+
 
 
 

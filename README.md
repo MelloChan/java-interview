@@ -16,7 +16,7 @@
 - 内部类
 - 集合类
 - ArrayList & LinkedList 详解
-- HashMap HashTable CurrentHashMap 详解
+- HashMap HashTable ConcurrentHashMap 详解
 - 异常相关
 - 代理机制
 - JDBC
@@ -120,7 +120,7 @@
 - 缓存
 - 批量提交
 - SpringBoot
-- RESTFul
+- RESTful
 - RPC
 
 ### [服务器](https://github.com/MelloChan/java-interview/blob/master/content/Server.md)
@@ -137,15 +137,15 @@
 - redis 持久化
 - mongodb
 
+### 分布式服务框架
+- [Dubbo](https://github.com/MelloChan/java-interview/blob/master/content/Dubbo.md) 
+- SpringCloud
+
 ### [设计模式](https://github.com/MelloChan/java-interview/blob/master/content/Java-Design.md)
 - 五大设计原则
 - 结构型 行为型 构建型
 - 单例模式的实现
-- [demo](https://github.com/MelloChan/java-design)  
-
-### 分布式服务框架
-- [Dubbo](https://github.com/MelloChan/java-interview/blob/master/content/Dubbo.md) 
-- SpringCloud
+- [demo](https://github.com/MelloChan/java-design) 
 
 ### 架构设计
 - 秒杀系统设计

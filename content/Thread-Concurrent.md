@@ -69,7 +69,7 @@ Java线程进入阻塞状态主要有:
 多线程并不一定能提高程序执行速度,因为线程间的切换是需要时间的,因此在CPU密集型程序多线程将导致频繁的上下文切换导致程序运行变慢,
 在IO密集型才更能发挥多线程的作用;
   
-- 死锁  
+- [死锁](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/Deadlock.java)  
 
 死锁:多线程无序的资源竞争导致程序陷入停滞死循环;  
 死锁的四个必要条件:  
@@ -124,6 +124,8 @@ Object对象通有的方法,notify、notifyAll、wait等......
 ①重用线程,减少对象创建及销毁所带来的性能开销;  
 ②能有效的控制线程的最大并发数,提高系统资源利用率,同时避免过多的资源竞争与堵塞;  
 ③利用线程池,能更加简单高效的管理多线程.  
+   
+- [实现生产者-消费者模型](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/pc)
    
 - [实现男女共浴问题](https://github.com/MelloChan/java-interview/blob/master/java-exam/src/thread/Bath.java)
 

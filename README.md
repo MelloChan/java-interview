@@ -59,6 +59,7 @@
 - sleep & wait 
 - 线程通信
 - 线程池
+- 实现生产者-消费者模型
 - 实现男女共浴问题  
 - 并发包
 - CountDownLatch CyclicBarrier Semaphore  

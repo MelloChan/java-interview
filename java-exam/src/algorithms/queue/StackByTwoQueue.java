@@ -1,10 +1,10 @@
-package algorithms.stack;
+package algorithms.queue;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 队列->栈
+ * 两个队列->栈
  *
  * @author MelloChan
  * @date 2018/4/17
@@ -17,7 +17,7 @@ public class StackByTwoQueue {
             qs.push(i);
         }
         for (int i=0;i<10;i++){
-            System.out.print(qs.poll()+" ");
+            System.out.print(qs.pop()+" ");
         }
     }
 
@@ -33,7 +33,7 @@ public class StackByTwoQueue {
         }
     }
 
-    int poll() throws Exception {
+    int pop() throws Exception {
        if(q1.isEmpty()&&q2.isEmpty()){
            throw new Exception("空栈");
        }

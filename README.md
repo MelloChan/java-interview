@@ -136,7 +136,9 @@
 - memcached & redis
 - redis的数据结构
 - redis 持久化
-- mongodb
+- mongodb  
+
+### 分布式
 
 ### 分布式服务框架
 - [Dubbo](https://github.com/MelloChan/java-interview/blob/master/content/Dubbo.md) 
@@ -163,6 +165,7 @@
 - Java并发编程的艺术
 - 深入理解Java虚拟机
 - Effective Java
+- 阿里巴巴Java开发手册
 - 数据结构与算法分析  
 - 算法
 - 深入浅出/高性能MySQL
@@ -180,3 +183,12 @@
 - 大型网站技术架构:核心原理与案例分析
 - 大型分布式网站架构设计与实践
 - 大型网站系统与JAVA中间件实践
+
+### 技术网站&博客
+- [importnew](http://www.importnew.com/)
+- [并发编程网](http://ifeve.com/category/java/)
+- [纯洁的微笑](http://www.ityouknow.com/)
+- [占小狼](https://www.jianshu.com/u/90ab66c248e6)
+- [五月的仓颉](http://www.cnblogs.com/xrq730/)
+- [泥瓦匠BYSocket](https://www.bysocket.com/)
+- [杜琪](https://www.jianshu.com/u/28d7875c78df)
